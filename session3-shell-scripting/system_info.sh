@@ -2,7 +2,7 @@
 
 # ============================================================
 #  System Information Script
-#  Author : Suhassk205
+#  Author : Suhas
 #  Purpose: DevOps Homework - Session 3 Shell Scripting
 # ============================================================
 
