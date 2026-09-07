@@ -1,6 +1,6 @@
 # 🐚 Session 3 - Shell Scripting Homework
 
-> **Author:** Suhassk205  
+> **Author:** Suhas  
 > **Repo:** [devops-assignment](https://github.com/Suhassk205/devops-assignment)  
 > **Session:** 3 - Shell Scripting  
 > **Task:** System Information Script
@@ -248,7 +248,7 @@ chmod +x system_info.sh
 
 ### Step 4: Follow the prompts
 ```
-👤 Enter your name for this report: Suhassk205
+👤 Enter your name for this report: Suhas
 📁 Enter a name for the output directory: homework-output
 ```
 
@@ -266,17 +266,17 @@ cat homework-output/system_report.txt
        🖥️  SYSTEM INFORMATION REPORT
 ==============================================
 
-👤 Enter your name for this report: Suhassk205
+👤 Enter your name for this report: Suhas
 📁 Enter a name for the output directory: homework-output
 
 ----------------------------------------------
-  Generating report for: Suhassk205
+  Generating report for: Suhas
 ----------------------------------------------
 
 📅 Current Date & Time : 2026-09-07 07:00:23
 🌐 Hostname            : Suhass-MacBook-Air.local
 👤 Logged-in User      : suhas
-📝 Report Prepared by  : Suhassk205
+📝 Report Prepared by  : Suhas
 
 ----------------------------------------------
 💾 DISK USAGE:
