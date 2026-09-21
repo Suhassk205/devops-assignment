@@ -24,6 +24,8 @@ Expected output:
 pod/logs-demo created
 ```
 
+![Terminal Output](./01_apply.png)
+
 ---
 
 ## 2. Check the Pod
@@ -38,6 +40,8 @@ Expected output:
 NAME        READY   STATUS    RESTARTS   AGE
 logs-demo   1/1     Running   0          10s
 ```
+
+![Terminal Output](./02_get_pod.png)
 
 ---
 
@@ -58,6 +62,8 @@ Application is healthy
 ```
 
 *(You may see the last line multiple times.)*
+
+![Terminal Output](./03_logs.png)
 
 ---
 
@@ -161,3 +167,4 @@ Logs are often the first place to look when an application is crashing or behavi
 
 * **Kubernetes Logging Architecture:**  
   https://kubernetes.io/docs/concepts/cluster-administration/logging/
+

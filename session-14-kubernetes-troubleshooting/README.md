@@ -342,3 +342,6 @@ Students should remember this:
 * Troubleshoot Services
 * Test Kubernetes DNS
 * Identify root causes instead of guessing
+## Final Cluster State
+
+![Final Pods Status](./final_kubectl_get_pods.png)

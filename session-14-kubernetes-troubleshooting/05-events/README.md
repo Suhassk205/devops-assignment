@@ -20,6 +20,8 @@ Expected output:
 pod/events-demo created
 ```
 
+![Terminal Output](./01_apply.png)
+
 ---
 
 ## 2. Check Events
@@ -43,6 +45,8 @@ Normal   Started   Pod/events-demo     Started container...
 
 *(The exact messages depend on your cluster.)*
 
+![Terminal Output](./02_events.png)
+
 ---
 
 ## 3. Sort Events
@@ -54,6 +58,8 @@ kubectl get events --sort-by=.lastTimestamp
 ```
 
 This makes recent events easier to understand.
+
+![Terminal Output](./03_events_sorted.png)
 
 ---
 
@@ -70,6 +76,8 @@ At the bottom, look for:
 ```text
 Events:
 ```
+
+![Terminal Output](./04_describe.png)
 
 ---
 
@@ -162,3 +170,4 @@ What Kubernetes tried to do and what happened
 
 * **Kubernetes Events API:**  
   https://kubernetes.io/docs/reference/kubernetes-api/cluster-resources/event-v1/
+

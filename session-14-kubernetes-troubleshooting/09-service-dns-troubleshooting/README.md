@@ -20,6 +20,9 @@ Apply:
 kubectl apply -f deployment.yaml
 ```
 
+![Terminal Output](./01_cmd.png)
+
+
 Check:
 
 ```bash
@@ -33,6 +36,9 @@ NAME                   READY   STATUS
 web-xxxxxxxxxx-xxxxx   1/1     Running
 web-xxxxxxxxxx-yyyyy   1/1     Running
 ```
+
+![Terminal Output](./02_cmd.png)
+
 
 *(The exact names will be different on your cluster.)*
 
@@ -55,9 +61,15 @@ kubectl get service
 You should see:
 
 ```text
-NAME          TYPE        CLUSTER-IP
+NAME    
+
+![Terminal Output](./04_cmd.png)
+      TYPE        CLUSTER-IP
 web-service   ClusterIP   10.x.x.x
 ```
+
+![Terminal Output](./03_cmd.png)
+
 
 *(The ClusterIP will be different on your cluster.)*
 
@@ -70,6 +82,9 @@ Run:
 ```bash
 kubectl describe service web-service
 ```
+
+![Terminal Output](./05_cmd.png)
+
 
 Important things to check:
 * **Selector**
@@ -86,6 +101,9 @@ Run:
 ```bash
 kubectl get endpoints web-service
 ```
+
+![Terminal Output](./06_cmd.png)
+
 
 You should see Pod IP addresses. Example:
 
@@ -150,9 +168,15 @@ kubectl get pod dns-test
 Expected output:
 
 ```text
-NAME       READY   STATUS
+NAME   
+
+![Terminal Output](./08_cmd.png)
+    READY   STATUS
 dns-test   1/1     Running
 ```
+
+![Terminal Output](./07_cmd.png)
+
 
 ---
 
@@ -164,6 +188,9 @@ Run:
 kubectl exec -it dns-test -- nslookup web-service
 ```
 
+![Terminal Output](./09_cmd.png)
+
+
 You should get a result containing the Service IP. *(The exact output will depend on your cluster.)*
 
 You can also test:
@@ -171,6 +198,9 @@ You can also test:
 ```bash
 kubectl exec -it dns-test -- nslookup web-service.default.svc.cluster.local
 ```
+
+![Terminal Output](./10_cmd.png)
+
 
 The Kubernetes DNS name follows this general structure:
 
@@ -187,6 +217,9 @@ Run:
 ```bash
 kubectl exec dns-test -- wget -qO- http://web-service
 ```
+
+![Terminal Output](./11_cmd.png)
+
 
 You should receive Nginx HTML output.
 
@@ -215,6 +248,9 @@ Apply:
 kubectl apply -f broken-service.yaml
 ```
 
+![Terminal Output](./12_cmd.png)
+
+
 Check:
 
 ```bash
@@ -230,9 +266,15 @@ kubectl get endpoints broken-service
 You should see:
 
 ```text
-NAME             ENDPOINTS
+NAME    
+
+![Terminal Output](./14_cmd.png)
+         ENDPOINTS
 broken-service   <none>
 ```
+
+![Terminal Output](./13_cmd.png)
+
 
 **Why?** Because the Service says:
 
@@ -291,17 +333,26 @@ Delete the broken Service:
 kubectl delete service broken-service
 ```
 
+![Terminal Output](./15_cmd.png)
+
+
 The correct Service is:
 
 ```bash
 kubectl get service web-service
 ```
 
+![Terminal Output](./16_cmd.png)
+
+
 Check:
 
 ```bash
 kubectl get endpoints web-service
 ```
+
+![Terminal Output](./17_cmd.png)
+
 
 You should again see Pod IP addresses.
 
@@ -337,11 +388,17 @@ web-xxxxxxxxxx-xxxxx   app=web
 web-xxxxxxxxxx-yyyyy   app=web
 ```
 
+![Terminal Output](./18_cmd.png)
+
+
 Compare those labels with:
 
 ```bash
 kubectl describe service web-service
 ```
+
+![Terminal Output](./19_cmd.png)
+
 
 Look for:
 
@@ -361,6 +418,9 @@ Run:
 kubectl get pods -n kube-system
 ```
 
+![Terminal Output](./20_cmd.png)
+
+
 Look for CoreDNS Pods. Depending on your Kubernetes distribution, the names can differ. For many clusters you will see something similar to:
 
 ```text
@@ -377,6 +437,9 @@ Run:
 kubectl exec -it dns-test -- cat /etc/resolv.conf
 ```
 
+![Terminal Output](./21_cmd.png)
+
+
 You should see a Kubernetes DNS nameserver and search domains. *(The exact values depend on your cluster.)*
 
 ---
@@ -388,6 +451,9 @@ Run:
 ```bash
 kubectl logs -n kube-system -l k8s-app=kube-dns
 ```
+
+![Terminal Output](./22_cmd.png)
+
 
 If DNS is broken, CoreDNS status and logs are useful places to investigate.
 
@@ -401,11 +467,17 @@ If this works:
 kubectl exec dns-test -- nslookup web-service
 ```
 
+![Terminal Output](./09_cmd.png)
+
+
 but this fails:
 
 ```bash
 kubectl exec dns-test -- wget -qO- http://web-service
 ```
+
+![Terminal Output](./11_cmd.png)
+
 
 then DNS may be working. The problem could be:
 * Service selector
@@ -453,3 +525,4 @@ The official DNS troubleshooting guide also recommends checking DNS resolution f
   https://kubernetes.io/docs/concepts/services-networking/service/
 * **Debug Services:**  
   https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/
+

@@ -24,11 +24,15 @@ Expected output:
 pod/describe-demo created
 ```
 
+![Terminal Output](./01_apply.png)
+
 Check:
 
 ```bash
 kubectl get pod
 ```
+
+![Terminal Output](./02_get_pod.png)
 
 ---
 
@@ -39,6 +43,8 @@ Run:
 ```bash
 kubectl describe pod describe-demo
 ```
+
+![Terminal Output](./03_describe.png)
 
 The output contains many sections. Important sections include:
 
@@ -180,3 +186,4 @@ kubectl describe
 
 * **Kubernetes Pod Lifecycle:**  
   https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/
+

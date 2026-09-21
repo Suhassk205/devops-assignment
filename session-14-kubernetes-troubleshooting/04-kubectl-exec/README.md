@@ -30,6 +30,8 @@ NAME        READY   STATUS
 exec-demo   1/1     Running
 ```
 
+![Terminal Output](./02_get.png)
+
 ---
 
 ## 2. Open a Shell
@@ -104,11 +106,15 @@ For example:
 kubectl exec exec-demo -- hostname
 ```
 
+![Terminal Output](./03_exec.png)
+
 Or:
 
 ```bash
 kubectl exec exec-demo -- ls /usr/share/nginx/html
 ```
+
+![Terminal Output](./04_exec_ls.png)
 
 ---
 
@@ -187,3 +193,4 @@ Kubernetes documentation also recommends `kubectl exec` for running commands ins
 
 * **Get a Shell to a Running Container:**  
   https://kubernetes.io/docs/tasks/debug/debug-application/get-shell-running-container/
+

@@ -24,6 +24,8 @@ Expected output:
 pod/get-demo created
 ```
 
+![Terminal Output](./01_apply.png)
+
 ---
 
 ## 2. Check Pods
@@ -40,6 +42,8 @@ Expected output:
 NAME       READY   STATUS    RESTARTS   AGE
 get-demo   1/1     Running   0          10s
 ```
+
+![Terminal Output](./02_get_pods.png)
 
 ---
 
@@ -76,6 +80,8 @@ get-demo   1/1     Running   0          20s   10.244.0.5   minikube
 
 *(The exact IP and node name will be different on your cluster.)*
 
+![Terminal Output](./03_get_pods_wide.png)
+
 ---
 
 ## 5. Check Different Resources
@@ -104,6 +110,8 @@ kubectl get nodes
 ```bash
 kubectl get all
 ```
+
+![Terminal Output](./04_get_all.png)
 
 ---
 
@@ -191,3 +199,4 @@ It gives us the current state of Kubernetes resources.
 
 * **Kubernetes Command Line Tool (kubectl):**  
   https://kubernetes.io/docs/reference/kubectl/
+

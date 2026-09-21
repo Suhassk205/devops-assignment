@@ -23,6 +23,8 @@ Find the reason
 kubectl apply -f broken-pod.yaml
 ```
 
+![Terminal Output](./01_apply.png)
+
 Check:
 
 ```bash
@@ -38,6 +40,8 @@ pending-demo   0/1     Pending   0          10s
 
 *(The Pod remains Pending.)*
 
+![Terminal Output](./02_get.png)
+
 ---
 
 ## 2. Why Is It Pending?
@@ -49,6 +53,8 @@ kubectl describe pod pending-demo
 ```
 
 Look at the **Events** section. You should see a scheduling-related message.
+
+![Terminal Output](./03_describe.png)
 
 The Pod contains:
 
@@ -93,6 +99,8 @@ minikube   Ready    control-plane
 
 Our Pod asks for `node-that-does-not-exist`, but that node does not exist.
 
+![Terminal Output](./04_nodes.png)
+
 ---
 
 ## 4. Fix The Pod
@@ -103,11 +111,15 @@ Delete:
 kubectl delete pod pending-demo
 ```
 
+![Terminal Output](./05_delete.png)
+
 Apply:
 
 ```bash
 kubectl apply -f fixed-pod.yaml
 ```
+
+![Terminal Output](./06_apply_fixed.png)
 
 Check:
 
@@ -121,6 +133,8 @@ Expected output:
 NAME           READY   STATUS
 pending-demo   1/1     Running
 ```
+
+![Terminal Output](./07_get_fixed.png)
 
 ---
 
@@ -198,3 +212,4 @@ and especially the **Events** section.
 
 * **Kubernetes Scheduling:**  
   https://kubernetes.io/docs/concepts/scheduling-eviction/kube-scheduler/
+

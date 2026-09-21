@@ -12,6 +12,8 @@ ImagePullBackOff
 kubectl apply -f broken-pod.yaml
 ```
 
+![Terminal Output](./01_apply.png)
+
 Check:
 
 ```bash
@@ -31,6 +33,8 @@ After some retries, you may see:
 NAME         READY   STATUS             RESTARTS
 image-demo   0/1     ImagePullBackOff   0
 ```
+
+![Terminal Output](./02_get.png)
 
 ---
 
@@ -77,6 +81,8 @@ Failed to pull image
 
 *(The exact message depends on the container runtime and cluster.)*
 
+![Terminal Output](./03_describe.png)
+
 ---
 
 ## 4. Check The Image Name
@@ -99,11 +105,15 @@ Delete the broken Pod:
 kubectl delete pod image-demo
 ```
 
+![Terminal Output](./04_delete.png)
+
 Apply the fixed YAML:
 
 ```bash
 kubectl apply -f fixed-pod.yaml
 ```
+
+![Terminal Output](./05_apply_fixed.png)
 
 Check:
 
@@ -117,6 +127,8 @@ Expected output:
 NAME         READY   STATUS
 image-demo   1/1     Running
 ```
+
+![Terminal Output](./06_get_fixed.png)
 
 ---
 
@@ -176,3 +188,4 @@ ImagePullBackOff
 
 * **Pull an Image from a Private Registry:**  
   https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+

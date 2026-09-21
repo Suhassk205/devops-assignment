@@ -50,12 +50,18 @@ kubectl apply -f deployment.yaml
 kubectl apply -f service.yaml
 ```
 
+![Terminal Output](./01_apply.png)
+
 Check:
 
 ```bash
 kubectl get pods
 kubectl get service
 ```
+
+![Terminal Output](./02_get_pods.png)
+
+![Terminal Output](./03_get_service.png)
 
 ---
 
@@ -67,17 +73,23 @@ Run:
 kubectl get pods -o wide
 ```
 
+![Terminal Output](./04_get_pods_wide.png)
+
 Then:
 
 ```bash
 kubectl describe pod <pod-name>
 ```
 
+![Terminal Output](./05_describe_pod.png)
+
 Then:
 
 ```bash
 kubectl logs <pod-name>
 ```
+
+![Terminal Output](./06_logs_pod.png)
 
 Then:
 
@@ -93,6 +105,8 @@ curl localhost
 
 You should get the Nginx response.
 
+![Terminal Output](./07_exec_curl.png)
+
 ---
 
 ## 3. Check The Service
@@ -102,6 +116,8 @@ Run:
 ```bash
 kubectl get service
 ```
+
+![Terminal Output](./08_get_service2.png)
 
 Then:
 
@@ -113,6 +129,8 @@ Check:
 * **Selector**
 * **TargetPort**
 * **Endpoints**
+
+![Terminal Output](./09_describe_service.png)
 
 ---
 
@@ -126,6 +144,8 @@ kubectl get endpoints troubleshooting-service
 
 You should see Pod IP addresses.
 
+![Terminal Output](./10_get_endpoints.png)
+
 ---
 
 ## 5. Create A Broken Pod
@@ -136,6 +156,8 @@ Run:
 kubectl apply -f broken-pod.yaml
 ```
 
+![Terminal Output](./11_apply_broken.png)
+
 Check:
 
 ```bash
@@ -143,6 +165,8 @@ kubectl get pod project-broken-pod
 ```
 
 You should see an image-related problem.
+
+![Terminal Output](./12_get_broken.png)
 
 ---
 
@@ -156,6 +180,8 @@ First run:
 kubectl get pod project-broken-pod
 ```
 
+![Terminal Output](./13_get_broken2.png)
+
 Then:
 
 ```bash
@@ -163,6 +189,8 @@ kubectl describe pod project-broken-pod
 ```
 
 Then look at **Events**. Find the root cause.
+
+![Terminal Output](./14_describe_broken.png)
 
 ---
 
@@ -205,11 +233,15 @@ selector:
   app: wrong-app
 ```
 
+
+![Terminal Output](./15_apply_wrong_service.png)
 Apply it. Then run:
 
 ```bash
 kubectl get service
 ```
+
+![Terminal Output](./16_get_service3.png)
 
 Then:
 
@@ -218,6 +250,8 @@ kubectl get endpoints troubleshooting-service
 ```
 
 You should find: `<none>`.
+
+![Terminal Output](./17_get_endpoints2.png)
 
 ---
 
@@ -231,6 +265,8 @@ kubectl get pods --show-labels
 
 Check the Pod label.
 
+![Terminal Output](./18_get_pods_labels.png)
+
 Then:
 
 ```bash
@@ -238,6 +274,8 @@ kubectl describe service troubleshooting-service
 ```
 
 Compare **Pod label** with **Service selector**. Find the mismatch and fix it.
+
+![Terminal Output](./19_describe_service2.png)
 
 ---
 

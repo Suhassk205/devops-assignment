@@ -20,6 +20,8 @@ Run:
 kubectl apply -f broken-pod.yaml
 ```
 
+![Terminal Output](./01_apply.png)
+
 Check:
 
 ```bash
@@ -34,6 +36,8 @@ crash-demo   0/1     CrashLoopBackOff   3
 ```
 
 *(The restart count may increase.)*
+
+![Terminal Output](./02_get.png)
 
 ---
 
@@ -83,6 +87,8 @@ Look at:
 * **Restart Count**
 * **Events**
 
+![Terminal Output](./03_describe.png)
+
 ---
 
 ## 4. Check Logs
@@ -101,6 +107,8 @@ Something went wrong!
 ```
 
 This tells us the application itself exited with an error.
+
+![Terminal Output](./04_logs.png)
 
 ---
 
@@ -136,11 +144,15 @@ First delete the broken Pod:
 kubectl delete pod crash-demo
 ```
 
+![Terminal Output](./05_delete.png)
+
 Create the fixed version:
 
 ```bash
 kubectl apply -f fixed-pod.yaml
 ```
+
+![Terminal Output](./06_apply_fixed.png)
 
 Check:
 
@@ -154,6 +166,8 @@ Expected output:
 NAME         READY   STATUS
 crash-demo   1/1     Running
 ```
+
+![Terminal Output](./07_get_fixed.png)
 
 ---
 
@@ -169,6 +183,8 @@ Expected output:
 Application starting...
 Application is healthy
 ```
+
+![Terminal Output](./08_logs_fixed.png)
 
 ---
 
@@ -226,3 +242,4 @@ Always investigate instead of simply restarting the Pod.
   https://kubernetes.io/docs/tasks/debug/debug-application/
 * **Kubernetes Pod States:**  
   https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#pod-phase
+

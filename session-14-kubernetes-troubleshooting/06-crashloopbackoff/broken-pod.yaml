@@ -13,5 +13,5 @@ spec:
         - -c
         - |
           echo "Application starting..."
-          echo "Something went wrong!"
-          exit 1
+          echo "Application is running successfully!"
+          sleep infinity
