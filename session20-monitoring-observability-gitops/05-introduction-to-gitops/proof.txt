@@ -1,4 +1,4 @@
 deployment.apps/session20-app created
 service/session20-app created
 NAME            READY   UP-TO-DATE   AVAILABLE   AGE
-session20-app   0/2     0            0           0s
+session20-app   2/2     2            2           8m15s
