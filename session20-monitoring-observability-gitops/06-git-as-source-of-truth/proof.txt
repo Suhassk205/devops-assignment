@@ -1,0 +1,20 @@
+[main (root-commit) d3f84ce] Add session 20 application manifests
+ 3 files changed, 53 insertions(+)
+ create mode 100644 README.md
+ create mode 100644 app/deployment.yaml
+ create mode 100644 app/service.yaml
+diff --git a/app/deployment.yaml b/app/deployment.yaml
+index 88d7606..7b4b2c0 100644
+--- a/app/deployment.yaml
++++ b/app/deployment.yaml
+@@ -3,7 +3,7 @@ kind: Deployment
+ metadata:
+   name: session20-gitops-app
+ spec:
+-  replicas: 2
++  replicas: 3
+   selector:
+     matchLabels:
+       app: session20-gitops-app
+[main 8372faf] Scale application to three replicas
+ 1 file changed, 1 insertion(+), 1 deletion(-)
