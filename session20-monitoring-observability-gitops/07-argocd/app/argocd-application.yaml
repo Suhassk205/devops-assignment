@@ -8,9 +8,9 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/YOUR_USERNAME/YOUR_GITOPS_REPO.git
+    repoURL: https://github.com/Suhassk205/devops-assignment.git
     targetRevision: main
-    path: app
+    path: session20-monitoring-observability-gitops/06-git-as-source-of-truth/gitops-repo/app
 
   destination:
     server: https://kubernetes.default.svc

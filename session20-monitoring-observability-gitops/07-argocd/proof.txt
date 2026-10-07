@@ -64,3 +64,8 @@ pod/argocd-notifications-controller-7fcfd67447-s7v2s condition met
 pod/argocd-redis-6bf744486c-r86cs condition met
 pod/argocd-repo-server-57b98df6c6-jxffs condition met
 pod/argocd-server-665b8b6947-c96qv condition met
+application.argoproj.io/session20-app created
+NAME            SYNC STATUS   HEALTH STATUS
+session20-app                 
+NAME                   READY   UP-TO-DATE   AVAILABLE   AGE
+session20-gitops-app   3/3     3            3           8s
