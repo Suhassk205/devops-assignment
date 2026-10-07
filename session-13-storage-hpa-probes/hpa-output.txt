@@ -1,0 +1,27 @@
+NAME       REFERENCE             TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+hpa-demo   Deployment/hpa-demo   cpu: <unknown>/50%   1         5         1          16s
+---
+NAME       REFERENCE             TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+hpa-demo   Deployment/hpa-demo   cpu: <unknown>/50%   1         5         1          31s
+NAME                        CPU(cores)   MEMORY(bytes)   
+hpa-demo-5d6676989b-s7npf   2m           2Mi             
+---
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+hpa-demo   Deployment/hpa-demo   cpu: 75%/50%   1         5         1          46s
+NAME                        CPU(cores)   MEMORY(bytes)   
+hpa-demo-5d6676989b-s7npf   75m          3Mi             
+load-generator              614m         4Mi             
+---
+NAME       REFERENCE             TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+hpa-demo   Deployment/hpa-demo   cpu: 116%/50%   1         5         2          61s
+NAME                        CPU(cores)   MEMORY(bytes)   
+hpa-demo-5d6676989b-s7npf   116m         3Mi             
+load-generator              585m         4Mi             
+---
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+hpa-demo   Deployment/hpa-demo   cpu: 52%/50%   1         5         3          76s
+NAME                        CPU(cores)   MEMORY(bytes)   
+hpa-demo-5d6676989b-25dzn   46m          2Mi             
+hpa-demo-5d6676989b-s7npf   58m          3Mi             
+load-generator              523m         3Mi             
+---

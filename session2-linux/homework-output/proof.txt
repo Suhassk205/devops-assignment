@@ -1,0 +1,32 @@
+=== Task 1: Soft Link vs Hard Link ===
+--- Initial inodes ---
+4870715 -rw-r--r-- 2 root root 13 Oct  7 16:07 hardlink.txt
+4870715 -rw-r--r-- 2 root root 13 Oct  7 16:07 original.txt
+4870716 lrwxrwxrwx 1 root root 12 Oct  7 16:07 softlink.txt -> original.txt
+--- After deleting original ---
+Hello DevOps
+cat: softlink.txt: No such file or directory
+4870715 -rw-r--r-- 1 root root 13 Oct  7 16:07 hardlink.txt
+4870716 lrwxrwxrwx 1 root root 12 Oct  7 16:07 softlink.txt -> original.txt
+
+=== Task 2: adduser ===
+Adding user `devops_test' ...
+Adding new group `devops_test' (1000) ...
+Adding new user `devops_test' (1000) with group `devops_test' ...
+Creating home directory `/home/devops_test' ...
+Copying files from `/etc/skel' ...
+--- Verifying user creation ---
+uid=1000(devops_test) gid=1000(devops_test) groups=1000(devops_test)
+devops_test:x:1000:1000:,,,:/home/devops_test:/bin/bash
+total 20
+drwxr-x--- 2 devops_test devops_test 4096 Oct  7 16:08 .
+drwxr-xr-x 1 root        root        4096 Oct  7 16:08 ..
+-rw-r--r-- 1 devops_test devops_test  220 Oct  7 16:08 .bash_logout
+-rw-r--r-- 1 devops_test devops_test 3771 Oct  7 16:08 .bashrc
+-rw-r--r-- 1 devops_test devops_test  807 Oct  7 16:08 .profile
+
+=== Task 3: journalctl (Simulated, as systemd isn'\''t running in standard docker container) ===
+$ journalctl -u ssh -n 5
+-- Logs begin at Mon 2024-01-01 10:00:00 UTC, end at Wed 2024-01-03 12:00:00 UTC. --
+Jan 03 11:58:00 server sshd[1234]: Accepted publickey for user from 192.168.1.10 port 54321 ssh2
+Jan 03 11:59:00 server sshd[1234]: pam_unix(sshd:session): session opened for user by (uid=0)

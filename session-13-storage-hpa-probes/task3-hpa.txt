@@ -1,0 +1,12 @@
+NAME          REFERENCE            TARGETS      MINPODS   MAXPODS   REPLICAS   AGE
+web-app-hpa   Deployment/web-app   cpu: 1%/1%   2         5         2          2m48s
+NAME                      READY   STATUS              RESTARTS      AGE
+ab-load                   0/1     ContainerCreating   0             24s
+load-generator            1/1     Running             0             2m44s
+load-generator-2          1/1     Running             0             95s
+load-generator-3          1/1     Running             0             94s
+load-generator-4          1/1     Running             0             94s
+load-generator-5          1/1     Running             0             94s
+load-generator-stress     1/1     Running             0             31s
+web-app-d45775485-dw44r   1/1     Running             0             2m49s
+web-app-d45775485-f5znn   1/1     Running             1 (63s ago)   2m49s
