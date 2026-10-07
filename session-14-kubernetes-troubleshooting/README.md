@@ -40,3 +40,37 @@ Here is the practice documentation for the most important troubleshooting comman
 
 ## Task 3: Mini Project
 The mini-project issues (CrashLoop, Service mapping, and ImagePullBackOff) were identified and successfully resolved by fixing the deployments, enabling the services, and verifying connectivity.
+
+---
+## Proof of Work (Screenshots)
+
+### General Diagnostics
+![Kubectl Get Pods Proof](./final_kubectl_get_pods.png)
+
+### CrashLoopBackOff Troubleshooting
+![CrashLoop Apply](./06-crashloopbackoff/01_apply.png)
+![CrashLoop Fixed](./06-crashloopbackoff/06_apply_fixed.png)
+![CrashLoop Logs](./06-crashloopbackoff/04_logs.png)
+
+### ImagePullBackOff Troubleshooting
+![ImagePull Apply](./07-imagepullbackoff/01_apply.png)
+![ImagePull Describe](./07-imagepullbackoff/03_describe.png)
+![ImagePull Fixed](./07-imagepullbackoff/06_get_fixed.png)
+
+### Pending Pods Troubleshooting
+![Pending Apply](./08-pending-pods/01_apply.png)
+![Pending Describe](./08-pending-pods/03_describe.png)
+![Pending Fixed](./08-pending-pods/06_apply_fixed.png)
+
+### Mini Project Proof
+![Mini Project Logs](./mini-project/06_logs_pod.png)
+![Mini Project Service](./mini-project/03_get_service.png)
+![Mini Project Exec Curl](./mini-project/07_exec_curl.png)
+
+### Command Outputs
+![Get All](./01-kubectl-get/04_get_all.png)
+![Get Pods Wide](./01-kubectl-get/03_get_pods_wide.png)
+![Events Sorted](./05-events/03_events_sorted.png)
+![Exec LS](./04-kubectl-exec/04_exec_ls.png)
+![Logs](./03-kubectl-logs/03_logs.png)
+![Service DNS Troubleshooting](./09-service-dns-troubleshooting/01_cmd.png)
