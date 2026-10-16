@@ -13,3 +13,18 @@ output "subnet_id" {
 output "security_group_id" {
   value = aws_security_group.web.id
 }
+
+output "instance_id" {
+  description = "EC2 web server ID."
+  value       = aws_instance.web.id
+}
+
+output "web_url" {
+  description = "HTTP endpoint after the instance bootstrap completes."
+  value       = "http://${aws_instance.web.public_ip}"
+}
+
+output "artifact_bucket" {
+  description = "Private versioned bucket holding site/index.html."
+  value       = aws_s3_bucket.artifacts.id
+}

@@ -1,0 +1,6 @@
+#!/bin/bash
+set -euxo pipefail
+dnf install -y nginx
+aws s3 cp s3://${bucket_name}/site/index.html /usr/share/nginx/html/index.html --region ${aws_region}
+chmod 644 /usr/share/nginx/html/index.html
+systemctl enable --now nginx

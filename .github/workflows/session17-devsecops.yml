@@ -1,0 +1,213 @@
+name: Session 17 DevSecOps
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'session-17-devsecops/demo/**'
+      - '.github/workflows/session17-devsecops.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'session-17-devsecops/demo/**'
+      - '.github/workflows/session17-devsecops.yml'
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+    working-directory: session-17-devsecops/demo
+
+permissions:
+  contents: read
+
+concurrency:
+  group: devsecops-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Build and unit tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: |
+          python -m pip install -r requirements-dev.txt
+          python -m compileall -q app
+          mkdir -p reports
+          pytest -v --cov=app --cov-report=term-missing --cov-report=xml:reports/coverage.xml --junitxml=reports/tests.xml
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: test-reports
+          path: session-17-devsecops/demo/reports/
+
+  sast:
+    name: SAST - Semgrep
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install semgrep==1.181.0
+      - name: Scan source and enforce findings gate
+        run: |
+          mkdir -p reports
+          semgrep scan --config p/python --config p/javascript --error --metrics off --json-output reports/sast.json app
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sast-report
+          path: session-17-devsecops/demo/reports/
+
+  sca:
+    name: SCA - pip-audit
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install pip-audit==2.10.1
+      - name: Audit pinned runtime dependencies
+        run: |
+          mkdir -p reports
+          pip-audit -r requirements.txt --strict --format json --output reports/sca.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sca-report
+          path: session-17-devsecops/demo/reports/
+
+  secrets:
+    name: Secret scanning - Gitleaks
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python scripts/install_scanners.py
+      - name: Scan application Git history with redacted findings
+        working-directory: .
+        run: |
+          mkdir -p session-17-devsecops/demo/reports
+          session-17-devsecops/demo/.tools/bin/gitleaks git --redact \
+            --config session-17-devsecops/demo/.gitleaks.toml \
+            --log-opts="--all -- session-17-devsecops/demo" \
+            --report-format json --report-path session-17-devsecops/demo/reports/secrets.json .
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: secret-scan-report
+          path: session-17-devsecops/demo/reports/
+
+  image:
+    name: Docker build and Trivy security gate
+    needs: [test, sast, sca, secrets]
+    runs-on: ubuntu-latest
+    outputs:
+      image: ${{ steps.metadata.outputs.image }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - id: metadata
+        run: |
+          REPOSITORY="${GITHUB_REPOSITORY,,}"
+          echo "image=ghcr.io/$REPOSITORY/session17:$GITHUB_SHA" >> "$GITHUB_OUTPUT"
+      - run: python scripts/install_scanners.py
+      - name: Build once
+        run: docker build --pull -t '${{ steps.metadata.outputs.image }}' .
+      - name: Block HIGH or CRITICAL vulnerabilities
+        run: |
+          mkdir -p reports
+          .tools/bin/trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 1 --format json --output reports/image.json '${{ steps.metadata.outputs.image }}'
+      - name: Preserve the scanned image
+        run: docker save '${{ steps.metadata.outputs.image }}' | gzip > scanned-image.tar.gz
+      - uses: actions/upload-artifact@v4
+        with:
+          name: scanned-image
+          path: session-17-devsecops/demo/scanned-image.tar.gz
+          retention-days: 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: image-scan-report
+          path: session-17-devsecops/demo/reports/
+
+  publish:
+    name: Publish the scanned image to GHCR
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: image
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: scanned-image
+          path: session-17-devsecops/demo
+      - run: docker load -i scanned-image.tar.gz
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - run: docker push '${{ needs.image.outputs.image }}'
+
+  deploy:
+    name: Kubernetes rollout and HTTP verification
+    needs: [image, publish]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: read
+    steps:
+      - uses: actions/checkout@v4
+      - uses: helm/kind-action@v1.12.0
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Pull the published image into the temporary cluster
+        run: |
+          docker pull '${{ needs.image.outputs.image }}'
+          kind load docker-image '${{ needs.image.outputs.image }}' --name chart-testing
+      - name: Deploy the exact scanned and published tag
+        run: |
+          kubectl set image --local -f k8s/deployment.yaml session17-python='${{ needs.image.outputs.image }}' -o yaml | kubectl apply -f -
+          kubectl apply -f k8s/service.yaml
+          kubectl rollout status deployment/session17-python --timeout=180s
+      - name: Verify application health and API
+        run: |
+          mkdir -p reports
+          kubectl get pods -o wide | tee reports/pods.txt
+          kubectl get services | tee reports/services.txt
+          kubectl port-forward service/session17-python 5001:80 > reports/port-forward.txt 2>&1 &
+          FORWARD_PID=$!
+          trap 'kill "$FORWARD_PID" 2>/dev/null || true' EXIT
+          for attempt in $(seq 1 30); do
+            if curl --fail --silent http://localhost:5001/health > reports/health.json; then break; fi
+            sleep 2
+          done
+          python -c 'import json; assert json.load(open("reports/health.json"))["status"] == "healthy"'
+          curl --fail --silent http://localhost:5001/api/status | tee reports/status.json
+          python -c 'import json; assert json.load(open("reports/status.json"))["status"] == "running"'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: deployment-evidence
+          path: session-17-devsecops/demo/reports/

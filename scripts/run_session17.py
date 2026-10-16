@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Run Session 17 tests, real security scans, build, and local Kubernetes rollout.
 
-Publishing and GitHub Actions execution are separate steps requiring approval.
 SECURITY_ENV selects the virtual environment containing the pinned Python tools.
 """
 import hashlib
@@ -60,7 +59,7 @@ e.run(["docker", "image", "inspect", tag, "--format", "Image ID: {{.Id}}; runtim
 e = Evidence(SESSION, "06-kubernetes", "Session 17 - local Kubernetes deployment and live HTTP checks")
 e.run(["kind", "load", "docker-image", tag, "--name", "session13"], cwd=APP, timeout=180)
 e.k("session17-homework", "create", "namespace", "session17-homework", check=False)
-manifest = (APP / "k8s" / "deployment.yaml").read_text().replace("ghcr.io/suhassk205/devops-devsecops:__IMAGE_TAG__", tag)
+manifest = (APP / "k8s" / "deployment.yaml").read_text().replace("ghcr.io/suhassk205/devops-assignment/session17:__IMAGE_TAG__", tag)
 e.k("session17-homework", "apply", "-f", "-", input=manifest)
 e.k("session17-homework", "apply", "-f", str(APP / "k8s" / "service.yaml"))
 e.k("session17-homework", "rollout", "status", "deployment/session17-python", "--timeout=120s")
@@ -68,5 +67,5 @@ e.k("session17-homework", "get", "pods", "-o", "wide")
 e.k("session17-homework", "get", "service", "session17-python")
 e.k("session17-homework", "exec", "deployment/session17-python", "--", "python", "-c",
     "import json,urllib.request; root='http://session17-python'; health=json.load(urllib.request.urlopen(root+'/health')); assert health['status']=='healthy'; print('Health:',health); print('API:',json.load(urllib.request.urlopen(root+'/api/status')))" )
-e.note("Local verification complete. Registry publication and hosted GitHub Actions execution remain pending push approval.")
+e.note("Local tests, scans, and Kubernetes health checks completed.")
 print("Session 17 local verification complete.", flush=True)

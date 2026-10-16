@@ -1,256 +1,72 @@
-# Terraform S3 Bucket Demo
+# Terraform S3 bucket demo
 
-## Project Structure
+This exercise uses one S3 bucket to practice Terraform initialization, planning, resource creation, state inspection, outputs, and cleanup.
 
-```text
-terraform-s3-demo/
-|
-|-- README.md
-|-- terraform.tf
-|-- providers.tf
-|-- variables.tf
-|-- terraform.tfvars
-|-- main.tf
-|-- outputs.tf
-|-- .gitignore
-```
+## Files
 
-## Architecture
+- [terraform.tf](terraform.tf): Terraform and AWS provider requirements.
+- [providers.tf](providers.tf): AWS provider configuration.
+- [variables.tf](variables.tf): region and bucket name.
+- [main.tf](main.tf): the `aws_s3_bucket.suhas_bucket` resource.
+- [outputs.tf](outputs.tf): bucket name, ARN, and region.
+- [terraform.tfvars.example](terraform.tfvars.example): example input values.
 
 ```text
-terraform.tf
-     |
-     v
-Provider Configuration
-     |
-     v
-variables.tf
-     |
-     v
-terraform.tfvars
-     |
-     v
-main.tf
-     |
-     v
-aws_s3_bucket.demo
-     |
-     v
-AWS S3 Bucket
-     |
-     v
-outputs.tf
+Terraform configuration -> AWS provider -> S3 bucket
+                                  |
+                         state and outputs
 ```
 
-## Prerequisites
-
-Install:
-
-* Terraform
-* AWS CLI
-
-Configure AWS:
+## Configure inputs
 
 ```bash
-aws configure
+cp terraform.tfvars.example terraform.tfvars
 ```
 
-Verify:
+Choose a unique lowercase bucket name in `terraform.tfvars`. Use your normal AWS CLI profile for credentials; the variable file holds project settings, not access keys.
 
-```bash
-aws sts get-caller-identity
-```
+## Terraform lifecycle
 
-## Terraform Workflow
-
-### 1. Initialize
-
-```bash
-terraform init
-```
-
-Expected:
-
-```text
-Initializing the provider plugins...
-Terraform has been successfully initialized!
-```
-
-### 2. Format
-
-```bash
-terraform fmt
-```
-
-### 3. Validate
-
-```bash
-terraform validate
-```
-
-Expected:
-
-```text
-Success! The configuration is valid.
-```
-
-### 4. Plan
-
-```bash
-terraform plan
-```
-
-Expected:
-
-```text
-Plan: 1 to add, 0 to change, 0 to destroy.
-```
-
-### 5. Apply
-
-```bash
-terraform apply
-```
-
-Terraform asks:
-
-```text
-Do you want to perform these actions?
-  Only 'yes' will be accepted to approve.
-Enter a value:
-```
-
-Enter:
-
-```text
-yes
-```
-
-Expected:
-
-```text
-Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
-Outputs:
-bucket_arn = "arn:aws:s3:::demo"
-bucket_name = "demo"
-bucket_region = "ap-south-1"
-```
-
-### 6. Check State
-
-```bash
-terraform state list
-```
-
-Expected:
-
-```text
-aws_s3_bucket.demo
-```
-
-Inspect the resource:
-
-```bash
-terraform state show aws_s3_bucket.demo
-```
-
-### 7. Check Output
-
-```bash
-terraform output
-```
-
-Or:
-
-```bash
-terraform output bucket_name
-```
-
-Expected:
-
-```text
-"demo"
-```
-
-### 8. Verify Using AWS CLI
-
-```bash
-aws s3 ls
-```
-
-Or:
-
-```bash
-aws s3api head-bucket --bucket demo
-```
-
-### 9. Destroy
-
-After completing the demo:
-
-```bash
-terraform plan -destroy
-```
-
-Then:
-
-```bash
-terraform destroy
-```
-
-Enter:
-
-```text
-yes
-```
-
-Expected:
-
-```text
-Destroy complete! Resources: 1 destroyed.
-```
-
-## Complete Demo
-
-Run:
+Run from this directory with a working AWS sign-in:
 
 ```bash
 aws sts get-caller-identity
 terraform init
 terraform fmt
 terraform validate
-terraform plan
-terraform apply
-terraform output
+terraform plan -out=deployment.tfplan
+terraform apply deployment.tfplan
+terraform show
 terraform state list
-terraform state show aws_s3_bucket.demo
+terraform state show aws_s3_bucket.suhas_bucket
+terraform output
+```
+
+The plan should propose the bucket before it is created. After applying, the bucket appears in state and the output commands return its name, ARN, and region. To check that the bucket is reachable with the current identity:
+
+```bash
+aws s3api head-bucket --bucket "$(terraform output -raw bucket_name)"
+```
+
+## Cleanup
+
+```bash
 terraform plan -destroy
 terraform destroy
+terraform state list
 ```
 
-## Terraform Lifecycle
+The resource uses `force_destroy = true` for this disposable exercise, so destruction also removes any objects in the bucket. Check the selected bucket before approving deletion.
 
-```text
-              .tf files
-                  |
-                  v
-          terraform init
-                  |
-                  v
-          terraform validate
-                  |
-                  v
-            terraform plan
-                  |
-                  v
-           terraform apply
-                  |
-                  v
-             AWS S3
-                  |
-                  v
-          terraform state
-                  |
-                  v
-          terraform destroy
-```
+## Local checks and saved state
+
+The configuration passes `terraform fmt -check` and `terraform validate`. The saved backup contains `suhas-123453410261` in `ap-south-1`; the current local state contains no managed resources. The inventory below reads those local files without making AWS API calls.
+
+- [Initialization and configuration validation](../evidence/01-s3-validation.txt)
+- [Saved-state inventory](../evidence/02-saved-state.txt)
+
+![S3 Terraform validation](../screenshots/01-s3-validation.png)
+
+![Saved S3 state inventory](../screenshots/02-saved-state.png)
+
+State and backup files stay outside Git because they can contain sensitive resource information. The command output records the small inventory needed for the exercise.

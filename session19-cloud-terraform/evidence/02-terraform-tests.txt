@@ -1,0 +1,18 @@
+Session 19: local Terraform tests with a mocked AWS provider
+Actual command transcript; 2026-10-16T21:41:48.691615+05:30
+Context: local Terraform; mocked AWS provider; no AWS resources created
+
+$ terraform test -no-color
+tests/architecture.tftest.hcl... in progress
+  run "configuration_plan"... pass
+  run "network_and_compute_connections"... pass
+  run "private_artifact_storage"... pass
+  run "instance_security_and_bootstrap"... pass
+  run "reject_invalid_project_name"... pass
+  run "reject_invalid_client_cidr"... pass
+tests/architecture.tftest.hcl... tearing down
+tests/architecture.tftest.hcl... pass
+
+Success! 6 passed, 0 failed.
+[exit 0]
+

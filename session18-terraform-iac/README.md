@@ -2,6 +2,11 @@
 
 Notes and examples for defining infrastructure with Terraform, working with providers, and managing resource state. The AWS example uses an S3 bucket to practice the Terraform lifecycle.
 
+## Homework
+
+- [Task 1: Terraform S3 bucket workflow](terraform-s3-demo/README.md)
+- [Task 2: AWS services research](aws-services/README.md)
+
 ## Topics
 
 - [Infrastructure as Code basics](01-iac-basics/README.md)
@@ -20,3 +25,7 @@ Notes and examples for defining infrastructure with Terraform, working with prov
 - [Install Terraform](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/install-cli)
 - [Terraform AWS tutorial](https://developer.hashicorp.com/terraform/tutorials/aws-get-started/aws-create)
 - [Install the AWS CLI](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+
+## Practical checks
+
+The [S3 demo](terraform-s3-demo/README.md) includes the lifecycle commands, local validation output, and an inventory of the saved state. The [AWS research notes](aws-services/README.md) cover all five services from Task 2.

@@ -1,0 +1,1682 @@
+Session 19: mocked plan and test state
+Actual command transcript; 2026-10-16T21:41:49.632002+05:30
+Context: local Terraform; mocked AWS provider; no AWS resources created
+
+$ terraform test -no-color -verbose
+tests/architecture.tftest.hcl... in progress
+  run "configuration_plan"... pass
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_iam_instance_profile.web will be created
+  + resource "aws_iam_instance_profile" "web" {
+      + arn         = (known after apply)
+      + create_date = (known after apply)
+      + id          = (known after apply)
+      + name        = (known after apply)
+      + name_prefix = "session19-suhas-"
+      + role        = (known after apply)
+      + tags_all    = (known after apply)
+      + unique_id   = (known after apply)
+    }
+
+  # aws_iam_role.web will be created
+  + resource "aws_iam_role" "web" {
+      + arn                 = (known after apply)
+      + assume_role_policy  = jsonencode(
+            {
+              + Statement = [
+                  + {
+                      + Action    = "sts:AssumeRole"
+                      + Effect    = "Allow"
+                      + Principal = {
+                          + Service = "ec2.amazonaws.com"
+                        }
+                    },
+                ]
+              + Version   = "2012-10-17"
+            }
+        )
+      + create_date         = (known after apply)
+      + id                  = (known after apply)
+      + managed_policy_arns = (known after apply)
+      + name                = (known after apply)
+      + name_prefix         = "session19-suhas-"
+      + tags_all            = (known after apply)
+      + unique_id           = (known after apply)
+    }
+
+  # aws_iam_role_policy.artifact_read will be created
+  + resource "aws_iam_role_policy" "artifact_read" {
+      + id          = (known after apply)
+      + name        = "read-site-artifacts"
+      + name_prefix = (known after apply)
+      + policy      = (known after apply)
+      + role        = (known after apply)
+    }
+
+  # aws_instance.web will be created
+  + resource "aws_instance" "web" {
+      + ami                                  = "ami-0123456789abcdef0"
+      + arn                                  = (known after apply)
+      + associate_public_ip_address          = true
+      + availability_zone                    = (known after apply)
+      + disable_api_stop                     = (known after apply)
+      + disable_api_termination              = (known after apply)
+      + ebs_optimized                        = (known after apply)
+      + enable_primary_ipv6                  = (known after apply)
+      + host_id                              = (known after apply)
+      + host_resource_group_arn              = (known after apply)
+      + iam_instance_profile                 = (known after apply)
+      + id                                   = (known after apply)
+      + instance_initiated_shutdown_behavior = (known after apply)
+      + instance_lifecycle                   = (known after apply)
+      + instance_state                       = (known after apply)
+      + instance_type                        = "t3.micro"
+      + ipv6_address_count                   = (known after apply)
+      + ipv6_addresses                       = (known after apply)
+      + key_name                             = (known after apply)
+      + monitoring                           = (known after apply)
+      + outpost_arn                          = (known after apply)
+      + password_data                        = (known after apply)
+      + placement_group                      = (known after apply)
+      + placement_group_id                   = (known after apply)
+      + placement_partition_number           = (known after apply)
+      + primary_network_interface_id         = (known after apply)
+      + private_dns                          = (known after apply)
+      + private_ip                           = (known after apply)
+      + public_dns                           = (known after apply)
+      + public_ip                            = (known after apply)
+      + region                               = (known after apply)
+      + secondary_private_ips                = (known after apply)
+      + security_groups                      = (known after apply)
+      + spot_instance_request_id             = (known after apply)
+      + subnet_id                            = (known after apply)
+      + tags                                 = {
+          + "ManagedBy" = "Terraform"
+          + "Name"      = "session19-suhas-web"
+          + "Session"   = "19"
+        }
+      + tags_all                             = (known after apply)
+      + tenancy                              = (known after apply)
+      + user_data                            = (known after apply)
+      + user_data_base64                     = (known after apply)
+      + user_data_replace_on_change          = true
+      + vpc_security_group_ids               = [
+          + (known after apply),
+        ]
+
+      + metadata_options {
+          + http_endpoint               = "enabled"
+          + http_put_response_hop_limit = (known after apply)
+          + http_tokens                 = "required"
+          + instance_metadata_tags      = (known after apply)
+        }
+
+      + root_block_device {
+          + delete_on_termination = true
+          + device_name           = (known after apply)
+          + encrypted             = true
+          + iops                  = (known after apply)
+          + kms_key_id            = (known after apply)
+          + tags_all              = (known after apply)
+          + throughput            = (known after apply)
+          + volume_id             = (known after apply)
+          + volume_size           = 8
+          + volume_type           = "gp3"
+        }
+    }
+
+  # aws_internet_gateway.main will be created
+  + resource "aws_internet_gateway" "main" {
+      + arn      = (known after apply)
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + region   = (known after apply)
+      + tags     = {
+          + "ManagedBy" = "Terraform"
+          + "Name"      = "session19-mini-igw"
+          + "Session"   = "19"
+        }
+      + tags_all = (known after apply)
+      + vpc_id   = (known after apply)
+    }
+
+  # aws_route_table.public will be created
+  + resource "aws_route_table" "public" {
+      + arn              = (known after apply)
+      + id               = (known after apply)
+      + owner_id         = (known after apply)
+      + propagating_vgws = (known after apply)
+      + region           = (known after apply)
+      + route            = [
+          + {
+              + cidr_block = "0.0.0.0/0"
+              + gateway_id = (known after apply)
+            },
+        ]
+      + tags             = {
+          + "ManagedBy" = "Terraform"
+          + "Name"      = "session19-mini-public-rt"
+          + "Session"   = "19"
+        }
+      + tags_all         = (known after apply)
+      + vpc_id           = (known after apply)
+    }
+
+  # aws_route_table_association.public will be created
+  + resource "aws_route_table_association" "public" {
+      + id             = (known after apply)
+      + region         = (known after apply)
+      + route_table_id = (known after apply)
+      + subnet_id      = (known after apply)
+    }
+
+  # aws_s3_bucket.artifacts will be created
+  + resource "aws_s3_bucket" "artifacts" {
+      + acceleration_status         = (known after apply)
+      + acl                         = (known after apply)
+      + arn                         = (known after apply)
+      + bucket                      = (known after apply)
+      + bucket_domain_name          = (known after apply)
+      + bucket_namespace            = (known after apply)
+      + bucket_prefix               = "session19-suhas-"
+      + bucket_region               = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = true
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + object_lock_enabled         = (known after apply)
+      + policy                      = (known after apply)
+      + region                      = (known after apply)
+      + request_payer               = (known after apply)
+      + tags                        = {
+          + "ManagedBy" = "Terraform"
+          + "Name"      = "session19-suhas-artifacts"
+          + "Session"   = "19"
+        }
+      + tags_all                    = (known after apply)
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+    }
+
+  # aws_s3_bucket_ownership_controls.artifacts will be created
+  + resource "aws_s3_bucket_ownership_controls" "artifacts" {
+      + bucket = (known after apply)
+      + id     = (known after apply)
+      + region = (known after apply)
+
+      + rule {
+          + object_ownership = "BucketOwnerEnforced"
+        }
+    }
+
+  # aws_s3_bucket_policy.tls_only will be created
+  + resource "aws_s3_bucket_policy" "tls_only" {
+      + bucket = (known after apply)
+      + id     = (known after apply)
+      + policy = (known after apply)
+      + region = (known after apply)
+    }
+
+  # aws_s3_bucket_public_access_block.artifacts will be created
+  + resource "aws_s3_bucket_public_access_block" "artifacts" {
+      + block_public_acls       = true
+      + block_public_policy     = true
+      + bucket                  = (known after apply)
+      + id                      = (known after apply)
+      + ignore_public_acls      = true
+      + region                  = (known after apply)
+      + restrict_public_buckets = true
+    }
+
+  # aws_s3_bucket_server_side_encryption_configuration.artifacts will be created
+  + resource "aws_s3_bucket_server_side_encryption_configuration" "artifacts" {
+      + bucket = (known after apply)
+      + id     = (known after apply)
+      + region = (known after apply)
+
+      + rule {
+          + blocked_encryption_types = (known after apply)
+          + bucket_key_enabled       = (known after apply)
+
+          + apply_server_side_encryption_by_default {
+              + kms_master_key_id = (known after apply)
+              + sse_algorithm     = "AES256"
+            }
+        }
+    }
+
+  # aws_s3_bucket_versioning.artifacts will be created
+  + resource "aws_s3_bucket_versioning" "artifacts" {
+      + bucket = (known after apply)
+      + id     = (known after apply)
+      + region = (known after apply)
+
+      + versioning_configuration {
+          + mfa_delete = (known after apply)
+          + status     = "Enabled"
+        }
+    }
+
+  # aws_s3_object.homepage will be created
+  + resource "aws_s3_object" "homepage" {
+      + acl                    = (known after apply)
+      + arn                    = (known after apply)
+      + bucket                 = (known after apply)
+      + bucket_key_enabled     = (known after apply)
+      + checksum_crc32         = (known after apply)
+      + checksum_crc32c        = (known after apply)
+      + checksum_crc64nvme     = (known after apply)
+      + checksum_sha1          = (known after apply)
+      + checksum_sha256        = (known after apply)
+      + content_type           = "text/html"
+      + etag                   = (known after apply)
+      + id                     = (known after apply)
+      + key                    = "site/index.html"
+      + kms_key_id             = (known after apply)
+      + region                 = (known after apply)
+      + server_side_encryption = (known after apply)
+      + source                 = "./site/index.html"
+      + source_hash            = "7c73f039d6bdc1682332970e42e2a364"
+      + storage_class          = (known after apply)
+      + tags_all               = (known after apply)
+      + version_id             = (known after apply)
+    }
+
+  # aws_security_group.web will be created
+  + resource "aws_security_group" "web" {
+      + arn         = (known after apply)
+      + description = "Allow HTTP for the Session 19 web server"
+      + egress      = [
+          + {
+              + cidr_blocks = [
+                  + "0.0.0.0/0",
+                ]
+              + description = "Allow outbound IPv4"
+              + from_port   = 0
+              + protocol    = "-1"
+              + to_port     = 0
+            },
+        ]
+      + id          = (known after apply)
+      + ingress     = [
+          + {
+              + cidr_blocks = [
+                  + "0.0.0.0/0",
+                ]
+              + description = "HTTP"
+              + from_port   = 80
+              + protocol    = "tcp"
+              + to_port     = 80
+            },
+        ]
+      + name        = "session19-mini-web-sg"
+      + name_prefix = (known after apply)
+      + owner_id    = (known after apply)
+      + region      = (known after apply)
+      + tags        = {
+          + "ManagedBy" = "Terraform"
+          + "Name"      = "session19-mini-web-sg"
+          + "Session"   = "19"
+        }
+      + tags_all    = (known after apply)
+      + vpc_id      = (known after apply)
+    }
+
+  # aws_subnet.public will be created
+  + resource "aws_subnet" "public" {
+      + arn                                 = (known after apply)
+      + availability_zone                   = "ap-south-1a"
+      + availability_zone_id                = (known after apply)
+      + cidr_block                          = "10.20.1.0/24"
+      + id                                  = (known after apply)
+      + ipv6_cidr_block                     = (known after apply)
+      + ipv6_cidr_block_association_id      = (known after apply)
+      + map_public_ip_on_launch             = true
+      + owner_id                            = (known after apply)
+      + private_dns_hostname_type_on_launch = (known after apply)
+      + region                              = (known after apply)
+      + tags                                = {
+          + "ManagedBy" = "Terraform"
+          + "Name"      = "session19-mini-public-subnet"
+          + "Session"   = "19"
+        }
+      + tags_all                            = (known after apply)
+      + vpc_id                              = (known after apply)
+    }
+
+  # aws_vpc.main will be created
+  + resource "aws_vpc" "main" {
+      + arn                                  = (known after apply)
+      + cidr_block                           = "10.20.0.0/16"
+      + default_network_acl_id               = (known after apply)
+      + default_route_table_id               = (known after apply)
+      + default_security_group_id            = (known after apply)
+      + dhcp_options_id                      = (known after apply)
+      + enable_dns_hostnames                 = true
+      + enable_dns_support                   = true
+      + enable_network_address_usage_metrics = (known after apply)
+      + id                                   = (known after apply)
+      + ipv6_association_id                  = (known after apply)
+      + ipv6_cidr_block                      = (known after apply)
+      + ipv6_cidr_block_network_border_group = (known after apply)
+      + main_route_table_id                  = (known after apply)
+      + owner_id                             = (known after apply)
+      + region                               = (known after apply)
+      + tags                                 = {
+          + "ManagedBy" = "Terraform"
+          + "Name"      = "session19-mini-vpc"
+          + "Session"   = "19"
+        }
+      + tags_all                             = (known after apply)
+    }
+
+Plan: 17 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + artifact_bucket   = (known after apply)
+  + instance_id       = (known after apply)
+  + security_group_id = (known after apply)
+  + subnet_id         = (known after apply)
+  + vpc_cidr          = "10.20.0.0/16"
+  + vpc_id            = (known after apply)
+  + web_url           = (known after apply)
+
+  run "network_and_compute_connections"... pass
+
+# aws_iam_instance_profile.web:
+resource "aws_iam_instance_profile" "web" {
+    arn         = "8gm2ndby"
+    create_date = "x0ybbtva"
+    id          = "vl1ecxe1"
+    name        = "hnmaoeke"
+    name_prefix = "session19-suhas-"
+    role        = "0nn6u440"
+    tags_all    = {}
+    unique_id   = "erqmzb9m"
+}
+
+# aws_iam_role.web:
+resource "aws_iam_role" "web" {
+    arn                 = "l2lsjo8q"
+    assume_role_policy  = jsonencode(
+        {
+            Statement = [
+                {
+                    Action    = "sts:AssumeRole"
+                    Effect    = "Allow"
+                    Principal = {
+                        Service = "ec2.amazonaws.com"
+                    }
+                },
+            ]
+            Version   = "2012-10-17"
+        }
+    )
+    create_date         = "bvzhlrmi"
+    id                  = "3xjiutlz"
+    managed_policy_arns = []
+    name                = "0nn6u440"
+    name_prefix         = "session19-suhas-"
+    tags_all            = {}
+    unique_id           = "y7u0o0hs"
+}
+
+# aws_iam_role_policy.artifact_read:
+resource "aws_iam_role_policy" "artifact_read" {
+    id          = "4xxbyvu1"
+    name        = "read-site-artifacts"
+    name_prefix = "xmd8dhmw"
+    policy      = jsonencode(
+        {
+            Statement = [
+                {
+                    Action   = [
+                        "s3:GetObject",
+                    ]
+                    Effect   = "Allow"
+                    Resource = "arn:aws:s3:::session19-test-artifacts/site/*"
+                },
+            ]
+            Version   = "2012-10-17"
+        }
+    )
+    role        = "3xjiutlz"
+}
+
+# aws_instance.web:
+resource "aws_instance" "web" {
+    ami                                  = "ami-0123456789abcdef0"
+    arn                                  = "33sw4rxo"
+    associate_public_ip_address          = true
+    availability_zone                    = "k2oorffa"
+    disable_api_stop                     = false
+    disable_api_termination              = false
+    ebs_optimized                        = false
+    enable_primary_ipv6                  = false
+    host_id                              = "qafqjta6"
+    host_resource_group_arn              = "wttmox5v"
+    iam_instance_profile                 = "hnmaoeke"
+    id                                   = "rvulmzd8"
+    instance_initiated_shutdown_behavior = "p7yapzy7"
+    instance_lifecycle                   = "w0sbf6xc"
+    instance_state                       = "mm5xrv55"
+    instance_type                        = "t3.micro"
+    ipv6_address_count                   = 0
+    ipv6_addresses                       = []
+    key_name                             = "4p0syjag"
+    monitoring                           = false
+    outpost_arn                          = "ttr6otau"
+    password_data                        = "mug3yb8x"
+    placement_group                      = "3ylokacm"
+    placement_group_id                   = "0295biys"
+    placement_partition_number           = 0
+    primary_network_interface_id         = "fw113irf"
+    private_dns                          = "w1iwmcwu"
+    private_ip                           = "jbahitli"
+    public_dns                           = "mehv5jnq"
+    public_ip                            = "192.0.2.10"
+    region                               = "gl80ju2p"
+    secondary_private_ips                = []
+    security_groups                      = []
+    spot_instance_request_id             = "g00j5osp"
+    subnet_id                            = "y22a98ir"
+    tags                                 = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-suhas-web"
+        "Session"   = "19"
+    }
+    tags_all                             = {}
+    tenancy                              = "al4od1on"
+    user_data                            = <<-EOT
+        #!/bin/bash
+        set -euxo pipefail
+        dnf install -y nginx
+        aws s3 cp s3://session19-test-artifacts/site/index.html /usr/share/nginx/html/index.html --region ap-south-1
+        chmod 644 /usr/share/nginx/html/index.html
+        systemctl enable --now nginx
+    EOT
+    user_data_base64                     = "edtjx8tj"
+    user_data_replace_on_change          = true
+    vpc_security_group_ids               = [
+        "502qt05b",
+    ]
+
+    metadata_options {
+        http_endpoint               = "enabled"
+        http_put_response_hop_limit = 0
+        http_tokens                 = "required"
+        instance_metadata_tags      = "kbd3azlp"
+    }
+
+    root_block_device {
+        delete_on_termination = true
+        device_name           = "sj8siiu3"
+        encrypted             = true
+        iops                  = 0
+        kms_key_id            = "oszkosic"
+        tags_all              = {}
+        throughput            = 0
+        volume_id             = "dids6a3i"
+        volume_size           = 8
+        volume_type           = "gp3"
+    }
+}
+
+# aws_internet_gateway.main:
+resource "aws_internet_gateway" "main" {
+    arn      = "7g9p85oq"
+    id       = "0g6qh81x"
+    owner_id = "c7ehkkgi"
+    region   = "6hvhoujc"
+    tags     = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-igw"
+        "Session"   = "19"
+    }
+    tags_all = {}
+    vpc_id   = "fc8cfjcq"
+}
+
+# aws_route_table.public:
+resource "aws_route_table" "public" {
+    arn              = "z6twvoy2"
+    id               = "vo9djxnh"
+    owner_id         = "thlh8pox"
+    propagating_vgws = []
+    region           = "12lg5g1f"
+    route            = [
+        {
+            cidr_block = "0.0.0.0/0"
+            gateway_id = "0g6qh81x"
+        },
+    ]
+    tags             = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-public-rt"
+        "Session"   = "19"
+    }
+    tags_all         = {}
+    vpc_id           = "fc8cfjcq"
+}
+
+# aws_route_table_association.public:
+resource "aws_route_table_association" "public" {
+    id             = "mtmvnpfv"
+    region         = "9bjdfzct"
+    route_table_id = "vo9djxnh"
+    subnet_id      = "y22a98ir"
+}
+
+# aws_s3_bucket.artifacts:
+resource "aws_s3_bucket" "artifacts" {
+    acceleration_status         = "ibc2zozz"
+    acl                         = "6iqfdwvg"
+    arn                         = "arn:aws:s3:::session19-test-artifacts"
+    bucket                      = "0hx1c7pt"
+    bucket_domain_name          = "8igeaf44"
+    bucket_namespace            = "58viy5ne"
+    bucket_prefix               = "session19-suhas-"
+    bucket_region               = "p10yb81n"
+    bucket_regional_domain_name = "0jh5yc4r"
+    force_destroy               = true
+    hosted_zone_id              = "4q6ktaya"
+    id                          = "session19-test-artifacts"
+    object_lock_enabled         = false
+    policy                      = "cmid1nh7"
+    region                      = "xo0fkgu4"
+    request_payer               = "4hkau53s"
+    tags                        = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-suhas-artifacts"
+        "Session"   = "19"
+    }
+    tags_all                    = {}
+    website_domain              = "70aa6nq1"
+    website_endpoint            = "xemzs0c0"
+}
+
+# aws_s3_bucket_ownership_controls.artifacts:
+resource "aws_s3_bucket_ownership_controls" "artifacts" {
+    bucket = "session19-test-artifacts"
+    id     = "31pivx60"
+    region = "hrgxccwm"
+
+    rule {
+        object_ownership = "BucketOwnerEnforced"
+    }
+}
+
+# aws_s3_bucket_policy.tls_only:
+resource "aws_s3_bucket_policy" "tls_only" {
+    bucket = "session19-test-artifacts"
+    id     = "rp7xjxk4"
+    policy = jsonencode(
+        {
+            Statement = [
+                {
+                    Action    = "s3:*"
+                    Condition = {
+                        Bool = {
+                            "aws:SecureTransport" = "false"
+                        }
+                    }
+                    Effect    = "Deny"
+                    Principal = "*"
+                    Resource  = [
+                        "arn:aws:s3:::session19-test-artifacts",
+                        "arn:aws:s3:::session19-test-artifacts/*",
+                    ]
+                    Sid       = "DenyInsecureTransport"
+                },
+            ]
+            Version   = "2012-10-17"
+        }
+    )
+    region = "1uy6kz2k"
+}
+
+# aws_s3_bucket_public_access_block.artifacts:
+resource "aws_s3_bucket_public_access_block" "artifacts" {
+    block_public_acls       = true
+    block_public_policy     = true
+    bucket                  = "session19-test-artifacts"
+    id                      = "2mdxxx6i"
+    ignore_public_acls      = true
+    region                  = "x910hj7c"
+    restrict_public_buckets = true
+}
+
+# aws_s3_bucket_server_side_encryption_configuration.artifacts:
+resource "aws_s3_bucket_server_side_encryption_configuration" "artifacts" {
+    bucket = "session19-test-artifacts"
+    id     = "iqu0bvlm"
+    region = "wd5lww1q"
+
+    rule {
+        blocked_encryption_types = []
+        bucket_key_enabled       = false
+
+        apply_server_side_encryption_by_default {
+            kms_master_key_id = "sanejlr0"
+            sse_algorithm     = "AES256"
+        }
+    }
+}
+
+# aws_s3_bucket_versioning.artifacts:
+resource "aws_s3_bucket_versioning" "artifacts" {
+    bucket = "session19-test-artifacts"
+    id     = "2wtu0djq"
+    region = "x9tspr00"
+
+    versioning_configuration {
+        mfa_delete = "gp6ggjou"
+        status     = "Enabled"
+    }
+}
+
+# aws_s3_object.homepage:
+resource "aws_s3_object" "homepage" {
+    acl                    = "wr8shn0q"
+    arn                    = "iblkfa00"
+    bucket                 = "session19-test-artifacts"
+    bucket_key_enabled     = false
+    checksum_crc32         = "4rlzizaw"
+    checksum_crc32c        = "2owjgspn"
+    checksum_crc64nvme     = "3culgpb9"
+    checksum_sha1          = "xxwiju8m"
+    checksum_sha256        = "xvy9zpsp"
+    content_type           = "text/html"
+    etag                   = "dv43j1g7"
+    id                     = "t85gjxig"
+    key                    = "site/index.html"
+    kms_key_id             = "6yz206p6"
+    region                 = "qkm9se4b"
+    server_side_encryption = "br7eqr8m"
+    source                 = "./site/index.html"
+    source_hash            = "7c73f039d6bdc1682332970e42e2a364"
+    storage_class          = "8peqt2ua"
+    tags_all               = {}
+    version_id             = "kmfurr0e"
+}
+
+# aws_security_group.web:
+resource "aws_security_group" "web" {
+    arn         = "75n3mzi1"
+    description = "Allow HTTP for the Session 19 web server"
+    egress      = [
+        {
+            cidr_blocks = [
+                "0.0.0.0/0",
+            ]
+            description = "Allow outbound IPv4"
+            from_port   = 0
+            protocol    = "-1"
+            to_port     = 0
+        },
+    ]
+    id          = "502qt05b"
+    ingress     = [
+        {
+            cidr_blocks = [
+                "0.0.0.0/0",
+            ]
+            description = "HTTP"
+            from_port   = 80
+            protocol    = "tcp"
+            to_port     = 80
+        },
+    ]
+    name        = "session19-mini-web-sg"
+    name_prefix = "fxe3ihrz"
+    owner_id    = "rgo4j7wc"
+    region      = "7hqkug5c"
+    tags        = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-web-sg"
+        "Session"   = "19"
+    }
+    tags_all    = {}
+    vpc_id      = "fc8cfjcq"
+}
+
+# aws_subnet.public:
+resource "aws_subnet" "public" {
+    arn                                 = "f6vef7jd"
+    availability_zone                   = "ap-south-1a"
+    availability_zone_id                = "um9j5p6z"
+    cidr_block                          = "10.20.1.0/24"
+    id                                  = "y22a98ir"
+    ipv6_cidr_block                     = "1lvimho7"
+    ipv6_cidr_block_association_id      = "r2cfx56l"
+    map_public_ip_on_launch             = true
+    owner_id                            = "dh012xf8"
+    private_dns_hostname_type_on_launch = "zk433tww"
+    region                              = "j963tgvo"
+    tags                                = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-public-subnet"
+        "Session"   = "19"
+    }
+    tags_all                            = {}
+    vpc_id                              = "fc8cfjcq"
+}
+
+# aws_vpc.main:
+resource "aws_vpc" "main" {
+    arn                                  = "jzzqxysj"
+    cidr_block                           = "10.20.0.0/16"
+    default_network_acl_id               = "vklks2uo"
+    default_route_table_id               = "7tl6qgeb"
+    default_security_group_id            = "3zi4vl08"
+    dhcp_options_id                      = "7rq1kcwc"
+    enable_dns_hostnames                 = true
+    enable_dns_support                   = true
+    enable_network_address_usage_metrics = false
+    id                                   = "fc8cfjcq"
+    ipv6_association_id                  = "84zqlkbi"
+    ipv6_cidr_block                      = "1ynpr5a9"
+    ipv6_cidr_block_network_border_group = "hrufjzpg"
+    main_route_table_id                  = "4iyp2mq1"
+    owner_id                             = "nnhjqxwv"
+    region                               = "01pdogrk"
+    tags                                 = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-vpc"
+        "Session"   = "19"
+    }
+    tags_all                             = {}
+}
+
+
+Outputs:
+
+artifact_bucket = "session19-test-artifacts"
+instance_id = "rvulmzd8"
+security_group_id = "502qt05b"
+subnet_id = "y22a98ir"
+vpc_cidr = "10.20.0.0/16"
+vpc_id = "fc8cfjcq"
+web_url = "http://192.0.2.10"
+
+  run "private_artifact_storage"... pass
+
+# aws_iam_instance_profile.web:
+resource "aws_iam_instance_profile" "web" {
+    arn         = "8gm2ndby"
+    create_date = "x0ybbtva"
+    id          = "vl1ecxe1"
+    name        = "hnmaoeke"
+    name_prefix = "session19-suhas-"
+    role        = "0nn6u440"
+    tags_all    = {}
+    unique_id   = "erqmzb9m"
+}
+
+# aws_iam_role.web:
+resource "aws_iam_role" "web" {
+    arn                 = "l2lsjo8q"
+    assume_role_policy  = jsonencode(
+        {
+            Statement = [
+                {
+                    Action    = "sts:AssumeRole"
+                    Effect    = "Allow"
+                    Principal = {
+                        Service = "ec2.amazonaws.com"
+                    }
+                },
+            ]
+            Version   = "2012-10-17"
+        }
+    )
+    create_date         = "bvzhlrmi"
+    id                  = "3xjiutlz"
+    managed_policy_arns = []
+    name                = "0nn6u440"
+    name_prefix         = "session19-suhas-"
+    tags_all            = {}
+    unique_id           = "y7u0o0hs"
+}
+
+# aws_iam_role_policy.artifact_read:
+resource "aws_iam_role_policy" "artifact_read" {
+    id          = "4xxbyvu1"
+    name        = "read-site-artifacts"
+    name_prefix = "xmd8dhmw"
+    policy      = jsonencode(
+        {
+            Statement = [
+                {
+                    Action   = [
+                        "s3:GetObject",
+                    ]
+                    Effect   = "Allow"
+                    Resource = "arn:aws:s3:::session19-test-artifacts/site/*"
+                },
+            ]
+            Version   = "2012-10-17"
+        }
+    )
+    role        = "3xjiutlz"
+}
+
+# aws_instance.web:
+resource "aws_instance" "web" {
+    ami                                  = "ami-0123456789abcdef0"
+    arn                                  = "33sw4rxo"
+    associate_public_ip_address          = true
+    availability_zone                    = "k2oorffa"
+    disable_api_stop                     = false
+    disable_api_termination              = false
+    ebs_optimized                        = false
+    enable_primary_ipv6                  = false
+    host_id                              = "qafqjta6"
+    host_resource_group_arn              = "wttmox5v"
+    iam_instance_profile                 = "hnmaoeke"
+    id                                   = "rvulmzd8"
+    instance_initiated_shutdown_behavior = "p7yapzy7"
+    instance_lifecycle                   = "w0sbf6xc"
+    instance_state                       = "mm5xrv55"
+    instance_type                        = "t3.micro"
+    ipv6_address_count                   = 0
+    ipv6_addresses                       = []
+    key_name                             = "4p0syjag"
+    monitoring                           = false
+    outpost_arn                          = "ttr6otau"
+    password_data                        = "mug3yb8x"
+    placement_group                      = "3ylokacm"
+    placement_group_id                   = "0295biys"
+    placement_partition_number           = 0
+    primary_network_interface_id         = "fw113irf"
+    private_dns                          = "w1iwmcwu"
+    private_ip                           = "jbahitli"
+    public_dns                           = "mehv5jnq"
+    public_ip                            = "192.0.2.10"
+    region                               = "gl80ju2p"
+    secondary_private_ips                = []
+    security_groups                      = []
+    spot_instance_request_id             = "g00j5osp"
+    subnet_id                            = "y22a98ir"
+    tags                                 = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-suhas-web"
+        "Session"   = "19"
+    }
+    tags_all                             = {}
+    tenancy                              = "al4od1on"
+    user_data                            = <<-EOT
+        #!/bin/bash
+        set -euxo pipefail
+        dnf install -y nginx
+        aws s3 cp s3://session19-test-artifacts/site/index.html /usr/share/nginx/html/index.html --region ap-south-1
+        chmod 644 /usr/share/nginx/html/index.html
+        systemctl enable --now nginx
+    EOT
+    user_data_base64                     = "edtjx8tj"
+    user_data_replace_on_change          = true
+    vpc_security_group_ids               = [
+        "502qt05b",
+    ]
+
+    metadata_options {
+        http_endpoint               = "enabled"
+        http_put_response_hop_limit = 0
+        http_tokens                 = "required"
+        instance_metadata_tags      = "kbd3azlp"
+    }
+
+    root_block_device {
+        delete_on_termination = true
+        device_name           = "sj8siiu3"
+        encrypted             = true
+        iops                  = 0
+        kms_key_id            = "oszkosic"
+        tags_all              = {}
+        throughput            = 0
+        volume_id             = "dids6a3i"
+        volume_size           = 8
+        volume_type           = "gp3"
+    }
+}
+
+# aws_internet_gateway.main:
+resource "aws_internet_gateway" "main" {
+    arn      = "7g9p85oq"
+    id       = "0g6qh81x"
+    owner_id = "c7ehkkgi"
+    region   = "6hvhoujc"
+    tags     = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-igw"
+        "Session"   = "19"
+    }
+    tags_all = {}
+    vpc_id   = "fc8cfjcq"
+}
+
+# aws_route_table.public:
+resource "aws_route_table" "public" {
+    arn              = "z6twvoy2"
+    id               = "vo9djxnh"
+    owner_id         = "thlh8pox"
+    propagating_vgws = []
+    region           = "12lg5g1f"
+    route            = [
+        {
+            cidr_block = "0.0.0.0/0"
+            gateway_id = "0g6qh81x"
+        },
+    ]
+    tags             = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-public-rt"
+        "Session"   = "19"
+    }
+    tags_all         = {}
+    vpc_id           = "fc8cfjcq"
+}
+
+# aws_route_table_association.public:
+resource "aws_route_table_association" "public" {
+    id             = "mtmvnpfv"
+    region         = "9bjdfzct"
+    route_table_id = "vo9djxnh"
+    subnet_id      = "y22a98ir"
+}
+
+# aws_s3_bucket.artifacts:
+resource "aws_s3_bucket" "artifacts" {
+    acceleration_status         = "ibc2zozz"
+    acl                         = "6iqfdwvg"
+    arn                         = "arn:aws:s3:::session19-test-artifacts"
+    bucket                      = "0hx1c7pt"
+    bucket_domain_name          = "8igeaf44"
+    bucket_namespace            = "58viy5ne"
+    bucket_prefix               = "session19-suhas-"
+    bucket_region               = "p10yb81n"
+    bucket_regional_domain_name = "0jh5yc4r"
+    force_destroy               = true
+    hosted_zone_id              = "4q6ktaya"
+    id                          = "session19-test-artifacts"
+    object_lock_enabled         = false
+    policy                      = "cmid1nh7"
+    region                      = "xo0fkgu4"
+    request_payer               = "4hkau53s"
+    tags                        = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-suhas-artifacts"
+        "Session"   = "19"
+    }
+    tags_all                    = {}
+    website_domain              = "70aa6nq1"
+    website_endpoint            = "xemzs0c0"
+}
+
+# aws_s3_bucket_ownership_controls.artifacts:
+resource "aws_s3_bucket_ownership_controls" "artifacts" {
+    bucket = "session19-test-artifacts"
+    id     = "31pivx60"
+    region = "hrgxccwm"
+
+    rule {
+        object_ownership = "BucketOwnerEnforced"
+    }
+}
+
+# aws_s3_bucket_policy.tls_only:
+resource "aws_s3_bucket_policy" "tls_only" {
+    bucket = "session19-test-artifacts"
+    id     = "rp7xjxk4"
+    policy = jsonencode(
+        {
+            Statement = [
+                {
+                    Action    = "s3:*"
+                    Condition = {
+                        Bool = {
+                            "aws:SecureTransport" = "false"
+                        }
+                    }
+                    Effect    = "Deny"
+                    Principal = "*"
+                    Resource  = [
+                        "arn:aws:s3:::session19-test-artifacts",
+                        "arn:aws:s3:::session19-test-artifacts/*",
+                    ]
+                    Sid       = "DenyInsecureTransport"
+                },
+            ]
+            Version   = "2012-10-17"
+        }
+    )
+    region = "1uy6kz2k"
+}
+
+# aws_s3_bucket_public_access_block.artifacts:
+resource "aws_s3_bucket_public_access_block" "artifacts" {
+    block_public_acls       = true
+    block_public_policy     = true
+    bucket                  = "session19-test-artifacts"
+    id                      = "2mdxxx6i"
+    ignore_public_acls      = true
+    region                  = "x910hj7c"
+    restrict_public_buckets = true
+}
+
+# aws_s3_bucket_server_side_encryption_configuration.artifacts:
+resource "aws_s3_bucket_server_side_encryption_configuration" "artifacts" {
+    bucket = "session19-test-artifacts"
+    id     = "iqu0bvlm"
+    region = "wd5lww1q"
+
+    rule {
+        blocked_encryption_types = []
+        bucket_key_enabled       = false
+
+        apply_server_side_encryption_by_default {
+            kms_master_key_id = "sanejlr0"
+            sse_algorithm     = "AES256"
+        }
+    }
+}
+
+# aws_s3_bucket_versioning.artifacts:
+resource "aws_s3_bucket_versioning" "artifacts" {
+    bucket = "session19-test-artifacts"
+    id     = "2wtu0djq"
+    region = "x9tspr00"
+
+    versioning_configuration {
+        mfa_delete = "gp6ggjou"
+        status     = "Enabled"
+    }
+}
+
+# aws_s3_object.homepage:
+resource "aws_s3_object" "homepage" {
+    acl                    = "wr8shn0q"
+    arn                    = "iblkfa00"
+    bucket                 = "session19-test-artifacts"
+    bucket_key_enabled     = false
+    checksum_crc32         = "4rlzizaw"
+    checksum_crc32c        = "2owjgspn"
+    checksum_crc64nvme     = "3culgpb9"
+    checksum_sha1          = "xxwiju8m"
+    checksum_sha256        = "xvy9zpsp"
+    content_type           = "text/html"
+    etag                   = "dv43j1g7"
+    id                     = "t85gjxig"
+    key                    = "site/index.html"
+    kms_key_id             = "6yz206p6"
+    region                 = "qkm9se4b"
+    server_side_encryption = "br7eqr8m"
+    source                 = "./site/index.html"
+    source_hash            = "7c73f039d6bdc1682332970e42e2a364"
+    storage_class          = "8peqt2ua"
+    tags_all               = {}
+    version_id             = "kmfurr0e"
+}
+
+# aws_security_group.web:
+resource "aws_security_group" "web" {
+    arn         = "75n3mzi1"
+    description = "Allow HTTP for the Session 19 web server"
+    egress      = [
+        {
+            cidr_blocks = [
+                "0.0.0.0/0",
+            ]
+            description = "Allow outbound IPv4"
+            from_port   = 0
+            protocol    = "-1"
+            to_port     = 0
+        },
+    ]
+    id          = "502qt05b"
+    ingress     = [
+        {
+            cidr_blocks = [
+                "0.0.0.0/0",
+            ]
+            description = "HTTP"
+            from_port   = 80
+            protocol    = "tcp"
+            to_port     = 80
+        },
+    ]
+    name        = "session19-mini-web-sg"
+    name_prefix = "fxe3ihrz"
+    owner_id    = "rgo4j7wc"
+    region      = "7hqkug5c"
+    tags        = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-web-sg"
+        "Session"   = "19"
+    }
+    tags_all    = {}
+    vpc_id      = "fc8cfjcq"
+}
+
+# aws_subnet.public:
+resource "aws_subnet" "public" {
+    arn                                 = "f6vef7jd"
+    availability_zone                   = "ap-south-1a"
+    availability_zone_id                = "um9j5p6z"
+    cidr_block                          = "10.20.1.0/24"
+    id                                  = "y22a98ir"
+    ipv6_cidr_block                     = "1lvimho7"
+    ipv6_cidr_block_association_id      = "r2cfx56l"
+    map_public_ip_on_launch             = true
+    owner_id                            = "dh012xf8"
+    private_dns_hostname_type_on_launch = "zk433tww"
+    region                              = "j963tgvo"
+    tags                                = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-public-subnet"
+        "Session"   = "19"
+    }
+    tags_all                            = {}
+    vpc_id                              = "fc8cfjcq"
+}
+
+# aws_vpc.main:
+resource "aws_vpc" "main" {
+    arn                                  = "jzzqxysj"
+    cidr_block                           = "10.20.0.0/16"
+    default_network_acl_id               = "vklks2uo"
+    default_route_table_id               = "7tl6qgeb"
+    default_security_group_id            = "3zi4vl08"
+    dhcp_options_id                      = "7rq1kcwc"
+    enable_dns_hostnames                 = true
+    enable_dns_support                   = true
+    enable_network_address_usage_metrics = false
+    id                                   = "fc8cfjcq"
+    ipv6_association_id                  = "84zqlkbi"
+    ipv6_cidr_block                      = "1ynpr5a9"
+    ipv6_cidr_block_network_border_group = "hrufjzpg"
+    main_route_table_id                  = "4iyp2mq1"
+    owner_id                             = "nnhjqxwv"
+    region                               = "01pdogrk"
+    tags                                 = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-vpc"
+        "Session"   = "19"
+    }
+    tags_all                             = {}
+}
+
+
+Outputs:
+
+artifact_bucket = "session19-test-artifacts"
+instance_id = "rvulmzd8"
+security_group_id = "502qt05b"
+subnet_id = "y22a98ir"
+vpc_cidr = "10.20.0.0/16"
+vpc_id = "fc8cfjcq"
+web_url = "http://192.0.2.10"
+
+  run "instance_security_and_bootstrap"... pass
+
+# aws_iam_instance_profile.web:
+resource "aws_iam_instance_profile" "web" {
+    arn         = "8gm2ndby"
+    create_date = "x0ybbtva"
+    id          = "vl1ecxe1"
+    name        = "hnmaoeke"
+    name_prefix = "session19-suhas-"
+    role        = "0nn6u440"
+    tags_all    = {}
+    unique_id   = "erqmzb9m"
+}
+
+# aws_iam_role.web:
+resource "aws_iam_role" "web" {
+    arn                 = "l2lsjo8q"
+    assume_role_policy  = jsonencode(
+        {
+            Statement = [
+                {
+                    Action    = "sts:AssumeRole"
+                    Effect    = "Allow"
+                    Principal = {
+                        Service = "ec2.amazonaws.com"
+                    }
+                },
+            ]
+            Version   = "2012-10-17"
+        }
+    )
+    create_date         = "bvzhlrmi"
+    id                  = "3xjiutlz"
+    managed_policy_arns = []
+    name                = "0nn6u440"
+    name_prefix         = "session19-suhas-"
+    tags_all            = {}
+    unique_id           = "y7u0o0hs"
+}
+
+# aws_iam_role_policy.artifact_read:
+resource "aws_iam_role_policy" "artifact_read" {
+    id          = "4xxbyvu1"
+    name        = "read-site-artifacts"
+    name_prefix = "xmd8dhmw"
+    policy      = jsonencode(
+        {
+            Statement = [
+                {
+                    Action   = [
+                        "s3:GetObject",
+                    ]
+                    Effect   = "Allow"
+                    Resource = "arn:aws:s3:::session19-test-artifacts/site/*"
+                },
+            ]
+            Version   = "2012-10-17"
+        }
+    )
+    role        = "3xjiutlz"
+}
+
+# aws_instance.web:
+resource "aws_instance" "web" {
+    ami                                  = "ami-0123456789abcdef0"
+    arn                                  = "33sw4rxo"
+    associate_public_ip_address          = true
+    availability_zone                    = "k2oorffa"
+    disable_api_stop                     = false
+    disable_api_termination              = false
+    ebs_optimized                        = false
+    enable_primary_ipv6                  = false
+    host_id                              = "qafqjta6"
+    host_resource_group_arn              = "wttmox5v"
+    iam_instance_profile                 = "hnmaoeke"
+    id                                   = "rvulmzd8"
+    instance_initiated_shutdown_behavior = "p7yapzy7"
+    instance_lifecycle                   = "w0sbf6xc"
+    instance_state                       = "mm5xrv55"
+    instance_type                        = "t3.micro"
+    ipv6_address_count                   = 0
+    ipv6_addresses                       = []
+    key_name                             = "4p0syjag"
+    monitoring                           = false
+    outpost_arn                          = "ttr6otau"
+    password_data                        = "mug3yb8x"
+    placement_group                      = "3ylokacm"
+    placement_group_id                   = "0295biys"
+    placement_partition_number           = 0
+    primary_network_interface_id         = "fw113irf"
+    private_dns                          = "w1iwmcwu"
+    private_ip                           = "jbahitli"
+    public_dns                           = "mehv5jnq"
+    public_ip                            = "192.0.2.10"
+    region                               = "gl80ju2p"
+    secondary_private_ips                = []
+    security_groups                      = []
+    spot_instance_request_id             = "g00j5osp"
+    subnet_id                            = "y22a98ir"
+    tags                                 = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-suhas-web"
+        "Session"   = "19"
+    }
+    tags_all                             = {}
+    tenancy                              = "al4od1on"
+    user_data                            = <<-EOT
+        #!/bin/bash
+        set -euxo pipefail
+        dnf install -y nginx
+        aws s3 cp s3://session19-test-artifacts/site/index.html /usr/share/nginx/html/index.html --region ap-south-1
+        chmod 644 /usr/share/nginx/html/index.html
+        systemctl enable --now nginx
+    EOT
+    user_data_base64                     = "edtjx8tj"
+    user_data_replace_on_change          = true
+    vpc_security_group_ids               = [
+        "502qt05b",
+    ]
+
+    metadata_options {
+        http_endpoint               = "enabled"
+        http_put_response_hop_limit = 0
+        http_tokens                 = "required"
+        instance_metadata_tags      = "kbd3azlp"
+    }
+
+    root_block_device {
+        delete_on_termination = true
+        device_name           = "sj8siiu3"
+        encrypted             = true
+        iops                  = 0
+        kms_key_id            = "oszkosic"
+        tags_all              = {}
+        throughput            = 0
+        volume_id             = "dids6a3i"
+        volume_size           = 8
+        volume_type           = "gp3"
+    }
+}
+
+# aws_internet_gateway.main:
+resource "aws_internet_gateway" "main" {
+    arn      = "7g9p85oq"
+    id       = "0g6qh81x"
+    owner_id = "c7ehkkgi"
+    region   = "6hvhoujc"
+    tags     = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-igw"
+        "Session"   = "19"
+    }
+    tags_all = {}
+    vpc_id   = "fc8cfjcq"
+}
+
+# aws_route_table.public:
+resource "aws_route_table" "public" {
+    arn              = "z6twvoy2"
+    id               = "vo9djxnh"
+    owner_id         = "thlh8pox"
+    propagating_vgws = []
+    region           = "12lg5g1f"
+    route            = [
+        {
+            cidr_block = "0.0.0.0/0"
+            gateway_id = "0g6qh81x"
+        },
+    ]
+    tags             = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-public-rt"
+        "Session"   = "19"
+    }
+    tags_all         = {}
+    vpc_id           = "fc8cfjcq"
+}
+
+# aws_route_table_association.public:
+resource "aws_route_table_association" "public" {
+    id             = "mtmvnpfv"
+    region         = "9bjdfzct"
+    route_table_id = "vo9djxnh"
+    subnet_id      = "y22a98ir"
+}
+
+# aws_s3_bucket.artifacts:
+resource "aws_s3_bucket" "artifacts" {
+    acceleration_status         = "ibc2zozz"
+    acl                         = "6iqfdwvg"
+    arn                         = "arn:aws:s3:::session19-test-artifacts"
+    bucket                      = "0hx1c7pt"
+    bucket_domain_name          = "8igeaf44"
+    bucket_namespace            = "58viy5ne"
+    bucket_prefix               = "session19-suhas-"
+    bucket_region               = "p10yb81n"
+    bucket_regional_domain_name = "0jh5yc4r"
+    force_destroy               = true
+    hosted_zone_id              = "4q6ktaya"
+    id                          = "session19-test-artifacts"
+    object_lock_enabled         = false
+    policy                      = "cmid1nh7"
+    region                      = "xo0fkgu4"
+    request_payer               = "4hkau53s"
+    tags                        = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-suhas-artifacts"
+        "Session"   = "19"
+    }
+    tags_all                    = {}
+    website_domain              = "70aa6nq1"
+    website_endpoint            = "xemzs0c0"
+}
+
+# aws_s3_bucket_ownership_controls.artifacts:
+resource "aws_s3_bucket_ownership_controls" "artifacts" {
+    bucket = "session19-test-artifacts"
+    id     = "31pivx60"
+    region = "hrgxccwm"
+
+    rule {
+        object_ownership = "BucketOwnerEnforced"
+    }
+}
+
+# aws_s3_bucket_policy.tls_only:
+resource "aws_s3_bucket_policy" "tls_only" {
+    bucket = "session19-test-artifacts"
+    id     = "rp7xjxk4"
+    policy = jsonencode(
+        {
+            Statement = [
+                {
+                    Action    = "s3:*"
+                    Condition = {
+                        Bool = {
+                            "aws:SecureTransport" = "false"
+                        }
+                    }
+                    Effect    = "Deny"
+                    Principal = "*"
+                    Resource  = [
+                        "arn:aws:s3:::session19-test-artifacts",
+                        "arn:aws:s3:::session19-test-artifacts/*",
+                    ]
+                    Sid       = "DenyInsecureTransport"
+                },
+            ]
+            Version   = "2012-10-17"
+        }
+    )
+    region = "1uy6kz2k"
+}
+
+# aws_s3_bucket_public_access_block.artifacts:
+resource "aws_s3_bucket_public_access_block" "artifacts" {
+    block_public_acls       = true
+    block_public_policy     = true
+    bucket                  = "session19-test-artifacts"
+    id                      = "2mdxxx6i"
+    ignore_public_acls      = true
+    region                  = "x910hj7c"
+    restrict_public_buckets = true
+}
+
+# aws_s3_bucket_server_side_encryption_configuration.artifacts:
+resource "aws_s3_bucket_server_side_encryption_configuration" "artifacts" {
+    bucket = "session19-test-artifacts"
+    id     = "iqu0bvlm"
+    region = "wd5lww1q"
+
+    rule {
+        blocked_encryption_types = []
+        bucket_key_enabled       = false
+
+        apply_server_side_encryption_by_default {
+            kms_master_key_id = "sanejlr0"
+            sse_algorithm     = "AES256"
+        }
+    }
+}
+
+# aws_s3_bucket_versioning.artifacts:
+resource "aws_s3_bucket_versioning" "artifacts" {
+    bucket = "session19-test-artifacts"
+    id     = "2wtu0djq"
+    region = "x9tspr00"
+
+    versioning_configuration {
+        mfa_delete = "gp6ggjou"
+        status     = "Enabled"
+    }
+}
+
+# aws_s3_object.homepage:
+resource "aws_s3_object" "homepage" {
+    acl                    = "wr8shn0q"
+    arn                    = "iblkfa00"
+    bucket                 = "session19-test-artifacts"
+    bucket_key_enabled     = false
+    checksum_crc32         = "4rlzizaw"
+    checksum_crc32c        = "2owjgspn"
+    checksum_crc64nvme     = "3culgpb9"
+    checksum_sha1          = "xxwiju8m"
+    checksum_sha256        = "xvy9zpsp"
+    content_type           = "text/html"
+    etag                   = "dv43j1g7"
+    id                     = "t85gjxig"
+    key                    = "site/index.html"
+    kms_key_id             = "6yz206p6"
+    region                 = "qkm9se4b"
+    server_side_encryption = "br7eqr8m"
+    source                 = "./site/index.html"
+    source_hash            = "7c73f039d6bdc1682332970e42e2a364"
+    storage_class          = "8peqt2ua"
+    tags_all               = {}
+    version_id             = "kmfurr0e"
+}
+
+# aws_security_group.web:
+resource "aws_security_group" "web" {
+    arn         = "75n3mzi1"
+    description = "Allow HTTP for the Session 19 web server"
+    egress      = [
+        {
+            cidr_blocks = [
+                "0.0.0.0/0",
+            ]
+            description = "Allow outbound IPv4"
+            from_port   = 0
+            protocol    = "-1"
+            to_port     = 0
+        },
+    ]
+    id          = "502qt05b"
+    ingress     = [
+        {
+            cidr_blocks = [
+                "0.0.0.0/0",
+            ]
+            description = "HTTP"
+            from_port   = 80
+            protocol    = "tcp"
+            to_port     = 80
+        },
+    ]
+    name        = "session19-mini-web-sg"
+    name_prefix = "fxe3ihrz"
+    owner_id    = "rgo4j7wc"
+    region      = "7hqkug5c"
+    tags        = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-web-sg"
+        "Session"   = "19"
+    }
+    tags_all    = {}
+    vpc_id      = "fc8cfjcq"
+}
+
+# aws_subnet.public:
+resource "aws_subnet" "public" {
+    arn                                 = "f6vef7jd"
+    availability_zone                   = "ap-south-1a"
+    availability_zone_id                = "um9j5p6z"
+    cidr_block                          = "10.20.1.0/24"
+    id                                  = "y22a98ir"
+    ipv6_cidr_block                     = "1lvimho7"
+    ipv6_cidr_block_association_id      = "r2cfx56l"
+    map_public_ip_on_launch             = true
+    owner_id                            = "dh012xf8"
+    private_dns_hostname_type_on_launch = "zk433tww"
+    region                              = "j963tgvo"
+    tags                                = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-public-subnet"
+        "Session"   = "19"
+    }
+    tags_all                            = {}
+    vpc_id                              = "fc8cfjcq"
+}
+
+# aws_vpc.main:
+resource "aws_vpc" "main" {
+    arn                                  = "jzzqxysj"
+    cidr_block                           = "10.20.0.0/16"
+    default_network_acl_id               = "vklks2uo"
+    default_route_table_id               = "7tl6qgeb"
+    default_security_group_id            = "3zi4vl08"
+    dhcp_options_id                      = "7rq1kcwc"
+    enable_dns_hostnames                 = true
+    enable_dns_support                   = true
+    enable_network_address_usage_metrics = false
+    id                                   = "fc8cfjcq"
+    ipv6_association_id                  = "84zqlkbi"
+    ipv6_cidr_block                      = "1ynpr5a9"
+    ipv6_cidr_block_network_border_group = "hrufjzpg"
+    main_route_table_id                  = "4iyp2mq1"
+    owner_id                             = "nnhjqxwv"
+    region                               = "01pdogrk"
+    tags                                 = {
+        "ManagedBy" = "Terraform"
+        "Name"      = "session19-mini-vpc"
+        "Session"   = "19"
+    }
+    tags_all                             = {}
+}
+
+
+Outputs:
+
+artifact_bucket = "session19-test-artifacts"
+instance_id = "rvulmzd8"
+security_group_id = "502qt05b"
+subnet_id = "y22a98ir"
+vpc_cidr = "10.20.0.0/16"
+vpc_id = "fc8cfjcq"
+web_url = "http://192.0.2.10"
+
+  run "reject_invalid_project_name"... pass
+
+Planning failed. Terraform encountered an error while generating this plan.
+
+
+
+Error: Invalid value for variable
+
+  on tests/architecture.tftest.hcl line 113, in run "reject_invalid_project_name":
+ 113:     project_name = "INVALID NAME"
+    ├────────────────
+    │ var.project_name is "INVALID NAME"
+
+Use 3-30 lowercase letters, digits, or hyphens, starting with a letter.
+
+This was checked by the validation rule at variables.tf:12,3-13.
+  run "reject_invalid_client_cidr"... pass
+
+Planning failed. Terraform encountered an error while generating this plan.
+
+
+
+Error: Invalid value for variable
+
+  on tests/architecture.tftest.hcl line 121, in run "reject_invalid_client_cidr":
+ 121:     http_allowed_cidr = "not-a-cidr"
+    ├────────────────
+    │ var.http_allowed_cidr is "not-a-cidr"
+
+Use an IPv4 CIDR range.
+
+This was checked by the validation rule at variables.tf:40,3-13.
+tests/architecture.tftest.hcl... tearing down
+tests/architecture.tftest.hcl... pass
+
+Success! 6 passed, 0 failed.
+[exit 0]
+
+This is a mocked-provider test. The plan and generated IDs are test data, not AWS deployment results.

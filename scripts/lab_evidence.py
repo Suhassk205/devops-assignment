@@ -11,10 +11,10 @@ CONTEXT = "kind-session13"
 
 
 class Evidence:
-    def __init__(self, session, name, title, append=False):
+    def __init__(self, session, name, title, append=False, context=CONTEXT):
         self.path = ROOT / session / "evidence" / f"{name}.txt"
         self.path.parent.mkdir(parents=True, exist_ok=True)
-        header = f"{title}\nActual command transcript; {datetime.now(ZoneInfo('Asia/Kolkata')).isoformat()}\nContext: {CONTEXT}\n\n"
+        header = f"{title}\nActual command transcript; {datetime.now(ZoneInfo('Asia/Kolkata')).isoformat()}\nContext: {context}\n\n"
         with self.path.open("a" if append else "w") as f:
             f.write(header)
 

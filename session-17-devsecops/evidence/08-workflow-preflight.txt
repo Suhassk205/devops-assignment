@@ -1,0 +1,20 @@
+Session 17: workflow validation and source-history secret scan
+Actual command transcript; 2026-10-16T21:41:44.003406+05:30
+Context: local checks for the GitHub Actions workflow
+
+$ /private/tmp/devops-actionlint -version
+1.7.12
+installed by downloading from release page
+built with go1.26.1 compiler for darwin/arm64
+[exit 0]
+
+$ /private/tmp/devops-actionlint -shellcheck= .github/workflows/session17-devsecops.yml
+
+[exit 0]
+
+$ session-17-devsecops/demo/.tools/bin/gitleaks git --redact --no-banner --config session-17-devsecops/demo/.gitleaks.toml '--log-opts=--all -- session-17-devsecops/demo' --report-format json --report-path /private/tmp/session17-history-scan.json .
+9:41PM INF 2 commits scanned.
+9:41PM INF scanned ~70942 bytes (70.94 KB) in 93.1ms
+9:41PM INF no leaks found
+[exit 0]
+

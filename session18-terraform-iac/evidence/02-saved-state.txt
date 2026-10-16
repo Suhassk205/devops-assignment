@@ -1,0 +1,14 @@
+Session 18: saved S3 state inventory
+Actual command transcript; 2026-10-16T21:41:46.657947+05:30
+Context: saved local Terraform state; no AWS API calls
+
+$ python3 /Users/suhas/Downloads/devops-heros-main/scripts/inspect_terraform_state.py terraform.tfstate.backup terraform.tfstate
+terraform.tfstate.backup: 1 managed resource(s)
+  aws_s3_bucket.suhas_bucket
+    id: suhas-123453410261
+    bucket: suhas-123453410261
+    region: ap-south-1
+terraform.tfstate: 0 managed resource(s)
+[exit 0]
+
+The backup records the earlier bucket; the current local state tracks no managed resources.

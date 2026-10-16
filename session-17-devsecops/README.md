@@ -1,6 +1,6 @@
 # Session 17: Complete CI/CD & DevSecOps
 
-This exercise uses a [Flask dashboard](demo/README.md) to practice unit testing, security scanning, container builds, and Kubernetes deployment. The results below are from local tests and scans. The GitHub Actions workflow defines the same checks for CI.
+This exercise uses a [Flask dashboard](demo/README.md) to practice unit testing, security scanning, container builds, and Kubernetes deployment. The project includes local checks and a GitHub Actions workflow for the same delivery stages.
 
 ## Application and delivery flow
 
@@ -25,7 +25,7 @@ The dashboard includes a pipeline simulator. Security checks run through the sca
 | Kubernetes | Deployment, Service, health probes and resource limits | 2 ready replicas; live `/health` and `/api/status` checks succeeded |
 | Gate enforcement | Isolated intentionally unsafe fixtures | Semgrep, Gitleaks and pip-audit each returned exit 1 as required |
 
-Rerun the scans before deployment, since vulnerability databases change. The local Gitleaks check scans the demo working tree; the CI job scans the repository’s Git history.
+Rerun the scans before deployment, since vulnerability databases change. The local Gitleaks check scans the demo working tree; the CI job scans the application’s Git history.
 
 ## Security changes
 
@@ -40,11 +40,11 @@ I also tested the security gates with separate examples containing debug-enabled
 
 ## GitHub Actions workflow
 
-The [workflow](demo/.github/workflows/devsecops.yml) triggers on pushes to `main`, pull requests, and manual dispatch. Its dependency graph blocks image creation until tests, SAST, SCA and secret scanning pass. Trivy scans the built image before any publication.
+The [workflow](../.github/workflows/session17-devsecops.yml) triggers on pushes to `main`, pull requests, and manual dispatch. Its dependency graph blocks image creation until tests, SAST, SCA and secret scanning pass. Trivy scans the built image before any publication.
 
 The scanned image is saved as a workflow artifact; the publication job loads that same artifact rather than rebuilding. Only a push to `main` publishes. The deployment job pulls the published commit-SHA tag, loads it into a temporary Kind cluster, waits for rollout, and checks HTTP responses. The Kind cluster is created for the CI job and removed when the job ends.
 
-GHCR authentication uses `GITHUB_TOKEN`, with package permissions set on the publish and deploy jobs. Test, scan, and deployment reports are uploaded as artifacts. To use the workflow in a separate repository, place the contents of `demo/` at its root.
+GHCR authentication uses `GITHUB_TOKEN`, with package permissions set on the publish and deploy jobs. Test, scan, and deployment reports are uploaded as artifacts. The workflow runs from this repository’s `.github/workflows/` directory and uses `session-17-devsecops/demo/` as its application directory. It publishes commit-tagged images to `ghcr.io/suhassk205/devops-assignment/session17`.
 
 ## Run the local checks
 
@@ -71,6 +71,7 @@ The text files contain the full command output; the screenshots show the main re
 | Docker build and Trivy HIGH/CRITICAL vulnerability gate | [Transcript](evidence/05-image-scan.txt) | [Screenshot](screenshots/05-image-scan.png) |
 | Session 17 - local Kubernetes deployment and live HTTP checks | [Transcript](evidence/06-kubernetes.txt) | [Screenshot](screenshots/06-kubernetes.png) |
 | Security gates - deliberately unsafe fixtures must be rejected | [Transcript](evidence/07-security-gates.txt) | [Screenshot](screenshots/07-security-gates.png) |
+| Workflow validation and application-history secret scan | [Transcript](evidence/08-workflow-preflight.txt) | [Screenshot](screenshots/08-workflow-preflight.png) |
 
 ### Selected screenshots
 
