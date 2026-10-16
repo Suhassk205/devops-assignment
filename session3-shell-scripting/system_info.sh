@@ -31,7 +31,8 @@ HOST_NAME=$(hostname)
 LOGGED_USER=$(whoami)
 DISK_USAGE=$(df -h)
 RUNNING_PROCESSES=$(ps aux)
-REPORT_DIR="/Users/suhas/Downloads/devops-assignment-main/session3-shell-scripting/$DIR_NAME"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPORT_DIR="$SCRIPT_DIR/$DIR_NAME"
 REPORT_FILE="$REPORT_DIR/system_report.txt"
 
 # ----------------------------

@@ -1,0 +1,10 @@
+[extend]
+useDefault = true
+
+[[allowlists]]
+description = "Generated scanner binaries and reports; application source is still scanned"
+paths = [
+  '''(^|/)\.tools/''',
+  '''(^|/)reports/''',
+  '''(^|/)__pycache__/''',
+]

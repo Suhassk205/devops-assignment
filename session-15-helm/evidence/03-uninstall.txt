@@ -1,0 +1,17 @@
+Helm uninstall - remove only the practice release
+Actual command transcript; 2026-10-16T19:25:48.093899+05:30
+Context: kind-session13
+
+$ helm --kube-context kind-session13 --namespace session15-homework uninstall demo-release --wait
+release "demo-release" uninstalled
+[exit 0]
+
+$ helm --kube-context kind-session13 --namespace session15-homework list
+NAME	NAMESPACE	REVISION	UPDATED	STATUS	CHART	APP VERSION
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework get pods -l app.kubernetes.io/instance=demo-release
+NAME                                       READY   STATUS        RESTARTS   AGE
+demo-release-demo-chart-65c9cc7b5b-gkb57   1/1     Terminating   0          2s
+[exit 0]
+

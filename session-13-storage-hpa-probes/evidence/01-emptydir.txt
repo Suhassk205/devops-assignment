@@ -1,0 +1,32 @@
+emptyDir - data is lost when the Pod is recreated
+Actual command transcript; 2026-10-16T19:24:36.002383+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/01-volumes/emptydir-pod.yaml
+pod/emptydir-demo configured
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework wait --for=condition=Ready pod/emptydir-demo --timeout=120s
+pod/emptydir-demo condition met
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework exec emptydir-demo -- sh -c 'echo "Suhas - emptyDir test" > /data/student.txt; cat /data/student.txt'
+Suhas - emptyDir test
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework delete pod emptydir-demo --wait=true
+pod "emptydir-demo" deleted from session13-homework namespace
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/01-volumes/emptydir-pod.yaml
+pod/emptydir-demo created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework wait --for=condition=Ready pod/emptydir-demo --timeout=120s
+pod/emptydir-demo condition met
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework exec emptydir-demo -- sh -c 'test ! -e /data/student.txt && echo "Verified: student.txt is absent after Pod recreation"'
+Verified: student.txt is absent after Pod recreation
+[exit 0]
+

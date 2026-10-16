@@ -1,0 +1,17 @@
+Session 15 - Helm and local cluster
+Actual command transcript; 2026-10-16T19:25:46.492958+05:30
+Context: kind-session13
+
+$ helm version --short
+v4.3.0+gbec5b06
+[exit 0]
+
+$ kubectl --context kind-session13 get nodes
+NAME                      STATUS   ROLES           AGE   VERSION
+session13-control-plane   Ready    control-plane   8d    v1.37.0
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework create namespace session15-homework
+Error from server (AlreadyExists): namespaces "session15-homework" already exists
+[exit 1]
+

@@ -1,6 +1,5 @@
 # Kubernetes Persistent Storage
 
-
 ## What will we work with?
 
 * PersistentVolume (`PV`)
@@ -91,7 +90,7 @@ Expected output:
 
 ```text
 NAME         CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS
-student-pv   1Gi        RWO            Retain           Available
+session13-homework-pv   1Gi        RWO            Retain           Available
 ```
 
 ---
@@ -114,7 +113,7 @@ Expected output:
 
 ```text
 NAME          STATUS   VOLUME
-student-pvc   Bound    student-pv
+student-pvc   Bound    session13-homework-pv
 ```
 
 **Bound** means the PVC has been connected to a suitable PV.
@@ -245,7 +244,7 @@ The storage has a lifecycle independent of the individual Pod.
 ```bash
 kubectl get pv
 kubectl get pvc
-kubectl describe pv student-pv
+kubectl describe pv session13-homework-pv
 kubectl describe pvc student-pvc
 kubectl get pods
 kubectl describe pod storage-demo

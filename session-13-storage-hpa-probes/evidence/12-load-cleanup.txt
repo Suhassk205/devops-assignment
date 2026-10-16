@@ -1,0 +1,36 @@
+HPA recovery after load was stopped
+Actual command transcript; 2026-10-16T19:56:49.200309+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session13-homework get hpa
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+hpa-demo   Deployment/hpa-demo   cpu: 0%/50%   1         5         1          36m
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get pods -l app=hpa-demo
+NAME                        READY   STATUS    RESTARTS   AGE
+hpa-demo-5d6676989b-ctrkj   1/1     Running   0          36m
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework top pods -l app=hpa-demo
+NAME                        CPU(cores)   MEMORY(bytes)   
+hpa-demo-5d6676989b-ctrkj   0m           4Mi
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-mini-homework get hpa
+NAME          REFERENCE            TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+web-app-hpa   Deployment/web-app   cpu: 1%/50%   2         5         2          21m
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-mini-homework get pods -l app=web-app
+NAME                      READY   STATUS    RESTARTS   AGE
+web-app-d45775485-877qf   1/1     Running   0          20m
+web-app-d45775485-t9t9p   1/1     Running   0          21m
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-mini-homework top pods -l app=web-app
+NAME                      CPU(cores)   MEMORY(bytes)   
+web-app-d45775485-877qf   1m           4Mi             
+web-app-d45775485-t9t9p   1m           4Mi
+[exit 0]
+

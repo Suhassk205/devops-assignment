@@ -1,0 +1,32 @@
+hostPath - data survives Pod recreation on the same local node
+Actual command transcript; 2026-10-16T19:24:37.238326+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/01-volumes/hostpath-pod.yaml
+pod/hostpath-demo configured
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework wait --for=condition=Ready pod/hostpath-demo --timeout=120s
+pod/hostpath-demo condition met
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework exec hostpath-demo -- sh -c 'echo "Suhas - hostPath test" > /data/student.txt; cat /data/student.txt'
+Suhas - hostPath test
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework delete pod hostpath-demo --wait=true
+pod "hostpath-demo" deleted from session13-homework namespace
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/01-volumes/hostpath-pod.yaml
+pod/hostpath-demo created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework wait --for=condition=Ready pod/hostpath-demo --timeout=120s
+pod/hostpath-demo condition met
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework exec hostpath-demo -- cat /data/student.txt
+Suhas - hostPath test
+[exit 0]
+

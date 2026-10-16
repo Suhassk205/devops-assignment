@@ -1,0 +1,23 @@
+Session 15 - final healthy releases
+Actual command transcript; 2026-10-16T19:35:24.452324+05:30
+Context: kind-session13
+
+$ helm --kube-context kind-session13 -n session15-homework history notes
+REVISION	UPDATED                 	STATUS    	CHART            	APP VERSION	DESCRIPTION     
+1       	Fri Oct 16 19:26:10 2026	superseded	notes-chart-0.1.0	1.0        	Install complete
+2       	Fri Oct 16 19:31:57 2026	superseded	notes-chart-0.1.0	1.0        	Upgrade complete
+3       	Fri Oct 16 19:31:59 2026	deployed  	notes-chart-0.1.0	1.0        	Rollback to 1
+[exit 0]
+
+$ helm --kube-context kind-session13 -n session15-homework list
+NAME  	NAMESPACE         	REVISION	UPDATED                             	STATUS  	CHART            	APP VERSION
+notes 	session15-homework	3       	2026-10-16 19:31:59.722022 +0530 IST	deployed	notes-chart-0.1.0	1.0        
+webapp	session15-homework	4       	2026-10-16 19:26:09.722376 +0530 IST	deployed	app-chart-0.1.0  	1.0
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework get pods
+NAME                            READY   STATUS    RESTARTS   AGE
+notes-deploy-6bdbd76d95-5l8zm   1/1     Running   0          3m25s
+webapp-app-8459c79c98-4sr25     1/1     Running   0          9m15s
+[exit 0]
+

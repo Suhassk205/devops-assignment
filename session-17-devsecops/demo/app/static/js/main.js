@@ -236,13 +236,14 @@ async function renderPipeline(data, container) {
     </div>
     <div class="summary-item">
       <span class="summary-key">Branch</span>
-      <span class="summary-val">${data.branch}</span>
+      <span class="summary-val" data-pipeline-branch></span>
     </div>
     <div class="summary-item">
       <span class="summary-key">Total Time</span>
       <span class="summary-val">${data.total_time_s}s</span>
     </div>
   `;
+  summaryEl.querySelector('[data-pipeline-branch]').textContent = data.branch;
   container.appendChild(summaryEl);
 }
 

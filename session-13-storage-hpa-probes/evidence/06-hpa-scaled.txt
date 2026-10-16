@@ -1,0 +1,55 @@
+HPA - real CPU load and observed scale-out
+Actual command transcript; 2026-10-16T19:24:40.880032+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/04-hpa/load-generator.yaml
+pod/homework-load-generator created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get hpa
+NAME       REFERENCE             TARGETS        MINPODS   MAXPODS   REPLICAS   AGE
+hpa-demo   Deployment/hpa-demo   cpu: 61%/50%   1         5         1          5m20s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get pods -l app=hpa-demo
+NAME                        READY   STATUS    RESTARTS   AGE
+hpa-demo-5d6676989b-ctrkj   1/1     Running   0          5m20s
+hpa-demo-5d6676989b-hwvmw   1/1     Running   0          5s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework top pods -l app=hpa-demo
+NAME                        CPU(cores)   MEMORY(bytes)   
+hpa-demo-5d6676989b-ctrkj   61m          4Mi
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework describe hpa hpa-demo
+Name:                                                  hpa-demo
+Namespace:                                             session13-homework
+Labels:                                                <none>
+Annotations:                                           <none>
+CreationTimestamp:                                     Fri, 16 Oct 2026 19:19:51 +0530
+Reference:                                             Deployment/hpa-demo
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  61% (61m) / 50%
+Min replicas:                                          1
+Max replicas:                                          5
+Deployment pods:                                       1 current / 2 desired
+Conditions:
+  Type            Status  Reason              Message
+  ----            ------  ------              -------
+  AbleToScale     True    SucceededRescale    the HPA controller was able to update the target scale to 2
+  ScalingActive   True    ValidMetricFound    the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  False   DesiredWithinRange  the desired count is within the acceptable range
+  ScaledToZero    False   NotScaledToZero     the HPA controller did not scale the workload to zero
+Events:
+  Type     Reason                        Age    From                       Message
+  ----     ------                        ----   ----                       -------
+  Warning  FailedGetResourceMetric       5m20s  horizontal-pod-autoscaler  failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Warning  FailedComputeMetricsReplicas  5m20s  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Normal   SuccessfulRescale             5s     horizontal-pod-autoscaler  New size: 2; reason: cpu resource utilization (percentage of request) above target
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework delete pod homework-load-generator --wait=false
+pod "homework-load-generator" deleted from session13-homework namespace
+[exit 0]
+

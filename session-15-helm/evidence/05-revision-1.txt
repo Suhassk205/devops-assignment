@@ -1,0 +1,27 @@
+Rollback exercise - install revision 1
+Actual command transcript; 2026-10-16T19:25:49.694966+05:30
+Context: kind-session13
+
+$ helm --kube-context kind-session13 --namespace session15-homework install webapp /Users/suhas/Downloads/devops-heros-main/session-15-helm/07-install-upgrade/app-chart --set image.tag=1.24 --wait --timeout 180s
+NAME: webapp
+LAST DEPLOYED: Fri Oct 16 19:25:49 2026
+NAMESPACE: session15-homework
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework rollout status deployment/webapp-app --timeout=120s
+deployment "webapp-app" successfully rolled out
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework get deployment webapp-app -o 'jsonpath={.spec.template.spec.containers[0].image}{"\n"}'
+nginx:1.24
+[exit 0]
+
+$ helm --kube-context kind-session13 --namespace session15-homework history webapp
+REVISION	UPDATED                 	STATUS  	CHART          	APP VERSION	DESCRIPTION     
+1       	Fri Oct 16 19:25:49 2026	deployed	app-chart-0.1.0	1.0        	Install complete
+[exit 0]
+

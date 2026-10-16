@@ -1,0 +1,29 @@
+rule_files:
+  - alerts.yml
+evaluation_interval: 15s
+tests:
+  - interval: 15s
+    input_series:
+      - series: 'up{job="prometheus",instance="prometheus:9090"}'
+        values: '1 0 0 0 0'
+    alert_rule_test:
+      - eval_time: 15s
+        alertname: PrometheusTargetDown
+        exp_alerts: []
+      - eval_time: 45s
+        alertname: PrometheusTargetDown
+        exp_alerts:
+          - exp_labels:
+              job: prometheus
+              instance: prometheus:9090
+              severity: warning
+            exp_annotations:
+              summary: Prometheus scrape target is unavailable
+  - interval: 15s
+    input_series:
+      - series: 'up{job="prometheus",instance="prometheus:9090"}'
+        values: '1 1 1 1 1'
+    alert_rule_test:
+      - eval_time: 45s
+        alertname: PrometheusTargetDown
+        exp_alerts: []

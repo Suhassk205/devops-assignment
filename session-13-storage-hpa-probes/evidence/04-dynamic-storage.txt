@@ -1,0 +1,39 @@
+StorageClass - on-demand local PV provisioning
+Actual command transcript; 2026-10-16T19:24:40.223719+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/03-storageclass/sc.yaml
+storageclass.storage.k8s.io/session13-local-path unchanged
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/03-storageclass/pvc.yaml
+persistentvolumeclaim/dynamic-pvc unchanged
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/03-storageclass/pod.yaml
+pod/dynamic-storage-demo configured
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework wait --for=condition=Ready pod/dynamic-storage-demo --timeout=120s
+pod/dynamic-storage-demo condition met
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get storageclass session13-local-path
+NAME                   PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+session13-local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  4m54s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get pvc dynamic-pvc -o wide
+NAME          STATUS   VOLUME                                     CAPACITY   ACCESS MODES   STORAGECLASS           VOLUMEATTRIBUTESCLASS   AGE     VOLUMEMODE
+dynamic-pvc   Bound    pvc-72a0c61e-68e2-44a9-97d2-5b7975e72e4b   500Mi      RWO            session13-local-path   <unset>                 4m54s   Filesystem
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get pv pvc-72a0c61e-68e2-44a9-97d2-5b7975e72e4b
+NAME                                       CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                            STORAGECLASS           VOLUMEATTRIBUTESCLASS   REASON   AGE
+pvc-72a0c61e-68e2-44a9-97d2-5b7975e72e4b   500Mi      RWO            Delete           Bound    session13-homework/dynamic-pvc   session13-local-path   <unset>                          4m51s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework exec dynamic-storage-demo -- sh -c 'echo "Suhas - dynamically provisioned storage" > /data/student.txt; cat /data/student.txt'
+Suhas - dynamically provisioned storage
+[exit 0]
+

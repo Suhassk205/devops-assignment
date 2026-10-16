@@ -1,5 +1,5 @@
 #!/bin/bash
-cd /Users/suhas/Downloads/devops-assignment-main/session6-7-docker
+cd "$(dirname "${BASH_SOURCE[0]}")" || exit 1
 
 echo "Building and running Node.js App..."
 docker build -t nodejs-hw ./nodejs-app

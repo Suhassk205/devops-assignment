@@ -14,7 +14,22 @@ spec:
     spec:
       containers:
         - name: session17-python
-          image: nensiravaliya28/hey-cicd:__IMAGE_TAG__
-          imagePullPolicy: Always           # pull from Docker Hub
+          image: ghcr.io/suhassk205/devops-devsecops:__IMAGE_TAG__
+          imagePullPolicy: IfNotPresent
           ports:
             - containerPort: 5001
+          readinessProbe:
+            httpGet: {path: /health, port: 5001}
+            initialDelaySeconds: 3
+          livenessProbe:
+            httpGet: {path: /health, port: 5001}
+            initialDelaySeconds: 10
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 10001
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: [ALL]
+          resources:
+            requests: {cpu: 50m, memory: 64Mi}
+            limits: {cpu: 250m, memory: 128Mi}

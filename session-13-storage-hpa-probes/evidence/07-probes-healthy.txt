@@ -1,0 +1,48 @@
+Startup, readiness and liveness probes - healthy baseline
+Actual command transcript; 2026-10-16T19:31:54.801394+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/05-probes/liveness.yaml
+pod/liveness-demo unchanged
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/05-probes/readiness.yaml
+pod/readiness-demo unchanged
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/05-probes/startup.yaml
+pod/startup-demo unchanged
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/05-probes/readiness-service.yaml
+service/readiness-demo unchanged
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework exec readiness-demo -- sh -c 'if [ -f /usr/share/nginx/html/index.html.disabled ]; then mv /usr/share/nginx/html/index.html.disabled /usr/share/nginx/html/index.html; fi'
+
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework wait --for=condition=Ready pod/liveness-demo --timeout=120s
+pod/liveness-demo condition met
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework wait --for=condition=Ready pod/readiness-demo --timeout=120s
+pod/readiness-demo condition met
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework wait --for=condition=Ready pod/startup-demo --timeout=120s
+pod/startup-demo condition met
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get pods liveness-demo readiness-demo startup-demo
+NAME             READY   STATUS    RESTARTS   AGE
+liveness-demo    1/1     Running   0          6m45s
+readiness-demo   1/1     Running   0          6m45s
+startup-demo     1/1     Running   0          6m45s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get endpointslice -l kubernetes.io/service-name=readiness-demo
+NAME                   ADDRESSTYPE   PORTS   ENDPOINTS     AGE
+readiness-demo-r5s4l   IPv4          80      10.244.0.30   6m45s
+[exit 0]
+

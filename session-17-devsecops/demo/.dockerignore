@@ -1,0 +1,14 @@
+.git
+.github
+.tools
+.venv
+__pycache__
+**/__pycache__
+*.pyc
+.coverage
+.pytest_cache
+.env
+reports
+evidence
+screenshots
+tests

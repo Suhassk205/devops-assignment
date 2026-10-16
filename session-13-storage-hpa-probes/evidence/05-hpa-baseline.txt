@@ -1,0 +1,35 @@
+HPA - baseline before load
+Actual command transcript; 2026-10-16T19:24:40.630876+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/04-hpa/deployment.yaml
+deployment.apps/hpa-demo unchanged
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/04-hpa/service.yaml
+service/hpa-demo-service unchanged
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/04-hpa/hpa.yaml
+horizontalpodautoscaler.autoscaling/hpa-demo unchanged
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework rollout status deployment/hpa-demo --timeout=120s
+deployment "hpa-demo" successfully rolled out
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get hpa
+NAME       REFERENCE             TARGETS       MINPODS   MAXPODS   REPLICAS   AGE
+hpa-demo   Deployment/hpa-demo   cpu: 0%/50%   1         5         1          4m49s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get pods -l app=hpa-demo
+NAME                        READY   STATUS    RESTARTS   AGE
+hpa-demo-5d6676989b-ctrkj   1/1     Running   0          4m49s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework top pods -l app=hpa-demo
+NAME                        CPU(cores)   MEMORY(bytes)   
+hpa-demo-5d6676989b-ctrkj   0m           4Mi
+[exit 0]
+

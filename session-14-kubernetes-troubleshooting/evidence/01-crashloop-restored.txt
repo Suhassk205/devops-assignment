@@ -1,0 +1,58 @@
+CrashLoopBackOff lab - corrected failure and verified recovery
+Actual command transcript; 2026-10-16T19:42:13.837771+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session14-homework create namespace session14-homework
+namespace/session14-homework created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-14-kubernetes-troubleshooting/06-crashloopbackoff/broken-pod.yaml
+pod/crash-demo created
+[exit 0]
+
+CrashLoopBackOff exercise - deliberate exit 1 and verified recovery
+Actual command transcript; 2026-10-16T19:56:45.866730+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session14-homework get pod crash-demo
+NAME         READY   STATUS             RESTARTS        AGE
+crash-demo   0/1     CrashLoopBackOff   7 (3m48s ago)   14m
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework logs crash-demo
+Application starting...
+Something went wrong!
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework get events --field-selector involvedObject.name=crash-demo --sort-by=.lastTimestamp
+LAST SEEN   TYPE      REASON      OBJECT           MESSAGE
+14m         Normal    Scheduled   pod/crash-demo   Successfully assigned session14-homework/crash-demo to session13-control-plane
+3m48s       Normal    Pulled      pod/crash-demo   Container image "busybox:1.36" already present on machine and can be accessed by the pod
+3m48s       Normal    Created     pod/crash-demo   Container created
+3m48s       Normal    Started     pod/crash-demo   Container started
+74s         Warning   BackOff     pod/crash-demo   Back-off restarting failed container app in pod crash-demo_session14-homework(b9cc579a-ef47-4c12-868c-7f0f65cf4d32)
+[exit 0]
+
+This cluster reports the terminated Error state between retries. Repeated exit-code-1 restarts and BackOff events establish the crash/restart loop.
+$ kubectl --context kind-session13 -n session14-homework delete pod crash-demo --wait=true
+pod "crash-demo" deleted from session14-homework namespace
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-14-kubernetes-troubleshooting/06-crashloopbackoff/fixed-pod.yaml
+pod/crash-demo created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework wait --for=condition=Ready pod/crash-demo --timeout=90s
+pod/crash-demo condition met
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework get pod crash-demo
+NAME         READY   STATUS    RESTARTS   AGE
+crash-demo   1/1     Running   0          0s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework logs crash-demo
+Application starting...
+Application is healthy
+[exit 0]
+

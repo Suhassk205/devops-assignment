@@ -1,0 +1,17 @@
+groups:
+  - name: homework-monitoring
+    rules:
+      - alert: PrometheusTargetDown
+        expr: up{job="prometheus"} == 0
+        for: 30s
+        labels:
+          severity: warning
+        annotations:
+          summary: Prometheus scrape target is unavailable
+      - alert: PrometheusMemoryHigh
+        expr: process_resident_memory_bytes{job="prometheus"} > 268435456
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: Prometheus resident memory exceeds 256 MiB

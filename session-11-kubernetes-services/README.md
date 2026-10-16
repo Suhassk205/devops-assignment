@@ -339,3 +339,9 @@ minikube service web-service-nodeport --url
 ### 📸 Proof of Execution
 ![Docker Bridge Timeout](./screenshots/12-docker-bridge-timeout.png)
 ![Minikube Service URL](./screenshots/12-minikube-service-url.png)
+
+## Required comparison and DNS documents
+
+- [Deployment vs ReplicaSet; Deployment vs DaemonSet vs StatefulSet; ReplicaSet vs Service](comparison/README.md)
+- [FQDN and namespace-based Service DNS](fqdn/README.md)
+- [CoreDNS configuration, query flow and troubleshooting](coredns/README.md)

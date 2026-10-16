@@ -1,0 +1,43 @@
+Session 17 - local Kubernetes deployment and live HTTP checks
+Actual command transcript; 2026-10-16T19:30:41.917242+05:30
+Context: kind-session13
+
+$ kind load docker-image session17-homework:local-80cda79d54f2 --name session13
+Image: "session17-homework:local-80cda79d54f2" with ID "sha256:7866b80faa2ed7b7bb0cd3b9969c2e9124623183088a309b66b29583a2a661f3" not yet present on node "session13-control-plane", loading...
+[exit 0]
+
+$ kubectl --context kind-session13 -n session17-homework create namespace session17-homework
+namespace/session17-homework created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session17-homework apply -f -
+deployment.apps/session17-python created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session17-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-17-devsecops/demo/k8s/service.yaml
+service/session17-python created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session17-homework rollout status deployment/session17-python --timeout=120s
+Waiting for deployment "session17-python" rollout to finish: 0 of 2 updated replicas are available...
+Waiting for deployment "session17-python" rollout to finish: 1 of 2 updated replicas are available...
+deployment "session17-python" successfully rolled out
+[exit 0]
+
+$ kubectl --context kind-session13 -n session17-homework get pods -o wide
+NAME                               READY   STATUS    RESTARTS   AGE   IP            NODE                      NOMINATED NODE   READINESS GATES
+session17-python-b96c979c6-48fc8   1/1     Running   0          13s   10.244.0.39   session13-control-plane   <none>           <none>
+session17-python-b96c979c6-l575g   1/1     Running   0          13s   10.244.0.38   session13-control-plane   <none>           <none>
+[exit 0]
+
+$ kubectl --context kind-session13 -n session17-homework get service session17-python
+NAME               TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+session17-python   NodePort   10.96.96.221   <none>        80:30001/TCP   13s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session17-homework exec deployment/session17-python -- python -c 'import json,urllib.request; root='"'"'http://session17-python'"'"'; health=json.load(urllib.request.urlopen(root+'"'"'/health'"'"')); assert health['"'"'status'"'"']=='"'"'healthy'"'"'; print('"'"'Health:'"'"',health); print('"'"'API:'"'"',json.load(urllib.request.urlopen(root+'"'"'/api/status'"'"')))'
+Health: {'status': 'healthy', 'timestamp': '2026-10-16T14:00:56.503666Z', 'uptime_seconds': 11.3}
+API: {'app': 'DevSecOps Dashboard', 'platform': 'Linux', 'python_version': '3.12.15', 'status': 'running', 'timestamp': '2026-10-16T14:00:56.504759Z', 'total_requests': 2, 'uptime': '00h 00m 11s', 'version': '2.0.0'}
+[exit 0]
+
+Local verification complete. Registry publication and hosted GitHub Actions execution remain pending push approval.

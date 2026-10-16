@@ -1,0 +1,64 @@
+Notes chart - lint, package and development deployment
+Actual command transcript; 2026-10-16T19:26:10.398342+05:30
+Context: kind-session13
+
+$ helm lint /Users/suhas/Downloads/devops-heros-main/session-15-helm/mini-project/notes-chart
+==> Linting /Users/suhas/Downloads/devops-heros-main/session-15-helm/mini-project/notes-chart
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+[exit 0]
+
+$ helm package /Users/suhas/Downloads/devops-heros-main/session-15-helm/mini-project/notes-chart --destination /Users/suhas/Downloads/devops-heros-main/session-15-helm/packages
+Successfully packaged chart and saved it to: /Users/suhas/Downloads/devops-heros-main/session-15-helm/packages/notes-chart-0.1.0.tgz
+[exit 0]
+
+$ helm --kube-context kind-session13 --namespace session15-homework install notes /Users/suhas/Downloads/devops-heros-main/session-15-helm/packages/notes-chart-0.1.0.tgz --wait --timeout 180s
+NAME: notes
+LAST DEPLOYED: Fri Oct 16 19:26:10 2026
+NAMESPACE: session15-homework
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+TEST SUITE: None
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework rollout status deployment/notes-deploy --timeout=120s
+deployment "notes-deploy" successfully rolled out
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework get pods -l app=notes
+NAME                            READY   STATUS    RESTARTS   AGE
+notes-deploy-6bdbd76d95-lfcl9   1/1     Running   0          1s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework get service notes-svc
+NAME        TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+notes-svc   NodePort   10.96.46.212   <none>        80:30090/TCP   1s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework exec deployment/notes-deploy -- printenv APP_NAME ENVIRONMENT
+notes-app
+development
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework exec deployment/notes-deploy -- curl -sI http://notes-svc
+command terminated with exit code 7
+[exit 7]
+
+HTTP verification from a separate client Pod
+Actual command transcript; 2026-10-16T19:35:24.309179+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session15-homework exec deployment/webapp-app -- curl --fail --retry 5 --retry-connrefused --retry-delay 1 -sI http://notes-svc
+HTTP/1.1 200 OK
+Server: nginx/1.24.0
+Date: Fri, 16 Oct 2026 14:05:24 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Tue, 11 Apr 2023 01:45:34 GMT
+Connection: keep-alive
+ETag: "6434bbbe-267"
+Accept-Ranges: bytes
+[exit 0]
+

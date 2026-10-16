@@ -1,0 +1,59 @@
+Mini-project - autoscaling under controlled CPU load
+Actual command transcript; 2026-10-16T19:35:39.530700+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session13-mini-homework get hpa web-app-hpa
+NAME          REFERENCE            TARGETS              MINPODS   MAXPODS   REPLICAS   AGE
+web-app-hpa   Deployment/web-app   cpu: <unknown>/50%   2         5         2          22s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-mini-homework exec web-app-d45775485-bcdw8 -- timeout 120 sh -c 'while :; do :; done' [bounded background workload]
+$ kubectl --context kind-session13 -n session13-mini-homework exec web-app-d45775485-t9t9p -- timeout 120 sh -c 'while :; do :; done' [bounded background workload]
+$ kubectl --context kind-session13 -n session13-mini-homework get hpa web-app-hpa
+NAME          REFERENCE            TARGETS         MINPODS   MAXPODS   REPLICAS   AGE
+web-app-hpa   Deployment/web-app   cpu: 200%/50%   2         5         2          73s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-mini-homework get pods -l app=web-app
+NAME                      READY   STATUS    RESTARTS   AGE
+web-app-d45775485-bcdw8   1/1     Running   0          60s
+web-app-d45775485-lctbl   1/1     Running   0          13s
+web-app-d45775485-s7gkm   1/1     Running   0          13s
+web-app-d45775485-t9t9p   1/1     Running   0          73s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-mini-homework top pods -l app=web-app
+NAME                      CPU(cores)   MEMORY(bytes)   
+web-app-d45775485-bcdw8   200m         4Mi             
+web-app-d45775485-t9t9p   200m         4Mi
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-mini-homework describe hpa web-app-hpa
+Name:                                                  web-app-hpa
+Namespace:                                             session13-mini-homework
+Labels:                                                <none>
+Annotations:                                           <none>
+CreationTimestamp:                                     Fri, 16 Oct 2026 19:35:17 +0530
+Reference:                                             Deployment/web-app
+Metrics:                                               ( current / target )
+  resource cpu on pods  (as a percentage of request):  200% (200m) / 50%
+Min replicas:                                          2
+Max replicas:                                          5
+Deployment pods:                                       2 current / 4 desired
+Conditions:
+  Type            Status  Reason            Message
+  ----            ------  ------            -------
+  AbleToScale     True    SucceededRescale  the HPA controller was able to update the target scale to 4
+  ScalingActive   True    ValidMetricFound  the HPA was able to successfully calculate a replica count from cpu resource utilization (percentage of request)
+  ScalingLimited  True    ScaleUpLimit      the desired replica count is increasing faster than the maximum scale rate
+  ScaledToZero    False   NotScaledToZero   the HPA controller did not scale the workload to zero
+Events:
+  Type     Reason                        Age                From                       Message
+  ----     ------                        ----               ----                       -------
+  Warning  FailedGetResourceMetric       58s (x2 over 73s)  horizontal-pod-autoscaler  failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Warning  FailedComputeMetricsReplicas  58s (x2 over 73s)  horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: unable to get metrics for resource cpu: no metrics returned from resource metrics API
+  Warning  FailedGetResourceMetric       43s                horizontal-pod-autoscaler  failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Warning  FailedComputeMetricsReplicas  43s                horizontal-pod-autoscaler  invalid metrics (1 invalid out of 1), first error is: failed to get cpu resource metric value: failed to get cpu utilization: did not receive metrics for targeted pods (pods might be unready)
+  Normal   SuccessfulRescale             13s                horizontal-pod-autoscaler  New size: 4; reason: cpu resource utilization (percentage of request) above target
+[exit 0]
+

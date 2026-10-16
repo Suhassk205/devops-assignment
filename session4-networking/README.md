@@ -420,7 +420,7 @@ tcp4       0      0  *.9222                 *.*                    LISTEN
 
 - [devops-heros Networking Repos](https://github.com/stars/Nency-Ravaliya/lists/networking)
 - [Network-Troubleshooting Guide](https://github.com/Nency-Ravaliya/Network-Troubleshooting)
-- [Linux Networking Cheat Sheet](Linux%20Networking%20Cheat%20Sheet.pdf) *(included in this folder)*
+- [Linux Networking Cheat Sheet](../session2-linux/Linux%20Networking%20Cheat%20Sheet.pdf) *(stored in the Session 2 folder)*
 - [IP Notes](ip.md)
 
 ---

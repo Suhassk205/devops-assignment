@@ -74,3 +74,15 @@ The mini-project issues (CrashLoop, Service mapping, and ImagePullBackOff) were 
 ![Exec LS](./04-kubectl-exec/04_exec_ls.png)
 ![Logs](./03-kubectl-logs/03_logs.png)
 ![Service DNS Troubleshooting](./09-service-dns-troubleshooting/01_cmd.png)
+
+## Crash recovery and Service selectors
+
+The crash exercise starts with a container that runs `exit 1`. The Service exercise compares the working `app: web` selector with the mismatched selector in `broken-service.yaml`.
+
+I ran these exercises in `session14-homework`. The failing Pod repeatedly exited with code 1 and produced BackOff events, showing `Error` between retries. After applying the fix, the Pod reached Ready. The working Service had endpoints and returned Nginx HTML to a client Pod; the broken Service had no endpoints.
+
+- [Crash and recovery transcript](evidence/01-crashloop-restored.txt)
+- [Working/broken Service transcript](evidence/02-service-selector-restored.txt)
+
+![Crash and recovery](screenshots/01-crashloop-restored.png)
+![Service selector verification](screenshots/02-service-selector-restored.png)

@@ -1,0 +1,34 @@
+Liveness failure - kubelet restarts the container
+Actual command transcript; 2026-10-16T19:32:16.102398+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session13-homework exec liveness-demo -- mv /usr/share/nginx/html/index.html /usr/share/nginx/html/index.html.disabled
+
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework wait --for=condition=Ready pod/liveness-demo --timeout=120s
+pod/liveness-demo condition met
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get pod liveness-demo
+NAME            READY   STATUS    RESTARTS     AGE
+liveness-demo   1/1     Running   1 (2s ago)   7m17s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get events --field-selector involvedObject.name=liveness-demo --sort-by=.lastTimestamp
+LAST SEEN   TYPE      REASON      OBJECT              MESSAGE
+7m17s       Normal    Scheduled   pod/liveness-demo   Successfully assigned session13-homework/liveness-demo to session13-control-plane
+2s          Normal    Pulled      pod/liveness-demo   Container image "nginx:1.27" already present on machine and can be accessed by the pod
+2s          Normal    Created     pod/liveness-demo   Container created
+2s          Normal    Started     pod/liveness-demo   Container started
+2s          Warning   Unhealthy   pod/liveness-demo   Liveness probe failed: HTTP probe failed with statuscode: 403
+2s          Normal    Killing     pod/liveness-demo   Container nginx failed liveness probe, will be restarted
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get pods liveness-demo readiness-demo startup-demo
+NAME             READY   STATUS    RESTARTS     AGE
+liveness-demo    1/1     Running   1 (2s ago)   7m17s
+readiness-demo   1/1     Running   0            7m17s
+startup-demo     1/1     Running   0            7m17s
+[exit 0]
+

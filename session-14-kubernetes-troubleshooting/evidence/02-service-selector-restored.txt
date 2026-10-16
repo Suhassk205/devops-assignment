@@ -1,0 +1,64 @@
+Service lab - working selector and intentionally broken comparison
+Actual command transcript; 2026-10-16T19:56:47.549674+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session14-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-14-kubernetes-troubleshooting/09-service-dns-troubleshooting/deployment.yaml
+deployment.apps/web created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-14-kubernetes-troubleshooting/09-service-dns-troubleshooting/service.yaml
+service/web-service created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-14-kubernetes-troubleshooting/09-service-dns-troubleshooting/broken-service.yaml
+service/broken-service created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework rollout status deployment/web --timeout=90s
+Waiting for deployment "web" rollout to finish: 0 of 2 updated replicas are available...
+Waiting for deployment "web" rollout to finish: 1 of 2 updated replicas are available...
+deployment "web" successfully rolled out
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework get service web-service broken-service
+NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+web-service      ClusterIP   10.96.211.203   <none>        80/TCP    1s
+broken-service   ClusterIP   10.96.39.98     <none>        80/TCP    1s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework get endpointslice -l kubernetes.io/service-name=web-service
+NAME                ADDRESSTYPE   PORTS   ENDPOINTS                 AGE
+web-service-tdlr4   IPv4          80      10.244.0.59,10.244.0.60   1s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework get endpointslice -l kubernetes.io/service-name=broken-service
+NAME                   ADDRESSTYPE   PORTS     ENDPOINTS   AGE
+broken-service-nvk5m   IPv4          <unset>   <unset>     1s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session14-homework exec crash-demo -- wget -qO- http://web-service
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[exit 0]
+

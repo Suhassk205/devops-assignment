@@ -1,0 +1,25 @@
+Helm repo and search commands
+Actual command transcript; 2026-10-16T19:25:48.293659+05:30
+Context: kind-session13
+
+$ helm repo add homework-examples https://helm.github.io/examples --force-update
+"homework-examples" has been added to your repositories
+[exit 0]
+
+$ helm repo update homework-examples
+Hang tight while we grab the latest from your chart repositories...
+...Successfully got an update from the "homework-examples" chart repository
+Update Complete. ⎈Happy Helming!⎈
+[exit 0]
+
+$ helm repo list
+NAME             	URL                               
+bitnami          	https://charts.bitnami.com/bitnami
+homework-examples	https://helm.github.io/examples
+[exit 0]
+
+$ helm search repo homework-examples
+NAME                         	CHART VERSION	APP VERSION	DESCRIPTION                
+homework-examples/hello-world	0.1.0        	1.16.0     	A Helm chart for Kubernetes
+[exit 0]
+

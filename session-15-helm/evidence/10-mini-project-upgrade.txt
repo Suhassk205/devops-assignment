@@ -1,0 +1,40 @@
+Notes chart - production values and upgrade
+Actual command transcript; 2026-10-16T19:31:57.820715+05:30
+Context: kind-session13
+
+$ helm --kube-context kind-session13 --namespace session15-homework upgrade notes /Users/suhas/Downloads/devops-heros-main/session-15-helm/mini-project/notes-chart -f /Users/suhas/Downloads/devops-heros-main/session-15-helm/mini-project/notes-chart/values-prod.yaml --wait --timeout 180s
+Release "notes" has been upgraded. Happy Helming!
+NAME: notes
+LAST DEPLOYED: Fri Oct 16 19:31:57 2026
+NAMESPACE: session15-homework
+STATUS: deployed
+REVISION: 2
+DESCRIPTION: Upgrade complete
+TEST SUITE: None
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework rollout status deployment/notes-deploy --timeout=120s
+deployment "notes-deploy" successfully rolled out
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework get pods -l app=notes
+NAME                            READY   STATUS      RESTARTS   AGE
+notes-deploy-54f799c6f6-82ln2   1/1     Running     0          1s
+notes-deploy-54f799c6f6-hbqn2   1/1     Running     0          1s
+notes-deploy-54f799c6f6-nnbrl   1/1     Running     0          0s
+notes-deploy-6bdbd76d95-dfmk7   0/1     Completed   0          1s
+notes-deploy-6bdbd76d95-dvb6d   0/1     Completed   0          1s
+notes-deploy-6bdbd76d95-lfcl9   0/1     Completed   0          5m49s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework exec deployment/notes-deploy -- printenv APP_NAME ENVIRONMENT
+notes-app
+production
+[exit 0]
+
+$ helm --kube-context kind-session13 --namespace session15-homework history notes
+REVISION	UPDATED                 	STATUS    	CHART            	APP VERSION	DESCRIPTION     
+1       	Fri Oct 16 19:26:10 2026	superseded	notes-chart-0.1.0	1.0        	Install complete
+2       	Fri Oct 16 19:31:57 2026	deployed  	notes-chart-0.1.0	1.0        	Upgrade complete
+[exit 0]
+

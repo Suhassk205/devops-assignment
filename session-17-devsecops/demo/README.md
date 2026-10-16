@@ -1,301 +1,83 @@
-# ⚡ hey-cicd — DevSecOps Dashboard
+# Session 17 standalone DevSecOps demo
 
-## 📁 Project Structure
+This Flask application provides a dashboard, health/status endpoints, greetings, calculator APIs and an on-page pipeline simulator. The simulator is separate from the real delivery pipeline.
 
-```
-hey-cicd/
-├── app/
-│   ├── app.py              # Flask application
-│   ├── templates/
-│   │   └── index.html      # Dashboard UI
-│   └── static/
-│       ├── css/styles.css
-│       └── js/main.js
-├── tests/
-│   └── test_app.py         # Unit tests
-├── k8s/
-│   ├── deployment.yaml     # Kubernetes Deployment
-│   └── service.yaml        # Kubernetes Service
-├── .github/
-│   └── workflows/
-│       └── devsecops.yml   # CI/CD Pipeline
-├── Dockerfile
-├── requirements.txt
-├── requirements-dev.txt
-└── README.md
-```
+## Local test results
 
----
+Eight unit tests passed. Semgrep and Gitleaks reported no findings, pip-audit found no known vulnerabilities in the runtime dependencies, and Trivy found no HIGH/CRITICAL image vulnerabilities. Two local Kubernetes replicas passed the health and status checks. The [session README](https://github.com/Suhassk205/devops-assignment/blob/main/session-17-devsecops/README.md) includes the command output and screenshots.
 
-## 🌐 API Endpoints
+## Run locally
 
-| Method | Route | Description |
-|--------|-------|-------------|
-| `GET` | `/` | Dashboard UI |
-| `GET` | `/health` | Health check |
-| `GET` | `/api/status` | App info, uptime, Python version |
-| `GET` | `/api/greet/<name>` | Returns a greeting for the name |
-| `POST` | `/api/add` | Adds two numbers |
-| `POST` | `/api/calculate` | Calculator (add/subtract/multiply/divide/power/modulo) |
-| `POST` | `/api/pipeline/run` | Simulates a CI/CD pipeline run |
-
----
-
-## 🖥️ Method 1 — Run Manually (Python)
-
-### Step 1 — Clone the repository
-
-```bash
-git clone https://github.com/YOUR_USERNAME/hey-cicd.git
-cd hey-cicd
-```
-
-### Step 2 — Create a virtual environment
+From this directory:
 
 ```bash
 python3 -m venv .venv
-source .venv/bin/activate        # Mac/Linux
-# .venv\Scripts\activate         # Windows
-```
-
-### Step 3 — Install dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
-### Step 4 — Run the app
-
-```bash
-python3 app/app.py
-```
-
-### Step 5 — Open in browser
-
-```
-http://localhost:5001
-```
-
-### Step 6 — Run the tests
-
-```bash
+source .venv/bin/activate
 pip install -r requirements-dev.txt
-python3 -m pytest --cov=app --cov-report=term-missing
+pytest -v --cov=app --cov-report=term-missing
+gunicorn --bind 127.0.0.1:5001 --workers 2 app.app:app
 ```
 
-**Expected output:**
-```
-tests/test_app.py::test_home                      PASSED
-tests/test_app.py::test_health                    PASSED
-tests/test_app.py::test_greet                     PASSED
-tests/test_app.py::test_add_numbers               PASSED
-tests/test_app.py::test_add_numbers_missing_fields PASSED
-tests/test_app.py::test_calculator_multiply       PASSED
-tests/test_app.py::test_calculator_divide_by_zero PASSED
-tests/test_app.py::test_status                    PASSED
-8 passed in 0.Xs
-```
-
-### Test the API manually
+Open `http://localhost:5001`. Direct development execution with `python app/app.py` binds only to localhost and leaves debugging disabled.
 
 ```bash
-# Health check
-curl http://localhost:5001/health
-
-# Greet someone
-curl http://localhost:5001/api/greet/Nensi
-
-# Add two numbers
-curl -X POST http://localhost:5001/api/add \
-  -H "Content-Type: application/json" \
-  -d '{"number1": 10, "number2": 20}'
-
-# Calculator
-curl -X POST http://localhost:5001/api/calculate \
-  -H "Content-Type: application/json" \
-  -d '{"a": 6, "b": 3, "operation": "multiply"}'
+docker build -t session17-python:local .
+docker run --rm -p 127.0.0.1:5001:5001 session17-python:local
 ```
 
----
+The image runs Gunicorn as UID 10001. Runtime requirements and the Python base-image digest are pinned.
 
-## 🐳 Method 2 — Run with Docker
+## API
 
-### Prerequisites
-- [Docker Desktop](https://www.docker.com/products/docker-desktop/) installed and running
+| Method | Path | Behavior |
+|---|---|---|
+| GET | `/` | Dashboard |
+| GET | `/health` | Application health |
+| GET | `/api/status` | Runtime information |
+| GET | `/api/greet/<name>` | Greeting |
+| POST | `/api/add` | Addition |
+| POST | `/api/calculate` | Calculator operations |
+| POST | `/api/pipeline/run` | Simulated pipeline data |
 
-### Step 1 — Build the Docker image
+## Security checks
 
 ```bash
-docker build -t hey-cicd:latest .
+pip install semgrep==1.181.0 pip-audit==2.10.1
+python scripts/install_scanners.py
+semgrep scan --config p/python --config p/javascript --error --metrics off app
+.tools/bin/gitleaks dir --redact .
+pip-audit -r requirements.txt --strict
+.tools/bin/trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 1 session17-python:local
 ```
 
-### Step 2 — Run the container
+The installer supports macOS and Linux and verifies the official Trivy 0.76.0 / Gitleaks 8.30.1 release archive checksums. Generated tools, reports, caches and environments are ignored. CI uses Gitleaks on full standalone-repository history; the local check uses the working tree.
+
+The [session README](https://github.com/Suhassk205/devops-assignment/blob/main/session-17-devsecops/README.md) also includes tests of the failure gates. Separate examples with unsafe code, a dummy credential, and a vulnerable dependency were rejected with exit code 1.
+
+## Dedicated GitHub repository layout
+
+To run this as a separate GitHub project, use the contents of `demo/` as the repository root. Keep `.github/`, `.gitleaks.toml`, the Dockerfile, requirements, application, tests, installer, and manifests together. GitHub Actions only discovers workflows in the repository’s root `.github/workflows/` directory.
+
+```text
+Build/tests -> Semgrep + pip-audit + Gitleaks -> Docker build
+  -> Trivy -> scanned-image artifact -> GHCR -> temporary Kind -> HTTP checks
+```
+
+The workflow triggers on pushes to main, pull requests and manual dispatch. Only pushes to main publish and deploy. A manual dispatch runs verification without publication. Registry tags use the commit SHA. The image is built once and passed as an artifact so publication uses the scanned bytes.
+
+`GITHUB_TOKEN` is supplied by GitHub. The workflow declares package permissions only on publication/deployment jobs; no Docker Hub password or laptop kubeconfig is required. The Kind cluster exists only for the duration of its CI job.
+
+## Kubernetes
+
+The [Deployment](k8s/deployment.yaml) has two replicas, resource requests/limits, readiness/liveness checks and a non-root security context. The [Service](k8s/service.yaml) exposes port 80 and maps it to the application's port 5001.
+
+For an image already published to an accessible registry:
 
 ```bash
-docker run -p 5001:5001 hey-cicd:latest
-```
-
-### Step 3 — Open in browser
-
-```
-http://localhost:5001
-```
-
-### Useful Docker commands
-
-```bash
-# See running containers
-docker ps
-
-# Stop the container
-docker stop <container-id>
-
-# Remove the image
-docker rmi hey-cicd:latest
-
-# Run in background (detached mode)
-docker run -d -p 5001:5001 hey-cicd:latest
-```
-
----
-
-## ⚙️ Method 3 — CI/CD Pipeline (GitHub Actions)
-
-The pipeline runs automatically every time you push code to `main` or open a pull request.
-
-### Pipeline Stages
-
-```
-Push to GitHub
-      │
-      ▼
-┌─────────────────┐
-│  STEP 1: Tests  │  pytest — runs all 8 unit tests
-└────────┬────────┘
-         │
-┌────────▼────────┐
-│  STEP 2: SAST   │  CodeQL — scans code for security issues
-└────────┬────────┘
-         │
-┌────────▼────────┐
-│   STEP 3: SCA   │  pip-audit — checks for vulnerable packages
-└────────┬────────┘
-         │ (all 3 must pass)
-┌────────▼────────┐
-│  STEP 4: Build  │  docker build — creates the Docker image
-└────────┬────────┘
-         │
-┌────────▼────────┐
-│  STEP 5: Scan   │  Trivy — scans the Docker image for CVEs
-└────────┬────────┘
-         │
-┌────────▼────────┐
-│  STEP 6: Push   │  Pushes image to GitHub Container Registry
-└────────┬────────┘
-         │ (only on push to main)
-┌────────▼────────┐
-│ STEP 7: Deploy  │  kubectl apply → deploys to Kubernetes
-└─────────────────┘
-```
-
-### How to trigger the pipeline
-
-```bash
-# Make a change, commit, and push
-git add .
-git commit -m "your message"
-git push origin main
-```
-
-Then go to your GitHub repo → **Actions** tab to watch it run.
-
-### Required GitHub Secrets
-
-Go to **GitHub repo → Settings → Secrets and variables → Actions** and add:
-
-| Secret Name | Value |
-|-------------|-------|
-| `KUBECONFIG` | Contents of your `~/.kube/config` file (needed for Step 7 deploy) |
-
-> ℹ️ `GITHUB_TOKEN` is automatically provided by GitHub — you don't need to add it manually.
-
-### View your Docker image after push
-
-After Step 6 runs, your image is available at:
-```
-ghcr.io/YOUR_USERNAME/hey-cicd:latest
-```
-
-Go to **GitHub repo → Packages** to see it.
-
----
-
-## ☸️ Method 4 — Deploy to Kubernetes manually
-
-> Do this if you want to deploy without the pipeline, directly from your terminal.
-
-### Prerequisites
-- A running Kubernetes cluster (minikube, k3s, or cloud)
-- `kubectl` installed and connected to your cluster
-
-### Step 1 — Apply the manifests
-
-```bash
-kubectl apply -f k8s/deployment.yaml
+kubectl set image --local -f k8s/deployment.yaml session17-python=ghcr.io/suhassk205/devops-devsecops:YOUR_COMMIT_SHA -o yaml | kubectl apply -f -
 kubectl apply -f k8s/service.yaml
+kubectl rollout status deployment/session17-python --timeout=180s
+kubectl port-forward service/session17-python 5001:80
 ```
 
-### Step 2 — Check the pods are running
-
-```bash
-kubectl get pods
-kubectl get service session17-python
-```
-
-### Step 3 — Access the app
-
-```bash
-# If using minikube
-minikube service session17-python
-
-# Or access via NodePort
-http://<your-node-ip>:30001
-```
-
-### Useful kubectl commands
-
-```bash
-# See all running pods
-kubectl get pods
-
-# See logs from a pod
-kubectl logs <pod-name>
-
-# Delete the deployment
-kubectl delete -f k8s/deployment.yaml
-kubectl delete -f k8s/service.yaml
-```
-
----
-
-## 🧪 DevSecOps Concepts Covered
-
-| Concept | Tool Used | Where |
-|---------|-----------|-------|
-| **Unit Testing** | pytest + pytest-cov | `tests/test_app.py` |
-| **SAST** (Static Application Security Testing) | GitHub CodeQL | Pipeline Step 2 |
-| **SCA** (Software Composition Analysis) | pip-audit | Pipeline Step 3 |
-| **Containerisation** | Docker | `Dockerfile` |
-| **Container Image Scanning** | Trivy | Pipeline Step 5 |
-| **Container Registry** | GitHub Container Registry (GHCR) | Pipeline Step 6 |
-| **Orchestration** | Kubernetes | `k8s/` folder |
-| **CI/CD Automation** | GitHub Actions | `.github/workflows/devsecops.yml` |
-
----
-
-## 👩‍💻 Built With
-
-- **Python 3.12** + **Flask 3.x**
-- **Docker**
-- **Kubernetes**
-- **GitHub Actions**
+Replace the image tag before applying. Private registries require pull access; the CI job authenticates, pulls the image and loads it into Kind. The local course runner loads the checked local image into the named local cluster and uses its own namespace.

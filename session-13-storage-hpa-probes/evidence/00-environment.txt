@@ -1,0 +1,24 @@
+Session 13 - local cluster prerequisites
+Actual command transcript; 2026-10-16T19:24:35.836639+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 get nodes
+NAME                      STATUS   ROLES           AGE   VERSION
+session13-control-plane   Ready    control-plane   8d    v1.37.0
+[exit 0]
+
+$ kubectl --context kind-session13 get storageclass
+NAME                   PROVISIONER             RECLAIMPOLICY   VOLUMEBINDINGMODE      ALLOWVOLUMEEXPANSION   AGE
+session13-local-path   rancher.io/local-path   Delete          WaitForFirstConsumer   false                  4m49s
+standard (default)     rancher.io/local-path   Delete          WaitForFirstConsumer   false                  8d
+[exit 0]
+
+$ kubectl --context kind-session13 top nodes
+NAME                      CPU(cores)   CPU(%)   MEMORY(bytes)   MEMORY(%)   
+session13-control-plane   240m         6%       1354Mi          22%
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework create namespace session13-homework
+Error from server (AlreadyExists): namespaces "session13-homework" already exists
+[exit 1]
+

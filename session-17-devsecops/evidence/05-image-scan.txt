@@ -1,0 +1,146 @@
+Docker build and real Trivy HIGH/CRITICAL vulnerability gate
+Actual command transcript; 2026-10-16T19:30:05.188446+05:30
+Context: kind-session13
+
+$ docker build --pull -t session17-homework:local-80cda79d54f2 .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  70.14kB
+
+Step 1/8 : FROM python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+3.12-alpine: Pulling from library/python
+Digest: sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+Status: Image is up to date for python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+ ---> 1b668429b351
+Step 2/8 : WORKDIR /app
+ ---> Running in 2bef60e0e66c
+ ---> Removed intermediate container 2bef60e0e66c
+ ---> 267fccbe18c6
+Step 3/8 : COPY requirements.txt .
+ ---> d2f30930be36
+Step 4/8 : RUN apk upgrade --no-cache     && pip install --no-cache-dir -r requirements.txt     && adduser -D -u 10001 appuser
+ ---> Running in f780da23e2f6
+(1/2) Upgrading zlib (1.3.2-r0 -> 1.3.2-r1)
+(2/2) Upgrading tzdata (2026d-r0 -> 2026e-r0)
+OK: 14.9 MiB in 38 packages
+Collecting Flask==3.1.3 (from -r requirements.txt (line 1))
+  Downloading flask-3.1.3-py3-none-any.whl.metadata (3.2 kB)
+Collecting gunicorn==26.2.0 (from -r requirements.txt (line 2))
+  Downloading gunicorn-26.2.0-py3-none-any.whl.metadata (5.5 kB)
+Collecting blinker==1.9.0 (from -r requirements.txt (line 3))
+  Downloading blinker-1.9.0-py3-none-any.whl.metadata (1.6 kB)
+Collecting click==8.4.2 (from -r requirements.txt (line 4))
+  Downloading click-8.4.2-py3-none-any.whl.metadata (2.6 kB)
+Collecting itsdangerous==2.2.0 (from -r requirements.txt (line 5))
+  Downloading itsdangerous-2.2.0-py3-none-any.whl.metadata (1.9 kB)
+Collecting Jinja2==3.1.6 (from -r requirements.txt (line 6))
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting MarkupSafe==3.0.4 (from -r requirements.txt (line 7))
+  Downloading markupsafe-3.0.4-cp312-cp312-musllinux_1_2_aarch64.whl.metadata (2.7 kB)
+Collecting packaging==26.3 (from -r requirements.txt (line 8))
+  Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting Werkzeug==3.1.9 (from -r requirements.txt (line 9))
+  Downloading werkzeug-3.1.9-py3-none-any.whl.metadata (4.1 kB)
+Downloading flask-3.1.3-py3-none-any.whl (103 kB)
+Downloading gunicorn-26.2.0-py3-none-any.whl (228 kB)
+Downloading blinker-1.9.0-py3-none-any.whl (8.5 kB)
+Downloading click-8.4.2-py3-none-any.whl (119 kB)
+Downloading itsdangerous-2.2.0-py3-none-any.whl (16 kB)
+Downloading jinja2-3.1.6-py3-none-any.whl (134 kB)
+Downloading markupsafe-3.0.4-cp312-cp312-musllinux_1_2_aarch64.whl (23 kB)
+Downloading packaging-26.3-py3-none-any.whl (129 kB)
+Downloading werkzeug-3.1.9-py3-none-any.whl (228 kB)
+Installing collected packages: packaging, MarkupSafe, itsdangerous, gunicorn, click, blinker, Werkzeug, Jinja2, Flask
+Successfully installed Flask-3.1.3 Jinja2-3.1.6 MarkupSafe-3.0.4 Werkzeug-3.1.9 blinker-1.9.0 click-8.4.2 gunicorn-26.2.0 itsdangerous-2.2.0 packaging-26.3
+[91mWARNING: Running pip as the 'root' user can result in broken permissions and conflicting behaviour with the system package manager, possibly rendering your system unusable. It is recommended to use a virtual environment instead: https://pip.pypa.io/warnings/venv. Use the --root-user-action option if you know what you are doing and want to suppress this warning.
+[0m[91m
+[notice] A new release of pip is available: 25.0.1 -> 26.2.1
+[notice] To update, run: pip install --upgrade pip
+[0m ---> Removed intermediate container f780da23e2f6
+ ---> 94dd11b0d86d
+Step 5/8 : COPY app ./app
+ ---> 3102c09f12b6
+Step 6/8 : EXPOSE 5001
+ ---> Running in 4ac4856a46c9
+ ---> Removed intermediate container 4ac4856a46c9
+ ---> 24a40a06a8b6
+Step 7/8 : USER 10001
+ ---> Running in 3b3a494ba4f0
+ ---> Removed intermediate container 3b3a494ba4f0
+ ---> f2292a78e7fe
+Step 8/8 : CMD ["gunicorn", "--bind", "0.0.0.0:5001", "--workers", "2", "--access-logfile", "-", "app.app:app"]
+ ---> Running in 428fa001d38b
+ ---> Removed intermediate container 428fa001d38b
+ ---> 7866b80faa2e
+Successfully built 7866b80faa2e
+Successfully tagged session17-homework:local-80cda79d54f2
+[exit 0]
+
+$ /Users/suhas/Downloads/devops-heros-main/session-17-devsecops/demo/.tools/bin/trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 1 --format json --output reports/image.json session17-homework:local-80cda79d54f2
+2026-10-16T19:30:14+05:30	INFO	[vulndb] Need to update DB
+2026-10-16T19:30:14+05:30	INFO	[vulndb] Downloading vulnerability DB...
+2026-10-16T19:30:14+05:30	INFO	[vulndb] Downloading artifact...	repo="mirror.gcr.io/aquasec/trivy-db:2"
+207.25 KiB / 128.03 MiB [>___________________________________________________________] 0.16% ? p/s ?1023.25 KiB / 128.03 MiB [>__________________________________________________________] 0.78% ? p/s ?2.67 MiB / 128.03 MiB [->____________________________________________________________] 2.09% ? p/s ?4.19 MiB / 128.03 MiB [->_______________________________________________] 3.27% 6.63 MiB p/s ETA 18s5.70 MiB / 128.03 MiB [-->______________________________________________] 4.45% 6.63 MiB p/s ETA 18s6.61 MiB / 128.03 MiB [-->______________________________________________] 5.16% 6.63 MiB p/s ETA 18s7.73 MiB / 128.03 MiB [-->______________________________________________] 6.04% 6.58 MiB p/s ETA 18s8.70 MiB / 128.03 MiB [--->_____________________________________________] 6.80% 6.58 MiB p/s ETA 18s9.67 MiB / 128.03 MiB [--->_____________________________________________] 7.55% 6.58 MiB p/s ETA 17s10.76 MiB / 128.03 MiB [---->___________________________________________] 8.41% 6.49 MiB p/s ETA 18s11.76 MiB / 128.03 MiB [---->___________________________________________] 9.19% 6.49 MiB p/s ETA 17s12.80 MiB / 128.03 MiB [---->___________________________________________] 9.99% 6.49 MiB p/s ETA 17s13.73 MiB / 128.03 MiB [----->_________________________________________] 10.73% 6.39 MiB p/s ETA 17s15.70 MiB / 128.03 MiB [----->_________________________________________] 12.26% 6.39 MiB p/s ETA 17s16.67 MiB / 128.03 MiB [------>________________________________________] 13.02% 6.39 MiB p/s ETA 17s17.98 MiB / 128.03 MiB [------>________________________________________] 14.05% 6.43 MiB p/s ETA 17s19.39 MiB / 128.03 MiB [------->_______________________________________] 15.14% 6.43 MiB p/s ETA 16s20.33 MiB / 128.03 MiB [------->_______________________________________] 15.88% 6.43 MiB p/s ETA 16s21.42 MiB / 128.03 MiB [------->_______________________________________] 16.73% 6.39 MiB p/s ETA 16s22.42 MiB / 128.03 MiB [-------->______________________________________] 17.51% 6.39 MiB p/s ETA 16s23.42 MiB / 128.03 MiB [-------->______________________________________] 18.29% 6.39 MiB p/s ETA 16s24.33 MiB / 128.03 MiB [-------->______________________________________] 19.00% 6.29 MiB p/s ETA 16s25.39 MiB / 128.03 MiB [--------->_____________________________________] 19.83% 6.29 MiB p/s ETA 16s26.23 MiB / 128.03 MiB [--------->_____________________________________] 20.49% 6.29 MiB p/s ETA 16s27.30 MiB / 128.03 MiB [---------->____________________________________] 21.32% 6.20 MiB p/s ETA 16s29.17 MiB / 128.03 MiB [---------->____________________________________] 22.78% 6.20 MiB p/s ETA 15s29.83 MiB / 128.03 MiB [---------->____________________________________] 23.30% 6.20 MiB p/s ETA 15s31.23 MiB / 128.03 MiB [----------->___________________________________] 24.40% 6.22 MiB p/s ETA 15s31.73 MiB / 128.03 MiB [----------->___________________________________] 24.79% 6.22 MiB p/s ETA 15s32.48 MiB / 128.03 MiB [----------->___________________________________] 25.37% 6.22 MiB p/s ETA 15s32.89 MiB / 128.03 MiB [------------>__________________________________] 25.69% 6.00 MiB p/s ETA 15s33.64 MiB / 128.03 MiB [------------>__________________________________] 26.28% 6.00 MiB p/s ETA 15s34.83 MiB / 128.03 MiB [------------>__________________________________] 27.20% 6.00 MiB p/s ETA 15s35.42 MiB / 128.03 MiB [------------->_________________________________] 27.67% 5.89 MiB p/s ETA 15s36.23 MiB / 128.03 MiB [------------->_________________________________] 28.30% 5.89 MiB p/s ETA 15s37.26 MiB / 128.03 MiB [------------->_________________________________] 29.11% 5.89 MiB p/s ETA 15s38.73 MiB / 128.03 MiB [-------------->________________________________] 30.25% 5.86 MiB p/s ETA 15s40.45 MiB / 128.03 MiB [-------------->________________________________] 31.60% 5.86 MiB p/s ETA 14s41.76 MiB / 128.03 MiB [--------------->_______________________________] 32.62% 5.86 MiB p/s ETA 14s43.23 MiB / 128.03 MiB [--------------->_______________________________] 33.77% 5.97 MiB p/s ETA 14s44.33 MiB / 128.03 MiB [---------------->______________________________] 34.62% 5.97 MiB p/s ETA 14s45.45 MiB / 128.03 MiB [---------------->______________________________] 35.50% 5.97 MiB p/s ETA 13s46.39 MiB / 128.03 MiB [----------------->_____________________________] 36.23% 5.92 MiB p/s ETA 13s47.36 MiB / 128.03 MiB [----------------->_____________________________] 36.99% 5.92 MiB p/s ETA 13s48.11 MiB / 128.03 MiB [----------------->_____________________________] 37.58% 5.92 MiB p/s ETA 13s49.14 MiB / 128.03 MiB [------------------>____________________________] 38.38% 5.84 MiB p/s ETA 13s50.64 MiB / 128.03 MiB [------------------>____________________________] 39.55% 5.84 MiB p/s ETA 13s51.95 MiB / 128.03 MiB [------------------->___________________________] 40.58% 5.84 MiB p/s ETA 13s53.55 MiB / 128.03 MiB [------------------->___________________________] 41.82% 5.93 MiB p/s ETA 12s54.64 MiB / 128.03 MiB [-------------------->__________________________] 42.68% 5.93 MiB p/s ETA 12s55.76 MiB / 128.03 MiB [-------------------->__________________________] 43.56% 5.93 MiB p/s ETA 12s56.95 MiB / 128.03 MiB [-------------------->__________________________] 44.48% 5.92 MiB p/s ETA 12s58.11 MiB / 128.03 MiB [--------------------->_________________________] 45.39% 5.92 MiB p/s ETA 11s59.20 MiB / 128.03 MiB [--------------------->_________________________] 46.24% 5.92 MiB p/s ETA 11s60.17 MiB / 128.03 MiB [---------------------->________________________] 47.00% 5.88 MiB p/s ETA 11s61.08 MiB / 128.03 MiB [---------------------->________________________] 47.71% 5.88 MiB p/s ETA 11s61.98 MiB / 128.03 MiB [---------------------->________________________] 48.41% 5.88 MiB p/s ETA 11s62.95 MiB / 128.03 MiB [----------------------->_______________________] 49.17% 5.80 MiB p/s ETA 11s63.89 MiB / 128.03 MiB [----------------------->_______________________] 49.90% 5.80 MiB p/s ETA 11s64.92 MiB / 128.03 MiB [----------------------->_______________________] 50.71% 5.80 MiB p/s ETA 10s66.64 MiB / 128.03 MiB [------------------------>______________________] 52.05% 5.82 MiB p/s ETA 10s67.48 MiB / 128.03 MiB [------------------------>______________________] 52.71% 5.82 MiB p/s ETA 10s68.26 MiB / 128.03 MiB [------------------------->_____________________] 53.32% 5.82 MiB p/s ETA 10s69.33 MiB / 128.03 MiB [------------------------->_____________________] 54.15% 5.74 MiB p/s ETA 10s70.67 MiB / 128.03 MiB [-------------------------->_____________________] 55.20% 5.74 MiB p/s ETA 9s71.39 MiB / 128.03 MiB [-------------------------->_____________________] 55.76% 5.74 MiB p/s ETA 9s72.08 MiB / 128.03 MiB [--------------------------->____________________] 56.30% 5.66 MiB p/s ETA 9s73.73 MiB / 128.03 MiB [--------------------------->____________________] 57.59% 5.66 MiB p/s ETA 9s75.42 MiB / 128.03 MiB [---------------------------->___________________] 58.91% 5.66 MiB p/s ETA 9s76.83 MiB / 128.03 MiB [---------------------------->___________________] 60.01% 5.81 MiB p/s ETA 8s78.05 MiB / 128.03 MiB [----------------------------->__________________] 60.96% 5.81 MiB p/s ETA 8s79.14 MiB / 128.03 MiB [----------------------------->__________________] 61.81% 5.81 MiB p/s ETA 8s80.26 MiB / 128.03 MiB [------------------------------>_________________] 62.69% 5.80 MiB p/s ETA 8s81.39 MiB / 128.03 MiB [------------------------------>_________________] 63.57% 5.80 MiB p/s ETA 8s82.58 MiB / 128.03 MiB [------------------------------>_________________] 64.50% 5.80 MiB p/s ETA 7s83.67 MiB / 128.03 MiB [------------------------------->________________] 65.35% 5.79 MiB p/s ETA 7s84.76 MiB / 128.03 MiB [------------------------------->________________] 66.21% 5.79 MiB p/s ETA 7s85.89 MiB / 128.03 MiB [-------------------------------->_______________] 67.09% 5.79 MiB p/s ETA 7s87.67 MiB / 128.03 MiB [-------------------------------->_______________] 68.48% 5.85 MiB p/s ETA 6s88.80 MiB / 128.03 MiB [--------------------------------->______________] 69.36% 5.85 MiB p/s ETA 6s89.76 MiB / 128.03 MiB [--------------------------------->______________] 70.11% 5.85 MiB p/s ETA 6s90.95 MiB / 128.03 MiB [---------------------------------->_____________] 71.04% 5.83 MiB p/s ETA 6s92.05 MiB / 128.03 MiB [---------------------------------->_____________] 71.90% 5.83 MiB p/s ETA 6s93.26 MiB / 128.03 MiB [---------------------------------->_____________] 72.85% 5.83 MiB p/s ETA 5s94.51 MiB / 128.03 MiB [----------------------------------->____________] 73.82% 5.83 MiB p/s ETA 5s95.61 MiB / 128.03 MiB [----------------------------------->____________] 74.68% 5.83 MiB p/s ETA 5s96.42 MiB / 128.03 MiB [------------------------------------>___________] 75.31% 5.83 MiB p/s ETA 5s97.58 MiB / 128.03 MiB [------------------------------------>___________] 76.22% 5.79 MiB p/s ETA 5s98.70 MiB / 128.03 MiB [------------------------------------->__________] 77.09% 5.79 MiB p/s ETA 5s99.89 MiB / 128.03 MiB [------------------------------------->__________] 78.02% 5.79 MiB p/s ETA 4s101.20 MiB / 128.03 MiB [------------------------------------->_________] 79.05% 5.80 MiB p/s ETA 4s102.83 MiB / 128.03 MiB [------------------------------------->_________] 80.32% 5.80 MiB p/s ETA 4s104.20 MiB / 128.03 MiB [-------------------------------------->________] 81.39% 5.80 MiB p/s ETA 4s105.39 MiB / 128.03 MiB [-------------------------------------->________] 82.32% 5.88 MiB p/s ETA 3s106.67 MiB / 128.03 MiB [--------------------------------------->_______] 83.32% 5.88 MiB p/s ETA 3s107.23 MiB / 128.03 MiB [--------------------------------------->_______] 83.76% 5.88 MiB p/s ETA 3s107.80 MiB / 128.03 MiB [--------------------------------------->_______] 84.20% 5.76 MiB p/s ETA 3s108.55 MiB / 128.03 MiB [--------------------------------------->_______] 84.78% 5.76 MiB p/s ETA 3s109.67 MiB / 128.03 MiB [---------------------------------------->______] 85.66% 5.76 MiB p/s ETA 3s110.20 MiB / 128.03 MiB [---------------------------------------->______] 86.08% 5.65 MiB p/s ETA 3s111.58 MiB / 128.03 MiB [---------------------------------------->______] 87.15% 5.65 MiB p/s ETA 2s112.86 MiB / 128.03 MiB [----------------------------------------->_____] 88.15% 5.65 MiB p/s ETA 2s114.05 MiB / 128.03 MiB [----------------------------------------->_____] 89.08% 5.69 MiB p/s ETA 2s115.11 MiB / 128.03 MiB [------------------------------------------>____] 89.91% 5.69 MiB p/s ETA 2s116.30 MiB / 128.03 MiB [------------------------------------------>____] 90.84% 5.69 MiB p/s ETA 2s117.89 MiB / 128.03 MiB [------------------------------------------->___] 92.08% 5.74 MiB p/s ETA 1s118.95 MiB / 128.03 MiB [------------------------------------------->___] 92.91% 5.74 MiB p/s ETA 1s120.48 MiB / 128.03 MiB [-------------------------------------------->__] 94.11% 5.74 MiB p/s ETA 1s121.58 MiB / 128.03 MiB [-------------------------------------------->__] 94.96% 5.77 MiB p/s ETA 1s122.58 MiB / 128.03 MiB [-------------------------------------------->__] 95.74% 5.77 MiB p/s ETA 0s124.17 MiB / 128.03 MiB [--------------------------------------------->_] 96.99% 5.77 MiB p/s ETA 0s125.55 MiB / 128.03 MiB [---------------------------------------------->] 98.06% 5.82 MiB p/s ETA 0s126.58 MiB / 128.03 MiB [---------------------------------------------->] 98.87% 5.82 MiB p/s ETA 0s127.86 MiB / 128.03 MiB [---------------------------------------------->] 99.87% 5.82 MiB p/s ETA 0s128.03 MiB / 128.03 MiB [--------------------------------------------->] 100.00% 5.71 MiB p/s ETA 0s128.03 MiB / 128.03 MiB [--------------------------------------------->] 100.00% 5.71 MiB p/s ETA 0s128.03 MiB / 128.03 MiB [--------------------------------------------->] 100.00% 5.71 MiB p/s ETA 0s128.03 MiB / 128.03 MiB [--------------------------------------------->] 100.00% 5.34 MiB p/s ETA 0s128.03 MiB / 128.03 MiB [--------------------------------------------->] 100.00% 5.34 MiB p/s ETA 0s128.03 MiB / 128.03 MiB [--------------------------------------------->] 100.00% 5.34 MiB p/s ETA 0s128.03 MiB / 128.03 MiB [--------------------------------------------->] 100.00% 5.00 MiB p/s ETA 0s128.03 MiB / 128.03 MiB [--------------------------------------------->] 100.00% 5.00 MiB p/s ETA 0s128.03 MiB / 128.03 MiB [--------------------------------------------->] 100.00% 5.00 MiB p/s ETA 0s128.03 MiB / 128.03 MiB [--------------------------------------------->] 100.00% 4.68 MiB p/s ETA 0s128.03 MiB / 128.03 MiB [-------------------------------------------------] 100.00% 5.16 MiB p/s 25s2026-10-16T19:30:41+05:30	INFO	[vulndb] Artifact successfully downloaded	repo="mirror.gcr.io/aquasec/trivy-db:2"
+2026-10-16T19:30:41+05:30	INFO	[vuln] Vulnerability scanning is enabled
+2026-10-16T19:30:41+05:30	INFO	[python] Licenses acquired from one or more METADATA files may be subject to additional terms. Use `--debug` flag to see all affected packages.
+2026-10-16T19:30:41+05:30	INFO	Detected OS	family="alpine" version="3.24.2"
+2026-10-16T19:30:41+05:30	INFO	[alpine] Detecting vulnerabilities...	os_version="3.24" repository="3.24" pkg_num=38
+2026-10-16T19:30:41+05:30	INFO	Number of language-specific files	num=1
+2026-10-16T19:30:41+05:30	INFO	[python-pkg] Detecting vulnerabilities...
+[exit 0]
+
+Image: session17-homework:local-80cda79d54f2
+HIGH/CRITICAL vulnerabilities: 0
+$ docker image inspect session17-homework:local-80cda79d54f2 --format 'Image ID: {{.Id}}; runtime user: {{.Config.User}}'
+Image ID: sha256:7866b80faa2ed7b7bb0cd3b9969c2e9124623183088a309b66b29583a2a661f3; runtime user: 10001
+[exit 0]
+
+Readable Trivy summary for the same verified image
+Actual command transcript; 2026-10-16T20:02:01.311298+05:30
+Context: kind-session13
+
+$ /Users/suhas/Downloads/devops-heros-main/session-17-devsecops/demo/.tools/bin/trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 1 --format table session17-homework:local-80cda79d54f2
+2026-10-16T20:02:01+05:30	INFO	[vuln] Vulnerability scanning is enabled
+2026-10-16T20:02:01+05:30	INFO	Detected OS	family="alpine" version="3.24.2"
+2026-10-16T20:02:01+05:30	INFO	[alpine] Detecting vulnerabilities...	os_version="3.24" repository="3.24" pkg_num=38
+2026-10-16T20:02:01+05:30	INFO	Number of language-specific files	num=1
+2026-10-16T20:02:01+05:30	INFO	[python-pkg] Detecting vulnerabilities...
+
+Report Summary
+
+┌──────────────────────────────────────────────────────────────────────────────┬────────────┬─────────────────┐
+│                                    Target                                    │    Type    │ Vulnerabilities │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ session17-homework:local-80cda79d54f2 (alpine 3.24.2)                        │   alpine   │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/blinker-1.9.0.dist-info/METADATA      │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/click-8.4.2.dist-info/METADATA        │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/flask-3.1.3.dist-info/METADATA        │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/gunicorn-26.2.0.dist-info/METADATA    │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/itsdangerous-2.2.0.dist-info/METADATA │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/jinja2-3.1.6.dist-info/METADATA       │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/markupsafe-3.0.4.dist-info/METADATA   │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/packaging-26.3.dist-info/METADATA     │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/pip-25.0.1.dist-info/METADATA         │ python-pkg │        0        │
+├──────────────────────────────────────────────────────────────────────────────┼────────────┼─────────────────┤
+│ usr/local/lib/python3.12/site-packages/werkzeug-3.1.9.dist-info/METADATA     │ python-pkg │        0        │
+└──────────────────────────────────────────────────────────────────────────────┴────────────┴─────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+[exit 0]
+
+$ docker image inspect session17-homework:local-80cda79d54f2 --format 'Image ID: {{.Id}}; runtime user: {{.Config.User}}'
+Image ID: sha256:7866b80faa2ed7b7bb0cd3b9969c2e9124623183088a309b66b29583a2a661f3; runtime user: 10001
+[exit 0]
+

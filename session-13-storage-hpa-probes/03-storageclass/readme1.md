@@ -95,7 +95,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: standard
+  storageClassName: session13-local-path
   resources:
     requests:
       storage: 500Mi
@@ -211,3 +211,7 @@ Remember:
 
 * **Storage Classes:**  
   https://kubernetes.io/docs/concepts/storage/storage-classes/
+
+## Kind configuration
+
+The [sc.yaml](sc.yaml) uses the Kind cluster local-path provisioner. Apply it before [pvc.yaml](pvc.yaml), then create [pod.yaml](pod.yaml). Its `WaitForFirstConsumer` binding mode means the claim can remain Pending until a consumer Pod is scheduled. See the [command output](../evidence/04-dynamic-storage.txt).

@@ -1,0 +1,70 @@
+Helm create, lint, install, list and status
+Actual command transcript; 2026-10-16T19:25:46.676030+05:30
+Context: kind-session13
+
+The practice chart already exists; preserving it for this rerun.
+$ helm lint /Users/suhas/Downloads/devops-heros-main/session-15-helm/practice/demo-chart
+==> Linting /Users/suhas/Downloads/devops-heros-main/session-15-helm/practice/demo-chart
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+[exit 0]
+
+$ helm --kube-context kind-session13 --namespace session15-homework install demo-release /Users/suhas/Downloads/devops-heros-main/session-15-helm/practice/demo-chart --set image.tag=1.27 --wait --timeout 180s
+NAME: demo-release
+LAST DEPLOYED: Fri Oct 16 19:25:46 2026
+NAMESPACE: session15-homework
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace session15-homework -l "app.kubernetes.io/name=demo-chart,app.kubernetes.io/instance=demo-release" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace session15-homework $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace session15-homework port-forward $POD_NAME 8080:$CONTAINER_PORT
+[exit 0]
+
+$ helm --kube-context kind-session13 --namespace session15-homework list
+NAME        	NAMESPACE         	REVISION	UPDATED                            	STATUS  	CHART           	APP VERSION
+demo-release	session15-homework	1       	2026-10-16 19:25:46.73706 +0530 IST	deployed	demo-chart-0.1.0	1.16.0
+[exit 0]
+
+$ helm --kube-context kind-session13 --namespace session15-homework status demo-release
+NAME: demo-release
+LAST DEPLOYED: Fri Oct 16 19:25:46 2026
+NAMESPACE: session15-homework
+STATUS: deployed
+REVISION: 1
+DESCRIPTION: Install complete
+RESOURCES:
+==> v1/ServiceAccount
+NAME                      AGE
+demo-release-demo-chart   1s
+
+==> v1/Service
+NAME                      TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
+demo-release-demo-chart   ClusterIP   10.96.249.212   <none>        80/TCP    1s
+
+==> v1/Deployment
+NAME                      READY   UP-TO-DATE   AVAILABLE   AGE
+demo-release-demo-chart   1/1     1            1           1s
+
+==> v1/Pod(related)
+NAME                                       READY   STATUS    RESTARTS   AGE
+demo-release-demo-chart-65c9cc7b5b-gkb57   1/1     Running   0          2s
+
+
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace session15-homework -l "app.kubernetes.io/name=demo-chart,app.kubernetes.io/instance=demo-release" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace session15-homework $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace session15-homework port-forward $POD_NAME 8080:$CONTAINER_PORT
+[exit 0]
+
+$ kubectl --context kind-session13 -n session15-homework get pods -l app.kubernetes.io/instance=demo-release
+NAME                                       READY   STATUS    RESTARTS   AGE
+demo-release-demo-chart-65c9cc7b5b-gkb57   1/1     Running   0          2s
+[exit 0]
+

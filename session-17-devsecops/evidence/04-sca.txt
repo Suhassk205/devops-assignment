@@ -1,0 +1,9 @@
+SCA - real vulnerability audit of pinned runtime dependencies
+Actual command transcript; 2026-10-16T19:29:59.201752+05:30
+Context: kind-session13
+
+$ /private/tmp/devops-security-venv/bin/pip-audit -r requirements.txt --strict --format json --output reports/sca.json
+No known vulnerabilities found
+[exit 0]
+
+Audited 8 runtime dependencies; vulnerabilities: 0

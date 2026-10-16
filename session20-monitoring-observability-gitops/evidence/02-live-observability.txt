@@ -1,0 +1,45 @@
+Live monitoring - CPU, memory, logs and application health
+Actual command transcript; 2026-10-16T19:42:38.344122+05:30
+Context: kind-session13
+
+$ docker compose -f /Users/suhas/Downloads/devops-heros-main/session20-monitoring-observability-gitops/04-grafana/docker-compose.yml ps
+NAME                   IMAGE                    COMMAND                  SERVICE      CREATED          STATUS          PORTS
+session20-grafana      grafana/grafana:12.1.1   "/run.sh"                grafana      27 seconds ago   Up 26 seconds   0.0.0.0:3000->3000/tcp, [::]:3000->3000/tcp
+session20-prometheus   prom/prometheus:v3.5.0   "/bin/prometheus --c…"   prometheus   27 seconds ago   Up 26 seconds   0.0.0.0:9090->9090/tcp, [::]:9090->9090/tcp
+[exit 0]
+
+$ kubectl --context kind-session13 -n session17-homework top pods
+NAME                               CPU(cores)   MEMORY(bytes)   
+session17-python-b96c979c6-48fc8   1m           47Mi            
+session17-python-b96c979c6-l575g   2m           47Mi
+[exit 0]
+
+$ kubectl --context kind-session13 -n session17-homework logs deployment/session17-python --tail=5
+Found 2 pods, using pod/session17-python-b96c979c6-48fc8
+10.244.0.1 - - [16/Oct/2026:14:12:15 +0000] "GET /health HTTP/1.1" 200 87 "-" "kube-probe/1.37"
+10.244.0.1 - - [16/Oct/2026:14:12:24 +0000] "GET /health HTTP/1.1" 200 87 "-" "kube-probe/1.37"
+10.244.0.1 - - [16/Oct/2026:14:12:25 +0000] "GET /health HTTP/1.1" 200 87 "-" "kube-probe/1.37"
+10.244.0.1 - - [16/Oct/2026:14:12:34 +0000] "GET /health HTTP/1.1" 200 87 "-" "kube-probe/1.37"
+10.244.0.1 - - [16/Oct/2026:14:12:35 +0000] "GET /health HTTP/1.1" 200 87 "-" "kube-probe/1.37"
+[exit 0]
+
+$ kubectl --context kind-session13 -n session17-homework exec deployment/session17-python -- python -c 'import urllib.request; print(urllib.request.urlopen('"'"'http://session17-python/health'"'"').read().decode())'
+{"status":"healthy","timestamp":"2026-10-16T14:12:38.709576Z","uptime_seconds":713.51}
+[exit 0]
+
+$ curl --fail --silent --get --data-urlencode 'query=up{job="prometheus"}' http://localhost:9090/api/v1/query
+{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"up","instance":"prometheus:9090","job":"prometheus"},"value":[1792159958.732,"1"]}]}}
+[exit 0]
+
+$ curl --fail --silent --get --data-urlencode 'query=process_cpu_seconds_total{job="prometheus"}' http://localhost:9090/api/v1/query
+{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"process_cpu_seconds_total","instance":"prometheus:9090","job":"prometheus"},"value":[1792159958.740,"0.11"]}]}}
+[exit 0]
+
+$ curl --fail --silent --get --data-urlencode 'query=process_resident_memory_bytes{job="prometheus"}' http://localhost:9090/api/v1/query
+{"status":"success","data":{"resultType":"vector","result":[{"metric":{"__name__":"process_resident_memory_bytes","instance":"prometheus:9090","job":"prometheus"},"value":[1792159958.747,"77332480"]}]}}
+[exit 0]
+
+$ curl --fail --silent http://localhost:9090/api/v1/alerts
+{"status":"success","data":{"alerts":[]}}
+[exit 0]
+

@@ -1,0 +1,36 @@
+SAST - real Semgrep Python and JavaScript rules
+Actual command transcript; 2026-10-16T19:29:57.431747+05:30
+Context: kind-session13
+
+$ /private/tmp/devops-security-venv/bin/semgrep scan --config p/python --config p/javascript --error --metrics off --json-output reports/sast.json app
+               
+               
+┌─────────────┐
+│ Scan Status │
+└─────────────┘
+  Scanning 9 files tracked by git with 225 Code rules:
+                                                                                                                        
+  Language   Rules   Files          Origin      Rules                                                                   
+ ──────────────────────────        ───────────────────                                                                  
+  python       151       2          Community     225                                                                   
+  js            68       1                                                                                              
+                                                                                                                        
+                
+                
+┌──────────────┐
+│ Scan Summary │
+└──────────────┘
+✅ Scan completed successfully.
+ • Findings: 0 (0 blocking)
+ • Rules run: 219
+ • Targets scanned: 3
+ • Parsed lines: ~100.0%
+ • Scan was limited to files tracked by git
+ • For a detailed list of skipped files and lines, run semgrep with the --verbose flag
+Ran 219 rules on 3 files: 0 findings.
+(need more rules? `semgrep login` for additional free Semgrep Registry rules)
+
+If Semgrep missed a finding, please send us feedback to let us know!
+See https://semgrep.dev/docs/reporting-false-negatives/
+[exit 0]
+

@@ -5,4 +5,4 @@ show_info(){
   echo "This is a function to show information"
 }
 
-show_info()
+show_info

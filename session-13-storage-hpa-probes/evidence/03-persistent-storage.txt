@@ -1,0 +1,50 @@
+Static PV/PVC - data survives deletion of only the Pod
+Actual command transcript; 2026-10-16T19:24:38.530741+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/02-persistent-storage/pv.yaml
+persistentvolume/session13-homework-pv configured
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/02-persistent-storage/pvc.yaml
+persistentvolumeclaim/student-pvc unchanged
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/02-persistent-storage/pod.yaml
+pod/storage-demo configured
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework wait --for=condition=Ready pod/storage-demo --timeout=120s
+pod/storage-demo condition met
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get pvc student-pvc
+NAME          STATUS   VOLUME                  CAPACITY   ACCESS MODES   STORAGECLASS   VOLUMEATTRIBUTESCLASS   AGE
+student-pvc   Bound    session13-homework-pv   1Gi        RWO                           <unset>                 4m54s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework get pv session13-homework-pv
+NAME                    CAPACITY   ACCESS MODES   RECLAIM POLICY   STATUS   CLAIM                            STORAGECLASS   VOLUMEATTRIBUTESCLASS   REASON   AGE
+session13-homework-pv   1Gi        RWO            Retain           Bound    session13-homework/student-pvc                  <unset>                          4m55s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework exec storage-demo -- sh -c 'echo "Suhas - persistent volume test" > /data/student.txt; cat /data/student.txt'
+Suhas - persistent volume test
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework delete pod storage-demo --wait=true
+pod "storage-demo" deleted from session13-homework namespace
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-13-storage-hpa-probes/02-persistent-storage/pod.yaml
+pod/storage-demo created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework wait --for=condition=Ready pod/storage-demo --timeout=120s
+pod/storage-demo condition met
+[exit 0]
+
+$ kubectl --context kind-session13 -n session13-homework exec storage-demo -- cat /data/student.txt
+Suhas - persistent volume test
+[exit 0]
+

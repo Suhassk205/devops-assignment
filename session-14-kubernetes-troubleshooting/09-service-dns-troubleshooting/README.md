@@ -22,7 +22,6 @@ kubectl apply -f deployment.yaml
 
 ![Terminal Output](./01_cmd.png)
 
-
 Check:
 
 ```bash
@@ -38,7 +37,6 @@ web-xxxxxxxxxx-yyyyy   1/1     Running
 ```
 
 ![Terminal Output](./02_cmd.png)
-
 
 *(The exact names will be different on your cluster.)*
 
@@ -63,13 +61,11 @@ You should see:
 ```text
 NAME    
 
-![Terminal Output](./04_cmd.png)
       TYPE        CLUSTER-IP
 web-service   ClusterIP   10.x.x.x
 ```
 
 ![Terminal Output](./03_cmd.png)
-
 
 *(The ClusterIP will be different on your cluster.)*
 
@@ -84,7 +80,6 @@ kubectl describe service web-service
 ```
 
 ![Terminal Output](./05_cmd.png)
-
 
 Important things to check:
 * **Selector**
@@ -103,7 +98,6 @@ kubectl get endpoints web-service
 ```
 
 ![Terminal Output](./06_cmd.png)
-
 
 You should see Pod IP addresses. Example:
 
@@ -170,13 +164,11 @@ Expected output:
 ```text
 NAME   
 
-![Terminal Output](./08_cmd.png)
     READY   STATUS
 dns-test   1/1     Running
 ```
 
 ![Terminal Output](./07_cmd.png)
-
 
 ---
 
@@ -190,7 +182,6 @@ kubectl exec -it dns-test -- nslookup web-service
 
 ![Terminal Output](./09_cmd.png)
 
-
 You should get a result containing the Service IP. *(The exact output will depend on your cluster.)*
 
 You can also test:
@@ -200,7 +191,6 @@ kubectl exec -it dns-test -- nslookup web-service.default.svc.cluster.local
 ```
 
 ![Terminal Output](./10_cmd.png)
-
 
 The Kubernetes DNS name follows this general structure:
 
@@ -219,7 +209,6 @@ kubectl exec dns-test -- wget -qO- http://web-service
 ```
 
 ![Terminal Output](./11_cmd.png)
-
 
 You should receive Nginx HTML output.
 
@@ -250,7 +239,6 @@ kubectl apply -f broken-service.yaml
 
 ![Terminal Output](./12_cmd.png)
 
-
 Check:
 
 ```bash
@@ -268,13 +256,11 @@ You should see:
 ```text
 NAME    
 
-![Terminal Output](./14_cmd.png)
          ENDPOINTS
 broken-service   <none>
 ```
 
 ![Terminal Output](./13_cmd.png)
-
 
 **Why?** Because the Service says:
 
@@ -335,7 +321,6 @@ kubectl delete service broken-service
 
 ![Terminal Output](./15_cmd.png)
 
-
 The correct Service is:
 
 ```bash
@@ -344,7 +329,6 @@ kubectl get service web-service
 
 ![Terminal Output](./16_cmd.png)
 
-
 Check:
 
 ```bash
@@ -352,7 +336,6 @@ kubectl get endpoints web-service
 ```
 
 ![Terminal Output](./17_cmd.png)
-
 
 You should again see Pod IP addresses.
 
@@ -390,7 +373,6 @@ web-xxxxxxxxxx-yyyyy   app=web
 
 ![Terminal Output](./18_cmd.png)
 
-
 Compare those labels with:
 
 ```bash
@@ -398,7 +380,6 @@ kubectl describe service web-service
 ```
 
 ![Terminal Output](./19_cmd.png)
-
 
 Look for:
 
@@ -420,7 +401,6 @@ kubectl get pods -n kube-system
 
 ![Terminal Output](./20_cmd.png)
 
-
 Look for CoreDNS Pods. Depending on your Kubernetes distribution, the names can differ. For many clusters you will see something similar to:
 
 ```text
@@ -439,7 +419,6 @@ kubectl exec -it dns-test -- cat /etc/resolv.conf
 
 ![Terminal Output](./21_cmd.png)
 
-
 You should see a Kubernetes DNS nameserver and search domains. *(The exact values depend on your cluster.)*
 
 ---
@@ -453,7 +432,6 @@ kubectl logs -n kube-system -l k8s-app=kube-dns
 ```
 
 ![Terminal Output](./22_cmd.png)
-
 
 If DNS is broken, CoreDNS status and logs are useful places to investigate.
 
@@ -469,7 +447,6 @@ kubectl exec dns-test -- nslookup web-service
 
 ![Terminal Output](./09_cmd.png)
 
-
 but this fails:
 
 ```bash
@@ -477,7 +454,6 @@ kubectl exec dns-test -- wget -qO- http://web-service
 ```
 
 ![Terminal Output](./11_cmd.png)
-
 
 then DNS may be working. The problem could be:
 * Service selector
@@ -525,4 +501,3 @@ The official DNS troubleshooting guide also recommends checking DNS resolution f
   https://kubernetes.io/docs/concepts/services-networking/service/
 * **Debug Services:**  
   https://kubernetes.io/docs/tasks/debug/debug-application/debug-service/
-

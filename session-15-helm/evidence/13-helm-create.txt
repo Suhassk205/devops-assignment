@@ -1,0 +1,24 @@
+Helm create - actual scaffolding command
+Actual command transcript; 2026-10-16T19:37:47.325990+05:30
+Context: kind-session13
+
+$ helm create /private/tmp/devops-helm-create/demo-chart
+Creating /private/tmp/devops-helm-create/demo-chart
+[exit 0]
+
+$ helm show chart /private/tmp/devops-helm-create/demo-chart
+apiVersion: v2
+appVersion: 1.16.0
+description: A Helm chart for Kubernetes
+name: demo-chart
+type: application
+version: 0.1.0
+[exit 0]
+
+$ helm lint /private/tmp/devops-helm-create/demo-chart
+==> Linting /private/tmp/devops-helm-create/demo-chart
+[INFO] Chart.yaml: icon is recommended
+
+1 chart(s) linted, 0 chart(s) failed
+[exit 0]
+

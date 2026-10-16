@@ -1,21 +1,9 @@
-# Security Policy
+# Security policy and classroom scope
 
-## Supported Versions
+The application is a learning demo with no authentication, persistent user accounts or production availability guarantees. Do not place real credentials in source files, screenshots, issues or scan logs.
 
-Use this section to tell people about which versions of your project are
-currently being supported with security updates.
+The pipeline blocks on failing tests, Semgrep findings, vulnerable runtime dependencies, Gitleaks findings and HIGH/CRITICAL image vulnerabilities. Findings must be investigated and corrected rather than bypassed to obtain a passing screenshot.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :x:                |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+Re-run the dependency and image scans before deployment because advisory databases change.
 
-## Reporting a Vulnerability
-
-Use this section to tell people how to report a vulnerability.
-
-Tell them where to go, how often they can expect to get an update on a
-reported vulnerability, what to expect if the vulnerability is accepted or
-declined, etc.
+If a credential is exposed, revoke or rotate it at its provider and remove it from the repository/history as appropriate. Reports produced for secret scanning must remain redacted. Do not include the credential itself when reporting an issue.

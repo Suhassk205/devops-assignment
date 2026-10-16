@@ -1,0 +1,203 @@
+Helm get - values and complete release details
+Actual command transcript; 2026-10-16T19:25:48.042806+05:30
+Context: kind-session13
+
+$ helm --kube-context kind-session13 --namespace session15-homework get values demo-release
+USER-SUPPLIED VALUES:
+image:
+  tag: "1.27"
+[exit 0]
+
+$ helm --kube-context kind-session13 --namespace session15-homework get all demo-release
+NAME: demo-release
+LAST DEPLOYED: Fri Oct 16 19:25:46 2026
+NAMESPACE: session15-homework
+STATUS: deployed
+REVISION: 1
+CHART: demo-chart
+VERSION: 0.1.0
+APP_VERSION: 1.16.0
+DESCRIPTION: Install complete
+USER-SUPPLIED VALUES:
+image:
+  tag: "1.27"
+
+COMPUTED VALUES:
+affinity: {}
+autoscaling:
+  enabled: false
+  maxReplicas: 100
+  minReplicas: 1
+  targetCPUUtilizationPercentage: 80
+fullnameOverride: ""
+httpRoute:
+  annotations: {}
+  enabled: false
+  hostnames:
+  - chart-example.local
+  parentRefs:
+  - name: gateway
+    sectionName: http
+  rules:
+  - matches:
+    - path:
+        type: PathPrefix
+        value: /headers
+image:
+  pullPolicy: IfNotPresent
+  repository: nginx
+  tag: "1.27"
+imagePullSecrets: []
+ingress:
+  annotations: {}
+  className: ""
+  enabled: false
+  hosts:
+  - host: chart-example.local
+    paths:
+    - path: /
+      pathType: ImplementationSpecific
+  tls: []
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+nameOverride: ""
+nodeSelector: {}
+podAnnotations: {}
+podLabels: {}
+podSecurityContext: {}
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+replicaCount: 1
+resources: {}
+securityContext: {}
+service:
+  port: 80
+  type: ClusterIP
+serviceAccount:
+  annotations: {}
+  automount: true
+  create: true
+  name: ""
+tolerations: []
+volumeMounts: []
+volumes: []
+
+HOOKS:
+---
+# Source: demo-chart/templates/tests/test-connection.yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "demo-release-demo-chart-test-connection"
+  labels:
+    helm.sh/chart: demo-chart-0.1.0
+    app.kubernetes.io/name: demo-chart
+    app.kubernetes.io/instance: demo-release
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args: ['demo-release-demo-chart:80']
+  restartPolicy: Never
+
+MANIFEST:
+---
+# Source: demo-chart/templates/serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: demo-release-demo-chart
+  labels:
+    helm.sh/chart: demo-chart-0.1.0
+    app.kubernetes.io/name: demo-chart
+    app.kubernetes.io/instance: demo-release
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+automountServiceAccountToken: true
+
+---
+# Source: demo-chart/templates/service.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-release-demo-chart
+  labels:
+    helm.sh/chart: demo-chart-0.1.0
+    app.kubernetes.io/name: demo-chart
+    app.kubernetes.io/instance: demo-release
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  type: ClusterIP
+  ports:
+    - port: 80
+      targetPort: http
+      protocol: TCP
+      name: http
+  selector:
+    app.kubernetes.io/name: demo-chart
+    app.kubernetes.io/instance: demo-release
+
+---
+# Source: demo-chart/templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-release-demo-chart
+  labels:
+    helm.sh/chart: demo-chart-0.1.0
+    app.kubernetes.io/name: demo-chart
+    app.kubernetes.io/instance: demo-release
+    app.kubernetes.io/version: "1.16.0"
+    app.kubernetes.io/managed-by: Helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: demo-chart
+      app.kubernetes.io/instance: demo-release
+  template:
+    metadata:
+      labels:
+        helm.sh/chart: demo-chart-0.1.0
+        app.kubernetes.io/name: demo-chart
+        app.kubernetes.io/instance: demo-release
+        app.kubernetes.io/version: "1.16.0"
+        app.kubernetes.io/managed-by: Helm
+    spec:
+      serviceAccountName: demo-release-demo-chart
+      containers:
+        - name: demo-chart
+          image: "nginx:1.27"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 80
+              protocol: TCP
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
+
+
+NOTES:
+1. Get the application URL by running these commands:
+  export POD_NAME=$(kubectl get pods --namespace session15-homework -l "app.kubernetes.io/name=demo-chart,app.kubernetes.io/instance=demo-release" -o jsonpath="{.items[0].metadata.name}")
+  export CONTAINER_PORT=$(kubectl get pod --namespace session15-homework $POD_NAME -o jsonpath="{.spec.containers[0].ports[0].containerPort}")
+  echo "Visit http://127.0.0.1:8080 to use your application"
+  kubectl --namespace session15-homework port-forward $POD_NAME 8080:$CONTAINER_PORT
+[exit 0]
+
