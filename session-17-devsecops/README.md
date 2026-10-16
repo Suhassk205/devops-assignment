@@ -1,5 +1,9 @@
 # Session 17: Complete CI/CD & DevSecOps
 
+**Name:** Suhas
+
+**Repository:** [devops-assignment](https://github.com/Suhassk205/devops-assignment)
+
 This exercise uses a [Flask dashboard](demo/README.md) to practice unit testing, security scanning, container builds, and Kubernetes deployment. The project includes local checks and a GitHub Actions workflow for the same delivery stages.
 
 ## Application and delivery flow
@@ -12,7 +16,94 @@ Flask dashboard -> build/tests -> Semgrep + pip-audit + Gitleaks
 
 The dashboard includes a pipeline simulator. Security checks run through the scanner tools and GitHub Actions workflow.
 
-## GitHub Actions results
+## Project files
+
+| File or directory | Purpose |
+|---|---|
+| [Application](demo/app/) | Flask dashboard and health/status APIs |
+| [Unit tests](demo/tests/test_app.py) | API, calculation, and response checks |
+| [Dockerfile](demo/Dockerfile) | Container build with pinned base image and non-root Gunicorn runtime |
+| [Workflow](../.github/workflows/session17-devsecops.yml) | Tests, security scans, image publication, and deployment |
+| [Scanner installer](demo/scripts/install_scanners.py) | Pinned Trivy/Gitleaks downloads with checksum verification |
+| [Gitleaks configuration](demo/.gitleaks.toml) | Secret-scanning rules |
+| [Security notes](demo/SECURITY.md) | Tool choices and failure gates |
+| [Deployment](demo/k8s/deployment.yaml) and [Service](demo/k8s/service.yaml) | Two application replicas, probes, resource limits, and service networking |
+
+## Task 1: Application build and unit tests
+
+From the repository root:
+
+```bash
+cd session-17-devsecops/demo
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements-dev.txt
+python -m compileall -q app
+pytest -v --cov=app --cov-report=term-missing
+docker build -t session17-python:local .
+```
+
+Eight unit tests passed. The local coverage report showed 69% statement coverage. The Docker image runs Gunicorn as UID `10001`, with the Flask debugger disabled.
+
+[Full test output](evidence/01-tests.txt) · [Docker build and scan output](evidence/05-image-scan.txt)
+
+![Passing application tests and coverage](screenshots/01-tests.png)
+
+## Task 2: Security scans and failure gates
+
+With the application environment active, these are the local scan commands:
+
+```bash
+pip install semgrep==1.181.0 pip-audit==2.10.1
+python scripts/install_scanners.py
+semgrep scan --config p/python --config p/javascript --error --metrics off app
+pip-audit -r requirements.txt --strict
+.tools/bin/gitleaks dir --redact .
+.tools/bin/trivy image --scanners vuln --severity HIGH,CRITICAL --exit-code 1 session17-python:local
+```
+
+| Check | What it checks | Recorded result |
+|---|---|---|
+| SAST — Semgrep | Python and JavaScript source patterns | 0 findings and 0 scan errors |
+| SCA — pip-audit | Known vulnerabilities in runtime dependencies | 8 dependencies; 0 known vulnerabilities |
+| Secret scanning — Gitleaks | Credentials in source; application Git history in CI | 0 findings |
+| Container scan — Trivy | HIGH/CRITICAL image vulnerabilities | 0 HIGH/CRITICAL vulnerabilities |
+
+The image job depends on all source checks. Semgrep uses `--error`, and Trivy uses `--exit-code 1` for HIGH/CRITICAL findings. A failing scan stops publication and deployment.
+
+I also checked the failure behavior with separate examples containing unsafe Flask code, a dummy credential, and an old dependency. Semgrep, Gitleaks, and pip-audit each returned exit code 1. Those examples were kept separate from the application.
+
+[SAST output](evidence/02-sast.txt) · [Secret scan output](evidence/03-secret-scan.txt) · [SCA output](evidence/04-sca.txt) · [Failure-gate output](evidence/07-security-gates.txt)
+
+![Semgrep source scan](screenshots/02-sast.png)
+
+![Gitleaks secret scan](screenshots/03-secret-scan.png)
+
+![Runtime dependency audit](screenshots/04-sca.png)
+
+![Docker image scan with the Trivy vulnerability gate](screenshots/05-image-scan.png)
+
+![Unsafe examples rejected by the security gates](screenshots/07-security-gates.png)
+
+## Task 3: Registry publication and Kubernetes deployment
+
+The workflow builds the image once, scans it, and saves it as an artifact. The publication job loads that artifact and pushes the same image to GHCR with the source commit as its tag. Registry authentication uses GitHub's `GITHUB_TOKEN`.
+
+The deployment job creates a temporary Kind cluster, pulls the published image, loads it into the cluster, and applies the manifests with that image tag. It then checks rollout, Pods, the Service, and HTTP responses. These are the main verification commands:
+
+```bash
+kubectl rollout status deployment/session17-python --timeout=180s
+kubectl get pods -o wide
+kubectl get service session17-python
+```
+
+Both replicas reached `1/1 Running` with zero restarts. The `/health` endpoint returned `healthy`, and `/api/status` returned `running`. The local run used namespace `session17-homework` on `kind-session13`; the hosted run used its own temporary cluster.
+
+[Local deployment and HTTP output](evidence/06-kubernetes.txt) · [Hosted publication and deployment log](evidence/11-hosted-publication-deployment.txt)
+
+![Local Kubernetes rollout and HTTP verification](screenshots/06-kubernetes.png)
+
+## Task 4: Successful GitHub Actions run
 
 The [complete pipeline run](https://github.com/Suhassk205/devops-assignment/actions/runs/38932434440) passed all seven jobs for commit `409b4a7b10fcf19095cd8f6b3825f3d50b4e4631`.
 
@@ -99,18 +190,6 @@ The text files contain the full command output; the screenshots show the main re
 | Successful GitHub Actions pipeline | [Transcript](evidence/09-hosted-pipeline.txt) | [Screenshot](screenshots/09-hosted-pipeline.png) |
 | Hosted tests, scans, and healthy Kubernetes Pods | [Transcript](evidence/10-hosted-security.txt) | [Screenshot](screenshots/10-hosted-security.png) |
 | Registry publication and Kubernetes rollout | [Job output](evidence/11-hosted-publication-deployment.txt) | [Complete run log](evidence/12-hosted-run.log) |
-
-### Selected screenshots
-
-![01-tests](screenshots/01-tests.png)
-
-![02-sast](screenshots/02-sast.png)
-
-![05-image-scan](screenshots/05-image-scan.png)
-
-![06-kubernetes](screenshots/06-kubernetes.png)
-
-![07-security-gates](screenshots/07-security-gates.png)
 
 ### Hosted pipeline screenshots
 
