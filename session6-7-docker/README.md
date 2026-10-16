@@ -61,8 +61,7 @@ The terminal screenshot below proves that all 6 images were built successfully, 
 ![Docker Build and Test Output](screenshots/01_docker_test.png)
 # 🐳 Docker Multi-Stage Build Homework
 
-> **Name:** Suhas  
-> **Enrollment Number:** [Not Provided]  
+> **Name:** Suhas    
 > **Repo:** [devops-assignment](https://github.com/Suhassk205/devops-assignment)  
 > **Session:** 6-7 - Docker Multi-Stage Build  
 
