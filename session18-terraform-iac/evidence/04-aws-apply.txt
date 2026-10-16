@@ -1,0 +1,17 @@
+Session 18: AWS Terraform apply
+Actual command transcript; 2026-10-16T22:38:27.036497+05:30
+Context: AWS account 662875145165; region ap-south-1; real Terraform execution
+
+$ terraform apply -input=false -auto-approve -no-color /private/tmp/session18-1792170502.tfplan
+aws_s3_bucket.suhas_bucket: Creating...
+aws_s3_bucket.suhas_bucket: Creation complete after 2s [id=suhas-s18-662875145165-1792170502]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+bucket_arn = "arn:aws:s3:::suhas-s18-662875145165-1792170502"
+bucket_name = "suhas-s18-662875145165-1792170502"
+bucket_region = "ap-south-1"
+[exit 0]
+

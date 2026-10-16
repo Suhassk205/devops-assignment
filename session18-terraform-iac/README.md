@@ -28,4 +28,4 @@ Notes and examples for defining infrastructure with Terraform, working with prov
 
 ## Practical checks
 
-The [S3 demo](terraform-s3-demo/README.md) includes the lifecycle commands, local validation output, and an inventory of the saved state. The [AWS research notes](aws-services/README.md) cover all five services from Task 2.
+The [S3 demo](terraform-s3-demo/README.md) includes the completed AWS lifecycle: initialization, formatting, validation, planning, creation, state/output inspection, and destruction, with command output and screenshots. The [AWS research notes](aws-services/README.md) cover all five services from Task 2.

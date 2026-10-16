@@ -1,0 +1,9 @@
+Session 18: AWS cleanup verified through service APIs
+Actual command transcript; 2026-10-16T22:42:00.897775+05:30
+Context: AWS ap-south-1; resources already destroyed
+
+$ aws s3api list-buckets --query 'Buckets[?Name=='"'"'suhas-s18-662875145165-1792170502'"'"'].Name' --profile devops-homework --region ap-south-1 --output json
+[]
+[exit 0]
+
+Verified: the lab bucket and applicable compute, storage, networking, and role resources are removed.

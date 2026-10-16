@@ -1,0 +1,410 @@
+Session 17: registry publication and Kubernetes rollout
+Actual command transcript; 2026-10-16T22:09:03.467221+05:30
+Context: GitHub Actions run 38932434440
+
+$ gh run view 38932434440 --repo Suhassk205/devops-assignment --job 117080242905 --log
+Publish the scanned image to GHCR	Set up job	﻿2026-10-16T16:31:47.1249678Z Current runner version: '2.337.0'
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1275167Z ##[group]Runner Image Provisioner
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1276034Z Hosted Compute Agent
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1276601Z Version: 20261012.601
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1277632Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1278497Z Build Date: 2026-10-12T17:48:21Z
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1279297Z Worker ID: {df911bb9-8af7-4ed7-acaa-38b3b78df5da}
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1280041Z Region: westcentralus
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1280599Z Cloud: Azure
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1281204Z ##[endgroup]
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1282992Z ##[group]Operating System
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1284112Z Ubuntu
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1284683Z 24.04.5
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1285221Z LTS
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1285879Z ##[endgroup]
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1286490Z ##[group]Runner Image
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1287514Z Image: ubuntu-24.04
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1288211Z Version: 20261012.334.1
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1289290Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1291177Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1292213Z ##[endgroup]
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1293408Z ##[group]GITHUB_TOKEN Permissions
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1295399Z Contents: read
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1296081Z Metadata: read
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1296647Z Packages: write
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1297474Z ##[endgroup]
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1299587Z Secret source: Actions
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1300669Z Cache mode: write
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1301359Z Prepare workflow directory
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1756073Z Prepare all required actions
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.1802963Z Getting action download info
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:47.4793434Z Download action repository 'actions/download-artifact@v4' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:48.2381920Z Download action repository 'docker/login-action@v3' (SHA:c94ce9fb468520275223c153574b00df6fe4bcc9)
+Publish the scanned image to GHCR	Set up job	2026-10-16T16:31:49.1085538Z Complete job name: Publish the scanned image to GHCR
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	﻿2026-10-16T16:31:49.1958395Z ##[group]Run actions/download-artifact@v4
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.1960043Z with:
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.1960891Z   name: scanned-image
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.1961869Z   path: session-17-devsecops/demo
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.1962960Z   merge-multiple: false
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.1964008Z   repository: Suhassk205/devops-assignment
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.1965173Z   run-id: 38932434440
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.1966422Z ##[endgroup]
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.3645114Z Downloading single artifact
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.3787885Z (node:2253) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.3792643Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.5815738Z Preparing to download the following artifacts:
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.5816884Z - scanned-image (ID: 12059676884, Size: 26132163, Expected Digest: sha256:b25e5b61cfd73fa68abf451274912bcd8941c90b5f4040fab8951ad418460e0c)
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.8182634Z Redirecting to blob download url: https://productionresultssa19.blob.core.windows.net/actions-results/7d940014-f8b5-85ec-86d4-de22a24eb430/workflow-job-run-df1ec7bf-687e-5fdf-9e52-c5b3eb371109/artifacts/1d575002cff1bd9fea9f26e9d458a00ad7992c4a9f50449fd5691b14b2549c37.zip
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:49.8185234Z Starting download of artifact to: /home/runner/work/devops-assignment/devops-assignment/session-17-devsecops/demo
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:50.1010871Z (node:2253) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:51.3947012Z SHA256 digest of downloaded artifact is b25e5b61cfd73fa68abf451274912bcd8941c90b5f4040fab8951ad418460e0c
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:51.3948479Z Artifact download completed successfully.
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:51.3949051Z Total of 1 artifact(s) downloaded
+Publish the scanned image to GHCR	Run actions/download-artifact@v4	2026-10-16T16:31:51.3952976Z Download artifact has finished successfully
+Publish the scanned image to GHCR	Run docker load -i scanned-image.tar.gz	﻿2026-10-16T16:31:51.4191750Z ##[group]Run docker load -i scanned-image.tar.gz
+Publish the scanned image to GHCR	Run docker load -i scanned-image.tar.gz	2026-10-16T16:31:51.4192243Z [36;1mdocker load -i scanned-image.tar.gz[0m
+Publish the scanned image to GHCR	Run docker load -i scanned-image.tar.gz	2026-10-16T16:31:51.4480725Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Publish the scanned image to GHCR	Run docker load -i scanned-image.tar.gz	2026-10-16T16:31:51.4481200Z ##[endgroup]
+Publish the scanned image to GHCR	Run docker load -i scanned-image.tar.gz	2026-10-16T16:31:55.3564158Z Loaded image: ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631
+Publish the scanned image to GHCR	Run docker/login-action@v3	﻿2026-10-16T16:31:55.3752477Z ##[group]Run docker/login-action@v3
+Publish the scanned image to GHCR	Run docker/login-action@v3	2026-10-16T16:31:55.3752826Z with:
+Publish the scanned image to GHCR	Run docker/login-action@v3	2026-10-16T16:31:55.3753047Z   registry: ghcr.io
+Publish the scanned image to GHCR	Run docker/login-action@v3	2026-10-16T16:31:55.3753302Z   username: Suhassk205
+Publish the scanned image to GHCR	Run docker/login-action@v3	2026-10-16T16:31:55.3755829Z   password: ***
+Publish the scanned image to GHCR	Run docker/login-action@v3	2026-10-16T16:31:55.3756068Z   logout: true
+Publish the scanned image to GHCR	Run docker/login-action@v3	2026-10-16T16:31:55.3756302Z ##[endgroup]
+Publish the scanned image to GHCR	Run docker/login-action@v3	2026-10-16T16:31:55.6927136Z Logging into ghcr.io...
+Publish the scanned image to GHCR	Run docker/login-action@v3	2026-10-16T16:31:55.6951518Z (node:2287) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Publish the scanned image to GHCR	Run docker/login-action@v3	2026-10-16T16:31:55.6953297Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Publish the scanned image to GHCR	Run docker/login-action@v3	2026-10-16T16:31:56.2510968Z Login Succeeded!
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	﻿2026-10-16T16:31:56.2645661Z ##[group]Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.2646574Z [36;1mdocker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'[0m
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.2709213Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.2709594Z ##[endgroup]
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.3013780Z The push refers to repository [ghcr.io/suhassk205/devops-assignment/session17]
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.4451960Z c2aa6d09e69a: Preparing
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.4452501Z 2fa035c22c46: Preparing
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.4453161Z 8223577d86b5: Preparing
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.4453595Z e635ad21fc3e: Preparing
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.4454051Z 4d211c3f1c45: Preparing
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.4454454Z 7e9021171c27: Preparing
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.4454868Z 41366f7f4879: Preparing
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.4455455Z 74d97c428c51: Preparing
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.4455924Z 7e9021171c27: Waiting
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.4456842Z 41366f7f4879: Waiting
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:56.4457327Z 74d97c428c51: Waiting
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:58.0253072Z 4d211c3f1c45: Pushed
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:58.5638616Z 8223577d86b5: Pushed
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:58.5760231Z e635ad21fc3e: Pushed
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:58.5816898Z c2aa6d09e69a: Pushed
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:59.2396703Z 2fa035c22c46: Pushed
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:31:59.4347649Z 74d97c428c51: Mounted from github/gh-aw-firewall/squid
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:32:00.1113496Z 41366f7f4879: Pushed
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:32:01.3351769Z 7e9021171c27: Pushed
+Publish the scanned image to GHCR	Run docker push 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'	2026-10-16T16:32:03.9004427Z 409b4a7b10fcf19095cd8f6b3825f3d50b4e4631: digest: sha256:bff16bb659ecb0ccf0403aabaac44f529e6cfd86420a7e827eb984e26b9cf20d size: 1990
+Publish the scanned image to GHCR	Post Run docker/login-action@v3	﻿2026-10-16T16:32:03.9181119Z Post job cleanup.
+Publish the scanned image to GHCR	Post Run docker/login-action@v3	2026-10-16T16:32:04.2330014Z ##[group]Logout from ghcr.io
+Publish the scanned image to GHCR	Post Run docker/login-action@v3	2026-10-16T16:32:04.2352197Z (node:2322) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Publish the scanned image to GHCR	Post Run docker/login-action@v3	2026-10-16T16:32:04.2353167Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Publish the scanned image to GHCR	Post Run docker/login-action@v3	2026-10-16T16:32:04.2378641Z [command]/usr/bin/docker logout ghcr.io
+Publish the scanned image to GHCR	Post Run docker/login-action@v3	2026-10-16T16:32:04.2532962Z Removing login credentials for ghcr.io
+Publish the scanned image to GHCR	Post Run docker/login-action@v3	2026-10-16T16:32:04.2569377Z ##[endgroup]
+Publish the scanned image to GHCR	Post Run docker/login-action@v3	2026-10-16T16:32:04.2570324Z ##[group]Post cache
+Publish the scanned image to GHCR	Post Run docker/login-action@v3	2026-10-16T16:32:04.2570742Z State not set
+Publish the scanned image to GHCR	Post Run docker/login-action@v3	2026-10-16T16:32:04.2571650Z ##[endgroup]
+Publish the scanned image to GHCR	Complete job	﻿2026-10-16T16:32:04.2763163Z Cleaning up orphan processes
+Publish the scanned image to GHCR	Complete job	2026-10-16T16:32:04.3124351Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/download-artifact@v4, docker/login-action@v3. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+[exit 0]
+
+$ gh run view 38932434440 --repo Suhassk205/devops-assignment --job 117080406512 --log
+Kubernetes rollout and HTTP verification	Set up job	﻿2026-10-16T16:32:09.1580357Z Current runner version: '2.337.0'
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1601271Z ##[group]Runner Image Provisioner
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1602074Z Hosted Compute Agent
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1602566Z Version: 20261012.601
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1603193Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1603790Z Build Date: 2026-10-12T17:48:21Z
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1604583Z Worker ID: {2e66f651-74f7-4eff-9d47-cd145add8b07}
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1605232Z Region: eastus
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1605817Z Cloud: Azure
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1606368Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1607471Z ##[group]Operating System
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1607964Z Ubuntu
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1608459Z 24.04.5
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1608885Z LTS
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1609357Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1609828Z ##[group]Runner Image
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1610317Z Image: ubuntu-24.04
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1610818Z Version: 20261012.334.1
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1611673Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1613118Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1613957Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1614962Z ##[group]GITHUB_TOKEN Permissions
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1616981Z Contents: read
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1617594Z Metadata: read
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1618085Z Packages: read
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1618577Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1620252Z Secret source: Actions
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1621003Z Cache mode: write
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1621854Z Prepare workflow directory
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1927983Z Prepare all required actions
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.1967111Z Getting action download info
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.4193098Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.5077621Z Download action repository 'helm/kind-action@v1.12.0' (SHA:a1b0e391336a6ee6713a0583f8c6240d70863de3)
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.6058091Z Download action repository 'docker/login-action@v3' (SHA:c94ce9fb468520275223c153574b00df6fe4bcc9)
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:09.8651824Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Kubernetes rollout and HTTP verification	Set up job	2026-10-16T16:32:10.1169171Z Complete job name: Kubernetes rollout and HTTP verification
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	﻿2026-10-16T16:32:10.1790667Z ##[group]Run actions/checkout@v4
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1791374Z with:
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1791780Z   repository: Suhassk205/devops-assignment
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1794961Z   token: ***
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1795336Z   ssh-strict: true
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1796010Z   ssh-user: git
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1796470Z   persist-credentials: true
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1796894Z   clean: true
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1797276Z   sparse-checkout-cone-mode: true
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1797719Z   fetch-depth: 1
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1798091Z   fetch-tags: false
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1798465Z   show-progress: true
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1798846Z   lfs: false
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1799210Z   submodules: false
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1799604Z   set-safe-directory: true
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1800060Z   allow-unsafe-pr-checkout: false
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.1800732Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2613803Z Syncing repository: Suhassk205/devops-assignment
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2616631Z ##[group]Getting Git version info
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2617850Z Working directory is '/home/runner/work/devops-assignment/devops-assignment'
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2619964Z [command]/usr/bin/git version
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2663119Z git version 2.55.0
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2680633Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2701162Z Temporarily overriding HOME='/home/runner/work/_temp/90b9ce42-9362-4aa0-9d01-b18536dc0311' before making global git config changes
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2703492Z Adding repository directory to the temporary git global config as a safe directory
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2704754Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/devops-assignment/devops-assignment
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2742836Z Deleting the contents of '/home/runner/work/devops-assignment/devops-assignment'
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2750721Z ##[group]Initializing the repository
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2752063Z [command]/usr/bin/git init /home/runner/work/devops-assignment/devops-assignment
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2856872Z hint: Using 'master' as the name for the initial branch. This default branch name
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2858545Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2859976Z hint: to use in all of your new repositories, which will suppress this warning,
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2861189Z hint: call:
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2862165Z hint:
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2862906Z hint: 	git config --global init.defaultBranch <name>
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2863572Z hint:
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2864179Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2865128Z hint: 'development'. The just-created branch can be renamed via this command:
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2866116Z hint:
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2866625Z hint: 	git branch -m <name>
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2867284Z hint:
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2868034Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2869817Z Initialized empty Git repository in /home/runner/work/devops-assignment/devops-assignment/.git/
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2877421Z [command]/usr/bin/git remote add origin https://github.com/Suhassk205/devops-assignment
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2916996Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2918428Z ##[group]Disabling automatic garbage collection
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2919833Z [command]/usr/bin/git config --local gc.auto 0
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2948801Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2950418Z ##[group]Setting up auth
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2954455Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.2982609Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.3315822Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.3350479Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.3540664Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.3569923Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.3759346Z [command]/usr/bin/git config --local http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.3794389Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.3795435Z ##[group]Fetching the repository
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:10.3801509Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +409b4a7b10fcf19095cd8f6b3825f3d50b4e4631:refs/remotes/origin/main
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:15.8813119Z From https://github.com/Suhassk205/devops-assignment
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:15.8814010Z  * [new ref]         409b4a7b10fcf19095cd8f6b3825f3d50b4e4631 -> origin/main
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:15.8816091Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:15.8816711Z ##[group]Determining the checkout info
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:15.8823075Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:15.8824827Z [command]/usr/bin/git sparse-checkout disable
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:15.8871061Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:15.8899529Z ##[group]Checking out the ref
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:15.8903015Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:16.3609471Z Switched to a new branch 'main'
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:16.3612839Z branch 'main' set up to track 'origin/main'.
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:16.3642696Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:16.3685002Z [command]/usr/bin/git log -1 --format=%H
+Kubernetes rollout and HTTP verification	Run actions/checkout@v4	2026-10-16T16:32:16.3708192Z 409b4a7b10fcf19095cd8f6b3825f3d50b4e4631
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	﻿2026-10-16T16:32:16.3979856Z ##[group]Run helm/kind-action@v1.12.0
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3980148Z with:
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3980322Z   version: v0.26.0
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3980512Z   cluster_name: chart-testing
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3980704Z   wait: 60s
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3980875Z   verbosity: 0
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3981044Z   kubectl_version: v1.31.4
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3981229Z   registry: false
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3981409Z   registry_image: registry:2
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3981615Z   registry_name: kind-registry
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3981810Z   registry_port: 5000
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3982000Z   registry_enable_delete: false
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3982200Z   ignore_failed_clean: false
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.3982390Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.4276867Z Installing kind...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.4289198Z /opt/hostedtoolcache/kind/v0.26.0/amd64/kind/bin ~/work/devops-assignment/devops-assignment
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.7114459Z kind-linux-amd64: OK
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.7147010Z ~/work/devops-assignment/devops-assignment
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.7147529Z Adding kind directory to PATH...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.7151758Z Installing kubectl...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.9626879Z Adding kubectl directory to PATH...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.9645975Z kind v0.26.0 go1.23.4 linux/amd64
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.9936933Z Client Version: v1.31.4
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.9947753Z Kustomize Version: v5.4.2
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:16.9952448Z Creating kind cluster...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:17.3482909Z Creating cluster "chart-testing" ...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:17.3483576Z  • Ensuring node image (kindest/node:v1.32.0) 🖼  ...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:32.7289925Z  ✓ Ensuring node image (kindest/node:v1.32.0) 🖼
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:32.7290498Z  • Preparing nodes 📦   ...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:36.1311930Z  ✓ Preparing nodes 📦 
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:36.1542143Z  • Writing configuration 📜  ...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:36.3002739Z  ✓ Writing configuration 📜
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:36.3003272Z  • Starting control-plane 🕹️  ...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:44.9099833Z  ✓ Starting control-plane 🕹️
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:44.9101904Z  • Installing CNI 🔌  ...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:45.1413320Z  ✓ Installing CNI 🔌
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:45.1413673Z  • Installing StorageClass 💾  ...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:45.4203341Z  ✓ Installing StorageClass 💾
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:32:45.4421611Z  • Waiting ≤ 1m0s for control-plane = Ready ⏳  ...
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:33:04.0295590Z  ✓ Waiting ≤ 1m0s for control-plane = Ready ⏳
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:33:04.0296249Z  • Ready after 19s 💚
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:33:04.1336197Z Set kubectl context to "kind-chart-testing"
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:33:04.1336669Z You can now use your cluster with:
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:33:04.1336878Z 
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:33:04.1337049Z kubectl cluster-info --context kind-chart-testing
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:33:04.1337351Z 
+Kubernetes rollout and HTTP verification	Run helm/kind-action@v1.12.0	2026-10-16T16:33:04.1338049Z Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/#community 🙂
+Kubernetes rollout and HTTP verification	Run docker/login-action@v3	﻿2026-10-16T16:33:04.1466746Z ##[group]Run docker/login-action@v3
+Kubernetes rollout and HTTP verification	Run docker/login-action@v3	2026-10-16T16:33:04.1466991Z with:
+Kubernetes rollout and HTTP verification	Run docker/login-action@v3	2026-10-16T16:33:04.1467156Z   registry: ghcr.io
+Kubernetes rollout and HTTP verification	Run docker/login-action@v3	2026-10-16T16:33:04.1467335Z   username: Suhassk205
+Kubernetes rollout and HTTP verification	Run docker/login-action@v3	2026-10-16T16:33:04.1469589Z   password: ***
+Kubernetes rollout and HTTP verification	Run docker/login-action@v3	2026-10-16T16:33:04.1469877Z   logout: true
+Kubernetes rollout and HTTP verification	Run docker/login-action@v3	2026-10-16T16:33:04.1470217Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Run docker/login-action@v3	2026-10-16T16:33:04.4406906Z Logging into ghcr.io...
+Kubernetes rollout and HTTP verification	Run docker/login-action@v3	2026-10-16T16:33:04.4436875Z (node:12257) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Kubernetes rollout and HTTP verification	Run docker/login-action@v3	2026-10-16T16:33:04.4437719Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Kubernetes rollout and HTTP verification	Run docker/login-action@v3	2026-10-16T16:33:04.6466938Z Login Succeeded!
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	﻿2026-10-16T16:33:04.6678171Z ##[group]Run docker pull 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:04.6678870Z [36;1mdocker pull 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631'[0m
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:04.6679576Z [36;1mkind load docker-image 'ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631' --name chart-testing[0m
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:04.7478239Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:04.7478939Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.0992975Z 409b4a7b10fcf19095cd8f6b3825f3d50b4e4631: Pulling from suhassk205/devops-assignment/session17
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1041048Z e2de96513ba9: Already exists
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1092047Z bce3d672089f: Pulling fs layer
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1093549Z 283ac05c32e6: Pulling fs layer
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1094274Z e203d50c86bd: Pulling fs layer
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1094789Z c1125cc1b322: Pulling fs layer
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1096085Z bce7987d4365: Pulling fs layer
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1097116Z 57fa3e93e566: Pulling fs layer
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1097921Z d304dcc83352: Pulling fs layer
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1098460Z bce7987d4365: Waiting
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1099066Z 57fa3e93e566: Waiting
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1099626Z d304dcc83352: Waiting
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1100038Z c1125cc1b322: Waiting
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1770447Z bce3d672089f: Verifying Checksum
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.1771333Z bce3d672089f: Download complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.2088908Z e203d50c86bd: Verifying Checksum
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.2089559Z e203d50c86bd: Download complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.2419363Z c1125cc1b322: Verifying Checksum
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.2419808Z c1125cc1b322: Download complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.2756909Z 283ac05c32e6: Verifying Checksum
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.2757812Z 283ac05c32e6: Download complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.2924995Z bce7987d4365: Verifying Checksum
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.2926078Z bce7987d4365: Download complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.3461097Z d304dcc83352: Verifying Checksum
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.3461596Z d304dcc83352: Download complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.4365073Z 57fa3e93e566: Verifying Checksum
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:05.4366125Z 57fa3e93e566: Download complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:07.8089303Z bce3d672089f: Pull complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:08.7058040Z 283ac05c32e6: Pull complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:08.7260975Z e203d50c86bd: Pull complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:08.7829498Z c1125cc1b322: Pull complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:08.8052735Z bce7987d4365: Pull complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:09.4224398Z 57fa3e93e566: Pull complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:09.4315882Z d304dcc83352: Pull complete
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:09.4535312Z Digest: sha256:bff16bb659ecb0ccf0403aabaac44f529e6cfd86420a7e827eb984e26b9cf20d
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:09.4547011Z Status: Downloaded newer image for ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:09.4554074Z ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631
+Kubernetes rollout and HTTP verification	Pull the published image into the temporary cluster	2026-10-16T16:33:09.5796155Z Image: "ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631" with ID "sha256:12329b050f5e5c77197a316fa10135fa034c4bb02cf92f8ae9942970f59a1275" not yet present on node "chart-testing-control-plane", loading...
+Kubernetes rollout and HTTP verification	Deploy the exact scanned and published tag	﻿2026-10-16T16:33:12.3365844Z ##[group]Run kubectl set image --local -f k8s/deployment.yaml session17-python='ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631' -o yaml | kubectl apply -f -
+Kubernetes rollout and HTTP verification	Deploy the exact scanned and published tag	2026-10-16T16:33:12.3366950Z [36;1mkubectl set image --local -f k8s/deployment.yaml session17-python='ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631' -o yaml | kubectl apply -f -[0m
+Kubernetes rollout and HTTP verification	Deploy the exact scanned and published tag	2026-10-16T16:33:12.3367584Z [36;1mkubectl apply -f k8s/service.yaml[0m
+Kubernetes rollout and HTTP verification	Deploy the exact scanned and published tag	2026-10-16T16:33:12.3367887Z [36;1mkubectl rollout status deployment/session17-python --timeout=180s[0m
+Kubernetes rollout and HTTP verification	Deploy the exact scanned and published tag	2026-10-16T16:33:12.3425227Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Kubernetes rollout and HTTP verification	Deploy the exact scanned and published tag	2026-10-16T16:33:12.3425510Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Deploy the exact scanned and published tag	2026-10-16T16:33:12.4292925Z deployment.apps/session17-python created
+Kubernetes rollout and HTTP verification	Deploy the exact scanned and published tag	2026-10-16T16:33:12.5269250Z service/session17-python created
+Kubernetes rollout and HTTP verification	Deploy the exact scanned and published tag	2026-10-16T16:33:12.5784731Z Waiting for deployment "session17-python" rollout to finish: 0 of 2 updated replicas are available...
+Kubernetes rollout and HTTP verification	Deploy the exact scanned and published tag	2026-10-16T16:33:24.0030570Z Waiting for deployment "session17-python" rollout to finish: 1 of 2 updated replicas are available...
+Kubernetes rollout and HTTP verification	Deploy the exact scanned and published tag	2026-10-16T16:33:26.0000326Z deployment "session17-python" successfully rolled out
+Kubernetes rollout and HTTP verification	Verify application health and API	﻿2026-10-16T16:33:26.0074423Z ##[group]Run mkdir -p reports
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0074846Z [36;1mmkdir -p reports[0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0075423Z [36;1mkubectl get pods -o wide | tee reports/pods.txt[0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0076080Z [36;1mkubectl get services | tee reports/services.txt[0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0076730Z [36;1mkubectl port-forward service/session17-python 5001:80 > reports/port-forward.txt 2>&1 &[0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0077347Z [36;1mFORWARD_PID=$![0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0077715Z [36;1mtrap 'kill "$FORWARD_PID" 2>/dev/null || true' EXIT[0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0078148Z [36;1mfor attempt in $(seq 1 30); do[0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0078771Z [36;1m  if curl --fail --silent http://localhost:5001/health > reports/health.json; then break; fi[0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0079365Z [36;1m  sleep 2[0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0079664Z [36;1mdone[0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0080104Z [36;1mpython -c 'import json; assert json.load(open("reports/health.json"))["status"] == "healthy"'[0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0080885Z [36;1mcurl --fail --silent http://localhost:5001/api/status | tee reports/status.json[0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0081728Z [36;1mpython -c 'import json; assert json.load(open("reports/status.json"))["status"] == "running"'[0m
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0155213Z shell: /usr/bin/bash --noprofile --norc -e -o pipefail {0}
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0155513Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0666261Z NAME                                READY   STATUS    RESTARTS   AGE   IP           NODE                          NOMINATED NODE   READINESS GATES
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0667234Z session17-python-85797fcfb5-4kdhx   1/1     Running   0          14s   10.244.0.6   chart-testing-control-plane   <none>           <none>
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.0667889Z session17-python-85797fcfb5-d42zs   1/1     Running   0          14s   10.244.0.5   chart-testing-control-plane   <none>           <none>
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.1056960Z NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.1057602Z kubernetes         ClusterIP   10.96.0.1       <none>        443/TCP        43s
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:26.1058345Z session17-python   NodePort    10.96.215.249   <none>        80:30001/TCP   14s
+Kubernetes rollout and HTTP verification	Verify application health and API	2026-10-16T16:33:28.1559002Z {"app":"DevSecOps Dashboard","platform":"Linux","python_version":"3.12.15","status":"running","timestamp":"2026-10-16T16:33:28.155096Z","total_requests":2,"uptime":"00h 00m 13s","version":"2.0.0"}
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	﻿2026-10-16T16:33:28.1812903Z ##[group]Run actions/upload-artifact@v4
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.1813140Z with:
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.1813311Z   name: deployment-evidence
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.1813536Z   path: session-17-devsecops/demo/reports/
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.1813767Z   if-no-files-found: warn
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.1813964Z   compression-level: 6
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.1814142Z   overwrite: false
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.1814324Z   include-hidden-files: false
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.1814525Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.3128507Z (node:13399) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.3129243Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.3183193Z With the provided path, there will be 5 files uploaded
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.3188313Z Artifact name is valid!
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.3188896Z Root directory input is valid!
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.5042101Z Beginning upload of artifact content to blob storage
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.5233358Z (node:13399) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.5764217Z Uploaded bytes 1251
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.5947770Z Finished uploading artifact content to blob storage!
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.5948787Z SHA256 digest of uploaded artifact zip is a4ea299e8423c1750f6bb862fe27c7099c104d132519e50d8b8e7235119ccc05
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.5949957Z Finalizing artifact upload
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.8384654Z Artifact deployment-evidence.zip successfully finalized. Artifact ID 12058983316
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.8385424Z Artifact deployment-evidence has been successfully uploaded! Final size is 1251 bytes. Artifact ID is 12058983316
+Kubernetes rollout and HTTP verification	Run actions/upload-artifact@v4	2026-10-16T16:33:28.8391226Z Artifact download URL: https://github.com/Suhassk205/devops-assignment/actions/runs/38932434440/artifacts/12058983316
+Kubernetes rollout and HTTP verification	Post Run docker/login-action@v3	﻿2026-10-16T16:33:28.8534706Z Post job cleanup.
+Kubernetes rollout and HTTP verification	Post Run docker/login-action@v3	2026-10-16T16:33:29.0932129Z ##[group]Logout from ghcr.io
+Kubernetes rollout and HTTP verification	Post Run docker/login-action@v3	2026-10-16T16:33:29.0950104Z (node:13412) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Kubernetes rollout and HTTP verification	Post Run docker/login-action@v3	2026-10-16T16:33:29.0950876Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Kubernetes rollout and HTTP verification	Post Run docker/login-action@v3	2026-10-16T16:33:29.0973299Z [command]/usr/bin/docker logout ghcr.io
+Kubernetes rollout and HTTP verification	Post Run docker/login-action@v3	2026-10-16T16:33:29.1097503Z Removing login credentials for ghcr.io
+Kubernetes rollout and HTTP verification	Post Run docker/login-action@v3	2026-10-16T16:33:29.1123799Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Post Run docker/login-action@v3	2026-10-16T16:33:29.1124287Z ##[group]Post cache
+Kubernetes rollout and HTTP verification	Post Run docker/login-action@v3	2026-10-16T16:33:29.1125129Z State not set
+Kubernetes rollout and HTTP verification	Post Run docker/login-action@v3	2026-10-16T16:33:29.1125617Z ##[endgroup]
+Kubernetes rollout and HTTP verification	Post Run helm/kind-action@v1.12.0	﻿2026-10-16T16:33:29.1252177Z Post job cleanup.
+Kubernetes rollout and HTTP verification	Post Run helm/kind-action@v1.12.0	2026-10-16T16:33:29.1630025Z Error response from daemon: No such container: kind-registry
+Kubernetes rollout and HTTP verification	Post Run helm/kind-action@v1.12.0	2026-10-16T16:33:29.1745509Z Deleting cluster "chart-testing" ...
+Kubernetes rollout and HTTP verification	Post Run helm/kind-action@v1.12.0	2026-10-16T16:33:31.5462089Z Deleted nodes: ["chart-testing-control-plane"]
+Kubernetes rollout and HTTP verification	Post Run actions/checkout@v4	﻿2026-10-16T16:33:31.5561378Z Post job cleanup.
+Kubernetes rollout and HTTP verification	Post Run actions/checkout@v4	2026-10-16T16:33:31.6248558Z [command]/usr/bin/git version
+Kubernetes rollout and HTTP verification	Post Run actions/checkout@v4	2026-10-16T16:33:31.6283326Z git version 2.55.0
+Kubernetes rollout and HTTP verification	Post Run actions/checkout@v4	2026-10-16T16:33:31.6311848Z Temporarily overriding HOME='/home/runner/work/_temp/3ed3d110-256a-4623-927c-4e0a66d8a31d' before making global git config changes
+Kubernetes rollout and HTTP verification	Post Run actions/checkout@v4	2026-10-16T16:33:31.6313007Z Adding repository directory to the temporary git global config as a safe directory
+Kubernetes rollout and HTTP verification	Post Run actions/checkout@v4	2026-10-16T16:33:31.6315961Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/devops-assignment/devops-assignment
+Kubernetes rollout and HTTP verification	Post Run actions/checkout@v4	2026-10-16T16:33:31.6350273Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Kubernetes rollout and HTTP verification	Post Run actions/checkout@v4	2026-10-16T16:33:31.6380416Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Kubernetes rollout and HTTP verification	Post Run actions/checkout@v4	2026-10-16T16:33:31.6587719Z fatal: No url found for submodule path 'session-16-github-actions/mini-project 10-33-34-265' in .gitmodules
+Kubernetes rollout and HTTP verification	Post Run actions/checkout@v4	2026-10-16T16:33:31.6636810Z ##[warning]The process '/usr/bin/git' failed with exit code 128
+Kubernetes rollout and HTTP verification	Complete job	﻿2026-10-16T16:33:31.6776328Z Cleaning up orphan processes
+Kubernetes rollout and HTTP verification	Complete job	2026-10-16T16:33:31.7114771Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4, docker/login-action@v3, helm/kind-action@v1.12.0. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+[exit 0]
+

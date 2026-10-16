@@ -15,4 +15,4 @@ This session covers AWS networking and the Terraform configuration used to conne
 
 ## Mini-project
 
-The [EC2 and S3 mini-project](08-mini-project/README.md) combines the networking exercises with an instance role and private website artifacts. It includes an architecture diagram, deployment and cleanup commands, and six passing local Terraform tests using a mocked AWS provider.
+The [EC2 and S3 mini-project](08-mini-project/README.md) combines the networking exercises with an instance role and private website artifacts. It includes an architecture diagram, six passing local Terraform tests, and a completed AWS deployment with HTTP verification and destruction of all 17 resources. Command output and screenshots are linked from the mini-project README.

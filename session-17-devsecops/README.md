@@ -12,6 +12,30 @@ Flask dashboard -> build/tests -> Semgrep + pip-audit + Gitleaks
 
 The dashboard includes a pipeline simulator. Security checks run through the scanner tools and GitHub Actions workflow.
 
+## GitHub Actions results
+
+The [complete pipeline run](https://github.com/Suhassk205/devops-assignment/actions/runs/38932434440) passed all seven jobs for commit `409b4a7b10fcf19095cd8f6b3825f3d50b4e4631`.
+
+| Stage | Hosted result |
+|---|---|
+| Build and unit tests | 8 tests passed |
+| Semgrep | 0 findings and 0 scan errors |
+| pip-audit | 8 runtime dependencies audited; 0 known vulnerabilities |
+| Gitleaks | 0 findings in the application’s Git history |
+| Docker and Trivy | Image built; 0 HIGH/CRITICAL vulnerabilities |
+| GHCR publication | Commit-tagged image published successfully |
+| Kubernetes deployment | Two ready replicas; health and status endpoints passed |
+
+Published image:
+
+```text
+ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631
+```
+
+Registry digest: `sha256:bff16bb659ecb0ccf0403aabaac44f529e6cfd86420a7e827eb984e26b9cf20d`.
+
+The [downloaded reports](evidence/hosted-reports/) contain the tests, scanner results, and deployment output. The published Trivy copy omits image build configuration; its scan results and image identity are unchanged. The complete original report is available in the run’s `image-scan-report` artifact.
+
 ## Local test results
 
 | Stage | Tool / implementation | Result |
@@ -72,6 +96,9 @@ The text files contain the full command output; the screenshots show the main re
 | Session 17 - local Kubernetes deployment and live HTTP checks | [Transcript](evidence/06-kubernetes.txt) | [Screenshot](screenshots/06-kubernetes.png) |
 | Security gates - deliberately unsafe fixtures must be rejected | [Transcript](evidence/07-security-gates.txt) | [Screenshot](screenshots/07-security-gates.png) |
 | Workflow validation and application-history secret scan | [Transcript](evidence/08-workflow-preflight.txt) | [Screenshot](screenshots/08-workflow-preflight.png) |
+| Successful GitHub Actions pipeline | [Transcript](evidence/09-hosted-pipeline.txt) | [Screenshot](screenshots/09-hosted-pipeline.png) |
+| Hosted tests, scans, and healthy Kubernetes Pods | [Transcript](evidence/10-hosted-security.txt) | [Screenshot](screenshots/10-hosted-security.png) |
+| Registry publication and Kubernetes rollout | [Job output](evidence/11-hosted-publication-deployment.txt) | [Complete run log](evidence/12-hosted-run.log) |
 
 ### Selected screenshots
 
@@ -84,3 +111,9 @@ The text files contain the full command output; the screenshots show the main re
 ![06-kubernetes](screenshots/06-kubernetes.png)
 
 ![07-security-gates](screenshots/07-security-gates.png)
+
+### Hosted pipeline screenshots
+
+![Successful GitHub Actions run](screenshots/09-hosted-pipeline.png)
+
+![Hosted security reports and Kubernetes checks](screenshots/10-hosted-security.png)

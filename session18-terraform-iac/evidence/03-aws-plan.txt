@@ -1,0 +1,106 @@
+Session 18: AWS Terraform plan
+Actual command transcript; 2026-10-16T22:38:22.031842+05:30
+Context: AWS account 662875145165; region ap-south-1; real Terraform execution
+
+$ terraform init -input=false -no-color
+Initializing the backend...
+
+Initializing provider plugins...
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Using previously-installed hashicorp/aws v6.66.0
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+[exit 0]
+
+$ terraform fmt -check -recursive
+
+[exit 0]
+
+$ terraform validate -no-color
+Success! The configuration is valid.
+[exit 0]
+
+$ terraform plan -input=false -no-color -out /private/tmp/session18-1792170502.tfplan -var bucket_name=suhas-s18-662875145165-1792170502
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.suhas_bucket will be created
+  + resource "aws_s3_bucket" "suhas_bucket" {
+      + acceleration_status         = (known after apply)
+      + acl                         = (known after apply)
+      + arn                         = (known after apply)
+      + bucket                      = "suhas-s18-662875145165-1792170502"
+      + bucket_domain_name          = (known after apply)
+      + bucket_namespace            = (known after apply)
+      + bucket_prefix               = (known after apply)
+      + bucket_region               = (known after apply)
+      + bucket_regional_domain_name = (known after apply)
+      + force_destroy               = true
+      + hosted_zone_id              = (known after apply)
+      + id                          = (known after apply)
+      + object_lock_enabled         = (known after apply)
+      + policy                      = (known after apply)
+      + region                      = "ap-south-1"
+      + request_payer               = (known after apply)
+      + tags                        = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "suhas-s18-662875145165-1792170502"
+          + "Project"     = "Session18"
+        }
+      + tags_all                    = {
+          + "Environment" = "dev"
+          + "ManagedBy"   = "Terraform"
+          + "Name"        = "suhas-s18-662875145165-1792170502"
+          + "Project"     = "Session18"
+        }
+      + website_domain              = (known after apply)
+      + website_endpoint            = (known after apply)
+
+      + cors_rule (known after apply)
+
+      + grant (known after apply)
+
+      + lifecycle_rule (known after apply)
+
+      + logging (known after apply)
+
+      + object_lock_configuration (known after apply)
+
+      + replication_configuration (known after apply)
+
+      + server_side_encryption_configuration (known after apply)
+
+      + versioning (known after apply)
+
+      + website (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + bucket_arn    = (known after apply)
+  + bucket_name   = "suhas-s18-662875145165-1792170502"
+  + bucket_region = "ap-south-1"
+
+─────────────────────────────────────────────────────────────────────────────
+
+Saved the plan to: /private/tmp/session18-1792170502.tfplan
+
+To perform exactly these actions, run the following command to apply:
+    terraform apply "/private/tmp/session18-1792170502.tfplan"
+[exit 0]
+
+Reviewed 1 new managed resources; no changes to existing infrastructure.

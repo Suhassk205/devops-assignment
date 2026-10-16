@@ -1,0 +1,3 @@
+NAME                                READY   STATUS    RESTARTS   AGE   IP           NODE                          NOMINATED NODE   READINESS GATES
+session17-python-85797fcfb5-4kdhx   1/1     Running   0          14s   10.244.0.6   chart-testing-control-plane   <none>           <none>
+session17-python-85797fcfb5-d42zs   1/1     Running   0          14s   10.244.0.5   chart-testing-control-plane   <none>           <none>

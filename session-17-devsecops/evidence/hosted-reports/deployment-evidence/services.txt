@@ -1,0 +1,3 @@
+NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+kubernetes         ClusterIP   10.96.0.1       <none>        443/TCP        43s
+session17-python   NodePort    10.96.215.249   <none>        80:30001/TCP   14s

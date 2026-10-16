@@ -1,0 +1,160 @@
+Session 18: AWS Terraform cleanup
+Actual command transcript; 2026-10-16T22:38:34.514601+05:30
+Context: AWS account 662875145165; region ap-south-1; real Terraform execution
+
+$ terraform plan -destroy -input=false -no-color -var bucket_name=suhas-s18-662875145165-1792170502
+aws_s3_bucket.suhas_bucket: Refreshing state... [id=suhas-s18-662875145165-1792170502]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.suhas_bucket will be destroyed
+  - resource "aws_s3_bucket" "suhas_bucket" {
+      - arn                         = "arn:aws:s3:::suhas-s18-662875145165-1792170502" -> null
+      - bucket                      = "suhas-s18-662875145165-1792170502" -> null
+      - bucket_domain_name          = "suhas-s18-662875145165-1792170502.s3.amazonaws.com" -> null
+      - bucket_namespace            = "global" -> null
+      - bucket_region               = "ap-south-1" -> null
+      - bucket_regional_domain_name = "suhas-s18-662875145165-1792170502.s3.ap-south-1.amazonaws.com" -> null
+      - force_destroy               = true -> null
+      - hosted_zone_id              = "Z11RGJOFQNVJUP" -> null
+      - id                          = "suhas-s18-662875145165-1792170502" -> null
+      - object_lock_enabled         = false -> null
+      - region                      = "ap-south-1" -> null
+      - request_payer               = "BucketOwner" -> null
+      - tags                        = {
+          - "Environment" = "dev"
+          - "ManagedBy"   = "Terraform"
+          - "Name"        = "suhas-s18-662875145165-1792170502"
+          - "Project"     = "Session18"
+        } -> null
+      - tags_all                    = {
+          - "Environment" = "dev"
+          - "ManagedBy"   = "Terraform"
+          - "Name"        = "suhas-s18-662875145165-1792170502"
+          - "Project"     = "Session18"
+        } -> null
+        # (3 unchanged attributes hidden)
+
+      - grant {
+          - id          = "f23ab82175c93fce641aa25ffa0e09058fddef697f02ec1dea9f0fe792e4c5a9" -> null
+          - permissions = [
+              - "FULL_CONTROL",
+            ] -> null
+          - type        = "CanonicalUser" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - server_side_encryption_configuration {
+          - rule {
+              - bucket_key_enabled = false -> null
+
+              - apply_server_side_encryption_by_default {
+                  - sse_algorithm     = "AES256" -> null
+                    # (1 unchanged attribute hidden)
+                }
+            }
+        }
+
+      - versioning {
+          - enabled    = false -> null
+          - mfa_delete = false -> null
+        }
+    }
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+
+Changes to Outputs:
+  - bucket_arn    = "arn:aws:s3:::suhas-s18-662875145165-1792170502" -> null
+  - bucket_name   = "suhas-s18-662875145165-1792170502" -> null
+  - bucket_region = "ap-south-1" -> null
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
+[exit 0]
+
+$ terraform destroy -input=false -auto-approve -no-color -var bucket_name=suhas-s18-662875145165-1792170502
+aws_s3_bucket.suhas_bucket: Refreshing state... [id=suhas-s18-662875145165-1792170502]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_s3_bucket.suhas_bucket will be destroyed
+  - resource "aws_s3_bucket" "suhas_bucket" {
+      - arn                         = "arn:aws:s3:::suhas-s18-662875145165-1792170502" -> null
+      - bucket                      = "suhas-s18-662875145165-1792170502" -> null
+      - bucket_domain_name          = "suhas-s18-662875145165-1792170502.s3.amazonaws.com" -> null
+      - bucket_namespace            = "global" -> null
+      - bucket_region               = "ap-south-1" -> null
+      - bucket_regional_domain_name = "suhas-s18-662875145165-1792170502.s3.ap-south-1.amazonaws.com" -> null
+      - force_destroy               = true -> null
+      - hosted_zone_id              = "Z11RGJOFQNVJUP" -> null
+      - id                          = "suhas-s18-662875145165-1792170502" -> null
+      - object_lock_enabled         = false -> null
+      - region                      = "ap-south-1" -> null
+      - request_payer               = "BucketOwner" -> null
+      - tags                        = {
+          - "Environment" = "dev"
+          - "ManagedBy"   = "Terraform"
+          - "Name"        = "suhas-s18-662875145165-1792170502"
+          - "Project"     = "Session18"
+        } -> null
+      - tags_all                    = {
+          - "Environment" = "dev"
+          - "ManagedBy"   = "Terraform"
+          - "Name"        = "suhas-s18-662875145165-1792170502"
+          - "Project"     = "Session18"
+        } -> null
+        # (3 unchanged attributes hidden)
+
+      - grant {
+          - id          = "f23ab82175c93fce641aa25ffa0e09058fddef697f02ec1dea9f0fe792e4c5a9" -> null
+          - permissions = [
+              - "FULL_CONTROL",
+            ] -> null
+          - type        = "CanonicalUser" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - server_side_encryption_configuration {
+          - rule {
+              - bucket_key_enabled = false -> null
+
+              - apply_server_side_encryption_by_default {
+                  - sse_algorithm     = "AES256" -> null
+                    # (1 unchanged attribute hidden)
+                }
+            }
+        }
+
+      - versioning {
+          - enabled    = false -> null
+          - mfa_delete = false -> null
+        }
+    }
+
+Plan: 0 to add, 0 to change, 1 to destroy.
+
+Changes to Outputs:
+  - bucket_arn    = "arn:aws:s3:::suhas-s18-662875145165-1792170502" -> null
+  - bucket_name   = "suhas-s18-662875145165-1792170502" -> null
+  - bucket_region = "ap-south-1" -> null
+aws_s3_bucket.suhas_bucket: Destroying... [id=suhas-s18-662875145165-1792170502]
+aws_s3_bucket.suhas_bucket: Destruction complete after 1s
+
+Destroy complete! Resources: 1 destroyed.
+[exit 0]
+
+$ terraform state list
+
+[exit 0]
+
+Cleanup verified: the Terraform project tracks no remaining managed resources.

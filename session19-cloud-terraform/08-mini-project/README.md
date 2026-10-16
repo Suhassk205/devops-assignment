@@ -45,6 +45,24 @@ Terraform resource references establish the dependencies. The instance also expl
 
 HTTP is used for the classroom web page. HTTPS would need a certificate and a suitable TLS termination setup.
 
+## AWS deployment results
+
+I deployed the project in `ap-south-1`, checked the web response and S3 settings, then destroyed the resources.
+
+| Resource or check | Result |
+|---|---|
+| VPC | `vpc-0e830c64665d7d388` |
+| Public subnet | `subnet-0893da614b70f02b9` |
+| Security Group | `sg-018f592dbc5d3d74b` |
+| EC2 instance | `i-0c249f7e6fece35b3`; `t3.micro` |
+| Private artifact bucket | `s19-suhas-1792170522-2978acab6f6418b0bcac97e282` |
+| Website | HTTP 200 from `http://13.232.163.105` |
+| S3 protections | Public access blocked; versioning enabled; AES256 encryption |
+| Terraform cleanup | 17 resources destroyed; local state empty |
+| AWS cleanup verification | Instance terminated; lab bucket, VPC, subnet, Security Group, EBS volume, and instance roles removed |
+
+The website address above belongs to the completed lab run and is no longer serving the application after cleanup.
+
 ## Local verification
 
 I initialized the provider, checked formatting, validated the configuration, and ran six Terraform tests. The tests use a **mocked AWS provider**: their plan, apply, and teardown operations happen in the test environment without creating cloud resources.
@@ -58,7 +76,7 @@ I initialized the provider, checked formatting, validated the configuration, and
 | Invalid project name rejected | Passed |
 | Invalid HTTP client CIDR rejected | Passed |
 
-The mock tests use a fixture AMI and generated resource IDs. They check the configuration's relationships and safeguards; live AWS permissions, AMI availability, and the running Nginx service need a deployment check.
+The mock tests use a fixture AMI and generated resource IDs to check configuration relationships and safeguards. The AWS run above also verified the selected image, instance permissions, artifact download, and Nginx response.
 
 Run from this directory:
 
@@ -117,3 +135,19 @@ The artifact bucket has `force_destroy = true` for this disposable lab. Destroyi
 ![Terraform initialization and validation](../screenshots/01-terraform-validation.png)
 
 ![Mocked-provider Terraform tests](../screenshots/02-terraform-tests.png)
+
+## AWS execution evidence
+
+| Exercise | Full output | Screenshot |
+|---|---|---|
+| Initialize, format, validate, and plan | [Output](../evidence/04-aws-plan.txt) | [Screenshot](../screenshots/04-aws-plan.png) |
+| Provision the infrastructure | [Output](../evidence/05-aws-apply.txt) | [Screenshot](../screenshots/05-aws-apply.png) |
+| Inspect state, outputs, S3 protections, and HTTP response | [Output](../evidence/06-aws-verification.txt) | [Screenshot](../screenshots/06-aws-verification.png) |
+| Destroy all 17 resources | [Output](../evidence/07-aws-destroy.txt) | [Screenshot](../screenshots/07-aws-destroy.png) |
+| Verify cleanup through AWS service APIs | [Output](../evidence/08-cleanup-check.txt) | [Screenshot](../screenshots/08-cleanup-check.png) |
+
+![AWS infrastructure created](../screenshots/05-aws-apply.png)
+
+![HTTP response and AWS verification](../screenshots/06-aws-verification.png)
+
+![AWS infrastructure destroyed](../screenshots/07-aws-destroy.png)

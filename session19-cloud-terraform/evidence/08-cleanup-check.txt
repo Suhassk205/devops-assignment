@@ -1,0 +1,47 @@
+Session 19: AWS cleanup verified through service APIs
+Actual command transcript; 2026-10-16T22:42:01.421134+05:30
+Context: AWS ap-south-1; resources already destroyed
+
+$ aws s3api list-buckets --query 'Buckets[?Name=='"'"'s19-suhas-1792170522-2978acab6f6418b0bcac97e282'"'"'].Name' --profile devops-homework --region ap-south-1 --output json
+[]
+[exit 0]
+
+$ aws ec2 describe-instances --instance-ids i-0c249f7e6fece35b3 --query 'Reservations[].Instances[].State.Name' --profile devops-homework --region ap-south-1 --output json
+[
+    "terminated"
+]
+[exit 0]
+
+$ aws ec2 describe-vpcs --filters Name=vpc-id,Values=vpc-0e830c64665d7d388 --profile devops-homework --region ap-south-1 --output json
+{
+    "Vpcs": []
+}
+[exit 0]
+
+$ aws ec2 describe-subnets --filters Name=subnet-id,Values=subnet-0893da614b70f02b9 --profile devops-homework --region ap-south-1 --output json
+{
+    "Subnets": []
+}
+[exit 0]
+
+$ aws ec2 describe-security-groups --filters Name=group-id,Values=sg-018f592dbc5d3d74b --profile devops-homework --region ap-south-1 --output json
+{
+    "SecurityGroups": []
+}
+[exit 0]
+
+$ aws ec2 describe-volumes --filters Name=volume-id,Values=vol-076c9999c0edbe808 --profile devops-homework --region ap-south-1 --output json
+{
+    "Volumes": []
+}
+[exit 0]
+
+$ aws iam list-roles --query 'Roles[?starts_with(RoleName, '"'"'s19-suhas-1792170522-'"'"')].RoleName' --profile devops-homework --region ap-south-1 --output json
+[]
+[exit 0]
+
+$ aws iam list-instance-profiles --query 'InstanceProfiles[?starts_with(InstanceProfileName, '"'"'s19-suhas-1792170522-'"'"')].InstanceProfileName' --profile devops-homework --region ap-south-1 --output json
+[]
+[exit 0]
+
+Verified: the lab bucket and applicable compute, storage, networking, and role resources are removed.

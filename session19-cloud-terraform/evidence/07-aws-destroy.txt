@@ -1,0 +1,1229 @@
+Session 19: AWS Terraform cleanup
+Actual command transcript; 2026-10-16T22:39:48.484148+05:30
+Context: AWS account 662875145165; region ap-south-1; real Terraform execution
+
+$ terraform plan -destroy -input=false -no-color -var project_name=s19-suhas-1792170522
+data.aws_ssm_parameter.amazon_linux[0]: Reading...
+aws_iam_role.web: Refreshing state... [id=s19-suhas-1792170522-1fd1725393025b03fcabdd362c]
+aws_vpc.main: Refreshing state... [id=vpc-0e830c64665d7d388]
+aws_s3_bucket.artifacts: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+data.aws_ssm_parameter.amazon_linux[0]: Read complete after 1s [id=/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64]
+aws_s3_bucket_versioning.artifacts: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_s3_bucket_public_access_block.artifacts: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_s3_bucket_policy.tls_only: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_s3_bucket_server_side_encryption_configuration.artifacts: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_s3_bucket_ownership_controls.artifacts: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_iam_role_policy.artifact_read: Refreshing state... [id=s19-suhas-1792170522-1fd1725393025b03fcabdd362c:read-site-artifacts]
+aws_iam_instance_profile.web: Refreshing state... [id=s19-suhas-1792170522-4e930f1cf48d643a29acaf38f8]
+aws_s3_object.homepage: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/index.html]
+aws_internet_gateway.main: Refreshing state... [id=igw-0f1e27adbde63de2f]
+aws_subnet.public: Refreshing state... [id=subnet-0893da614b70f02b9]
+aws_security_group.web: Refreshing state... [id=sg-018f592dbc5d3d74b]
+aws_route_table.public: Refreshing state... [id=rtb-000bea29ecabfbc4d]
+aws_route_table_association.public: Refreshing state... [id=rtbassoc-013d0679b08a282b2]
+aws_instance.web: Refreshing state... [id=i-0c249f7e6fece35b3]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_iam_instance_profile.web will be destroyed
+  - resource "aws_iam_instance_profile" "web" {
+      - arn         = "arn:aws:iam::662875145165:instance-profile/s19-suhas-1792170522-4e930f1cf48d643a29acaf38f8" -> null
+      - create_date = "2026-10-16T17:08:52Z" -> null
+      - id          = "s19-suhas-1792170522-4e930f1cf48d643a29acaf38f8" -> null
+      - name        = "s19-suhas-1792170522-4e930f1cf48d643a29acaf38f8" -> null
+      - name_prefix = "s19-suhas-1792170522-" -> null
+      - path        = "/" -> null
+      - role        = "s19-suhas-1792170522-1fd1725393025b03fcabdd362c" -> null
+      - tags        = {} -> null
+      - tags_all    = {} -> null
+      - unique_id   = "AIPAZUVTQAPG764KNQZTE" -> null
+    }
+
+  # aws_iam_role.web will be destroyed
+  - resource "aws_iam_role" "web" {
+      - arn                   = "arn:aws:iam::662875145165:role/s19-suhas-1792170522-1fd1725393025b03fcabdd362c" -> null
+      - assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "ec2.amazonaws.com"
+                        }
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - create_date           = "2026-10-16T17:08:50Z" -> null
+      - force_detach_policies = false -> null
+      - id                    = "s19-suhas-1792170522-1fd1725393025b03fcabdd362c" -> null
+      - managed_policy_arns   = [] -> null
+      - max_session_duration  = 3600 -> null
+      - name                  = "s19-suhas-1792170522-1fd1725393025b03fcabdd362c" -> null
+      - name_prefix           = "s19-suhas-1792170522-" -> null
+      - path                  = "/" -> null
+      - tags                  = {} -> null
+      - tags_all              = {} -> null
+      - unique_id             = "AROAZUVTQAPGXL4HVIPBB" -> null
+        # (2 unchanged attributes hidden)
+
+      - inline_policy {
+          - name   = "read-site-artifacts" -> null
+          - policy = jsonencode(
+                {
+                  - Statement = [
+                      - {
+                          - Action   = [
+                              - "s3:GetObject",
+                            ]
+                          - Effect   = "Allow"
+                          - Resource = "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/*"
+                        },
+                    ]
+                  - Version   = "2012-10-17"
+                }
+            ) -> null
+        }
+    }
+
+  # aws_iam_role_policy.artifact_read will be destroyed
+  - resource "aws_iam_role_policy" "artifact_read" {
+      - id          = "s19-suhas-1792170522-1fd1725393025b03fcabdd362c:read-site-artifacts" -> null
+      - name        = "read-site-artifacts" -> null
+      - policy      = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "s3:GetObject",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/*"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - role        = "s19-suhas-1792170522-1fd1725393025b03fcabdd362c" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_instance.web will be destroyed
+  - resource "aws_instance" "web" {
+      - ami                                  = "ami-0cdfc1e40cc5ca08a" -> null
+      - arn                                  = "arn:aws:ec2:ap-south-1:662875145165:instance/i-0c249f7e6fece35b3" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "ap-south-1a" -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - force_destroy                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - iam_instance_profile                 = "s19-suhas-1792170522-4e930f1cf48d643a29acaf38f8" -> null
+      - id                                   = "i-0c249f7e6fece35b3" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t3.micro" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-0406bc6def2892bf6" -> null
+      - private_dns                          = "ip-10-20-1-164.ap-south-1.compute.internal" -> null
+      - private_ip                           = "10.20.1.164" -> null
+      - public_dns                           = "ec2-13-232-163-105.ap-south-1.compute.amazonaws.com" -> null
+      - public_ip                            = "13.232.163.105" -> null
+      - region                               = "ap-south-1" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-0893da614b70f02b9" -> null
+      - tags                                 = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "s19-suhas-1792170522-web"
+          - "Session"   = "19"
+        } -> null
+      - tags_all                             = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "s19-suhas-1792170522-web"
+          - "Session"   = "19"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data                            = <<-EOT
+            #!/bin/bash
+            set -euxo pipefail
+            dnf install -y nginx
+            aws s3 cp s3://s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/index.html /usr/share/nginx/html/index.html --region ap-south-1
+            chmod 644 /usr/share/nginx/html/index.html
+            systemctl enable --now nginx
+        EOT -> null
+      - user_data_replace_on_change          = true -> null
+      - vpc_security_group_ids               = [
+          - "sg-018f592dbc5d3d74b",
+        ] -> null
+        # (8 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count            = 1 -> null
+          - threads_per_core      = 2 -> null
+            # (2 unchanged attributes hidden)
+        }
+
+      - credit_specification {
+          - cpu_credits = "unlimited" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 2 -> null
+          - http_tokens                 = "required" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - primary_network_interface {
+          - delete_on_termination = true -> null
+          - network_interface_id  = "eni-0406bc6def2892bf6" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/xvda" -> null
+          - encrypted             = true -> null
+          - iops                  = 3000 -> null
+          - kms_key_id            = "arn:aws:kms:ap-south-1:662875145165:key/86689950-b95e-471c-8abd-5610e32160e1" -> null
+          - tags                  = {} -> null
+          - tags_all              = {} -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-076c9999c0edbe808" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp3" -> null
+        }
+    }
+
+  # aws_internet_gateway.main will be destroyed
+  - resource "aws_internet_gateway" "main" {
+      - arn      = "arn:aws:ec2:ap-south-1:662875145165:internet-gateway/igw-0f1e27adbde63de2f" -> null
+      - id       = "igw-0f1e27adbde63de2f" -> null
+      - owner_id = "662875145165" -> null
+      - region   = "ap-south-1" -> null
+      - tags     = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-igw"
+          - "Session"   = "19"
+        } -> null
+      - tags_all = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-igw"
+          - "Session"   = "19"
+        } -> null
+      - vpc_id   = "vpc-0e830c64665d7d388" -> null
+    }
+
+  # aws_route_table.public will be destroyed
+  - resource "aws_route_table" "public" {
+      - arn              = "arn:aws:ec2:ap-south-1:662875145165:route-table/rtb-000bea29ecabfbc4d" -> null
+      - id               = "rtb-000bea29ecabfbc4d" -> null
+      - owner_id         = "662875145165" -> null
+      - propagating_vgws = [] -> null
+      - region           = "ap-south-1" -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - gateway_id                 = "igw-0f1e27adbde63de2f"
+                # (12 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-public-rt"
+          - "Session"   = "19"
+        } -> null
+      - tags_all         = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-public-rt"
+          - "Session"   = "19"
+        } -> null
+      - vpc_id           = "vpc-0e830c64665d7d388" -> null
+    }
+
+  # aws_route_table_association.public will be destroyed
+  - resource "aws_route_table_association" "public" {
+      - id             = "rtbassoc-013d0679b08a282b2" -> null
+      - region         = "ap-south-1" -> null
+      - route_table_id = "rtb-000bea29ecabfbc4d" -> null
+      - subnet_id      = "subnet-0893da614b70f02b9" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_s3_bucket.artifacts will be destroyed
+  - resource "aws_s3_bucket" "artifacts" {
+      - arn                         = "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - bucket                      = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - bucket_domain_name          = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282.s3.amazonaws.com" -> null
+      - bucket_namespace            = "global" -> null
+      - bucket_prefix               = "s19-suhas-1792170522-" -> null
+      - bucket_region               = "ap-south-1" -> null
+      - bucket_regional_domain_name = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282.s3.ap-south-1.amazonaws.com" -> null
+      - force_destroy               = true -> null
+      - hosted_zone_id              = "Z11RGJOFQNVJUP" -> null
+      - id                          = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - object_lock_enabled         = false -> null
+      - policy                      = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "s3:*"
+                      - Condition = {
+                          - Bool = {
+                              - "aws:SecureTransport" = "false"
+                            }
+                        }
+                      - Effect    = "Deny"
+                      - Principal = "*"
+                      - Resource  = [
+                          - "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282",
+                          - "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282/*",
+                        ]
+                      - Sid       = "DenyInsecureTransport"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - region                      = "ap-south-1" -> null
+      - request_payer               = "BucketOwner" -> null
+      - tags                        = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "s19-suhas-1792170522-artifacts"
+          - "Session"   = "19"
+        } -> null
+      - tags_all                    = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "s19-suhas-1792170522-artifacts"
+          - "Session"   = "19"
+        } -> null
+        # (1 unchanged attribute hidden)
+
+      - grant {
+          - id          = "f23ab82175c93fce641aa25ffa0e09058fddef697f02ec1dea9f0fe792e4c5a9" -> null
+          - permissions = [
+              - "FULL_CONTROL",
+            ] -> null
+          - type        = "CanonicalUser" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - server_side_encryption_configuration {
+          - rule {
+              - bucket_key_enabled = false -> null
+
+              - apply_server_side_encryption_by_default {
+                  - sse_algorithm     = "AES256" -> null
+                    # (1 unchanged attribute hidden)
+                }
+            }
+        }
+
+      - versioning {
+          - enabled    = true -> null
+          - mfa_delete = false -> null
+        }
+    }
+
+  # aws_s3_bucket_ownership_controls.artifacts will be destroyed
+  - resource "aws_s3_bucket_ownership_controls" "artifacts" {
+      - bucket = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - id     = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - region = "ap-south-1" -> null
+
+      - rule {
+          - object_ownership = "BucketOwnerEnforced" -> null
+        }
+    }
+
+  # aws_s3_bucket_policy.tls_only will be destroyed
+  - resource "aws_s3_bucket_policy" "tls_only" {
+      - bucket = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - id     = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - policy = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "s3:*"
+                      - Condition = {
+                          - Bool = {
+                              - "aws:SecureTransport" = "false"
+                            }
+                        }
+                      - Effect    = "Deny"
+                      - Principal = "*"
+                      - Resource  = [
+                          - "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282",
+                          - "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282/*",
+                        ]
+                      - Sid       = "DenyInsecureTransport"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - region = "ap-south-1" -> null
+    }
+
+  # aws_s3_bucket_public_access_block.artifacts will be destroyed
+  - resource "aws_s3_bucket_public_access_block" "artifacts" {
+      - block_public_acls       = true -> null
+      - block_public_policy     = true -> null
+      - bucket                  = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - id                      = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - ignore_public_acls      = true -> null
+      - region                  = "ap-south-1" -> null
+      - restrict_public_buckets = true -> null
+    }
+
+  # aws_s3_bucket_server_side_encryption_configuration.artifacts will be destroyed
+  - resource "aws_s3_bucket_server_side_encryption_configuration" "artifacts" {
+      - bucket                = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - id                    = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - region                = "ap-south-1" -> null
+        # (1 unchanged attribute hidden)
+
+      - rule {
+          - blocked_encryption_types = [
+              - "SSE-C",
+            ] -> null
+          - bucket_key_enabled       = false -> null
+
+          - apply_server_side_encryption_by_default {
+              - sse_algorithm     = "AES256" -> null
+                # (1 unchanged attribute hidden)
+            }
+        }
+    }
+
+  # aws_s3_bucket_versioning.artifacts will be destroyed
+  - resource "aws_s3_bucket_versioning" "artifacts" {
+      - bucket                = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - id                    = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - region                = "ap-south-1" -> null
+        # (1 unchanged attribute hidden)
+
+      - versioning_configuration {
+          - mfa_delete = "Disabled" -> null
+          - status     = "Enabled" -> null
+        }
+    }
+
+  # aws_s3_object.homepage will be destroyed
+  - resource "aws_s3_object" "homepage" {
+      - arn                           = "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/index.html" -> null
+      - bucket                        = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - bucket_key_enabled            = false -> null
+      - content_type                  = "text/html" -> null
+      - etag                          = "7c73f039d6bdc1682332970e42e2a364" -> null
+      - force_destroy                 = false -> null
+      - id                            = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/index.html" -> null
+      - key                           = "site/index.html" -> null
+      - metadata                      = {} -> null
+      - region                        = "ap-south-1" -> null
+      - server_side_encryption        = "AES256" -> null
+      - source                        = "./site/index.html" -> null
+      - source_hash                   = "7c73f039d6bdc1682332970e42e2a364" -> null
+      - storage_class                 = "STANDARD" -> null
+      - tags                          = {} -> null
+      - tags_all                      = {} -> null
+      - version_id                    = "sNURxv3sCx3omU5MhsOiLKXmP4e_E2Gz" -> null
+        # (13 unchanged attributes hidden)
+    }
+
+  # aws_security_group.web will be destroyed
+  - resource "aws_security_group" "web" {
+      - arn                    = "arn:aws:ec2:ap-south-1:662875145165:security-group/sg-018f592dbc5d3d74b" -> null
+      - description            = "Allow HTTP for the Session 19 web server" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "Allow outbound IPv4"
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+            },
+        ] -> null
+      - id                     = "sg-018f592dbc5d3d74b" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "HTTP"
+              - from_port        = 80
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 80
+            },
+        ] -> null
+      - name                   = "session19-mini-web-sg" -> null
+      - owner_id               = "662875145165" -> null
+      - region                 = "ap-south-1" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-web-sg"
+          - "Session"   = "19"
+        } -> null
+      - tags_all               = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-web-sg"
+          - "Session"   = "19"
+        } -> null
+      - vpc_id                 = "vpc-0e830c64665d7d388" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_subnet.public will be destroyed
+  - resource "aws_subnet" "public" {
+      - arn                                            = "arn:aws:ec2:ap-south-1:662875145165:subnet/subnet-0893da614b70f02b9" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "ap-south-1a" -> null
+      - availability_zone_id                           = "aps1-az1" -> null
+      - cidr_block                                     = "10.20.1.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-0893da614b70f02b9" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = true -> null
+      - owner_id                                       = "662875145165" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - region                                         = "ap-south-1" -> null
+      - tags                                           = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-public-subnet"
+          - "Session"   = "19"
+        } -> null
+      - tags_all                                       = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-public-subnet"
+          - "Session"   = "19"
+        } -> null
+      - vpc_id                                         = "vpc-0e830c64665d7d388" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # aws_vpc.main will be destroyed
+  - resource "aws_vpc" "main" {
+      - arn                                  = "arn:aws:ec2:ap-south-1:662875145165:vpc/vpc-0e830c64665d7d388" -> null
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "10.20.0.0/16" -> null
+      - default_network_acl_id               = "acl-04e6db628546c116f" -> null
+      - default_route_table_id               = "rtb-0a8f5764f1c050ff6" -> null
+      - default_security_group_id            = "sg-044a51143c01da94c" -> null
+      - dhcp_options_id                      = "dopt-038df586b0eb569ff" -> null
+      - enable_dns_hostnames                 = true -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - id                                   = "vpc-0e830c64665d7d388" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-0a8f5764f1c050ff6" -> null
+      - owner_id                             = "662875145165" -> null
+      - region                               = "ap-south-1" -> null
+      - tags                                 = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-vpc"
+          - "Session"   = "19"
+        } -> null
+      - tags_all                             = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-vpc"
+          - "Session"   = "19"
+        } -> null
+        # (4 unchanged attributes hidden)
+    }
+
+Plan: 0 to add, 0 to change, 17 to destroy.
+
+Changes to Outputs:
+  - artifact_bucket   = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+  - instance_id       = "i-0c249f7e6fece35b3" -> null
+  - security_group_id = "sg-018f592dbc5d3d74b" -> null
+  - subnet_id         = "subnet-0893da614b70f02b9" -> null
+  - vpc_cidr          = "10.20.0.0/16" -> null
+  - vpc_id            = "vpc-0e830c64665d7d388" -> null
+  - web_url           = "http://13.232.163.105" -> null
+
+─────────────────────────────────────────────────────────────────────────────
+
+Note: You didn't use the -out option to save this plan, so Terraform can't
+guarantee to take exactly these actions if you run "terraform apply" now.
+[exit 0]
+
+$ terraform destroy -input=false -auto-approve -no-color -var project_name=s19-suhas-1792170522
+aws_s3_bucket.artifacts: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_vpc.main: Refreshing state... [id=vpc-0e830c64665d7d388]
+aws_iam_role.web: Refreshing state... [id=s19-suhas-1792170522-1fd1725393025b03fcabdd362c]
+data.aws_ssm_parameter.amazon_linux[0]: Reading...
+data.aws_ssm_parameter.amazon_linux[0]: Read complete after 0s [id=/aws/service/ami-amazon-linux-latest/al2023-ami-kernel-default-x86_64]
+aws_internet_gateway.main: Refreshing state... [id=igw-0f1e27adbde63de2f]
+aws_subnet.public: Refreshing state... [id=subnet-0893da614b70f02b9]
+aws_security_group.web: Refreshing state... [id=sg-018f592dbc5d3d74b]
+aws_route_table.public: Refreshing state... [id=rtb-000bea29ecabfbc4d]
+aws_route_table_association.public: Refreshing state... [id=rtbassoc-013d0679b08a282b2]
+aws_s3_bucket_ownership_controls.artifacts: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_s3_bucket_versioning.artifacts: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_s3_bucket_public_access_block.artifacts: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_s3_bucket_policy.tls_only: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_s3_bucket_server_side_encryption_configuration.artifacts: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_iam_role_policy.artifact_read: Refreshing state... [id=s19-suhas-1792170522-1fd1725393025b03fcabdd362c:read-site-artifacts]
+aws_iam_instance_profile.web: Refreshing state... [id=s19-suhas-1792170522-4e930f1cf48d643a29acaf38f8]
+aws_s3_object.homepage: Refreshing state... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/index.html]
+aws_instance.web: Refreshing state... [id=i-0c249f7e6fece35b3]
+
+Terraform used the selected providers to generate the following execution
+plan. Resource actions are indicated with the following symbols:
+  - destroy
+
+Terraform will perform the following actions:
+
+  # aws_iam_instance_profile.web will be destroyed
+  - resource "aws_iam_instance_profile" "web" {
+      - arn         = "arn:aws:iam::662875145165:instance-profile/s19-suhas-1792170522-4e930f1cf48d643a29acaf38f8" -> null
+      - create_date = "2026-10-16T17:08:52Z" -> null
+      - id          = "s19-suhas-1792170522-4e930f1cf48d643a29acaf38f8" -> null
+      - name        = "s19-suhas-1792170522-4e930f1cf48d643a29acaf38f8" -> null
+      - name_prefix = "s19-suhas-1792170522-" -> null
+      - path        = "/" -> null
+      - role        = "s19-suhas-1792170522-1fd1725393025b03fcabdd362c" -> null
+      - tags        = {} -> null
+      - tags_all    = {} -> null
+      - unique_id   = "AIPAZUVTQAPG764KNQZTE" -> null
+    }
+
+  # aws_iam_role.web will be destroyed
+  - resource "aws_iam_role" "web" {
+      - arn                   = "arn:aws:iam::662875145165:role/s19-suhas-1792170522-1fd1725393025b03fcabdd362c" -> null
+      - assume_role_policy    = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "sts:AssumeRole"
+                      - Effect    = "Allow"
+                      - Principal = {
+                          - Service = "ec2.amazonaws.com"
+                        }
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - create_date           = "2026-10-16T17:08:50Z" -> null
+      - force_detach_policies = false -> null
+      - id                    = "s19-suhas-1792170522-1fd1725393025b03fcabdd362c" -> null
+      - managed_policy_arns   = [] -> null
+      - max_session_duration  = 3600 -> null
+      - name                  = "s19-suhas-1792170522-1fd1725393025b03fcabdd362c" -> null
+      - name_prefix           = "s19-suhas-1792170522-" -> null
+      - path                  = "/" -> null
+      - tags                  = {} -> null
+      - tags_all              = {} -> null
+      - unique_id             = "AROAZUVTQAPGXL4HVIPBB" -> null
+        # (2 unchanged attributes hidden)
+
+      - inline_policy {
+          - name   = "read-site-artifacts" -> null
+          - policy = jsonencode(
+                {
+                  - Statement = [
+                      - {
+                          - Action   = [
+                              - "s3:GetObject",
+                            ]
+                          - Effect   = "Allow"
+                          - Resource = "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/*"
+                        },
+                    ]
+                  - Version   = "2012-10-17"
+                }
+            ) -> null
+        }
+    }
+
+  # aws_iam_role_policy.artifact_read will be destroyed
+  - resource "aws_iam_role_policy" "artifact_read" {
+      - id          = "s19-suhas-1792170522-1fd1725393025b03fcabdd362c:read-site-artifacts" -> null
+      - name        = "read-site-artifacts" -> null
+      - policy      = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action   = [
+                          - "s3:GetObject",
+                        ]
+                      - Effect   = "Allow"
+                      - Resource = "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/*"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - role        = "s19-suhas-1792170522-1fd1725393025b03fcabdd362c" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_instance.web will be destroyed
+  - resource "aws_instance" "web" {
+      - ami                                  = "ami-0cdfc1e40cc5ca08a" -> null
+      - arn                                  = "arn:aws:ec2:ap-south-1:662875145165:instance/i-0c249f7e6fece35b3" -> null
+      - associate_public_ip_address          = true -> null
+      - availability_zone                    = "ap-south-1a" -> null
+      - disable_api_stop                     = false -> null
+      - disable_api_termination              = false -> null
+      - ebs_optimized                        = false -> null
+      - force_destroy                        = false -> null
+      - get_password_data                    = false -> null
+      - hibernation                          = false -> null
+      - iam_instance_profile                 = "s19-suhas-1792170522-4e930f1cf48d643a29acaf38f8" -> null
+      - id                                   = "i-0c249f7e6fece35b3" -> null
+      - instance_initiated_shutdown_behavior = "stop" -> null
+      - instance_state                       = "running" -> null
+      - instance_type                        = "t3.micro" -> null
+      - ipv6_address_count                   = 0 -> null
+      - ipv6_addresses                       = [] -> null
+      - monitoring                           = false -> null
+      - placement_partition_number           = 0 -> null
+      - primary_network_interface_id         = "eni-0406bc6def2892bf6" -> null
+      - private_dns                          = "ip-10-20-1-164.ap-south-1.compute.internal" -> null
+      - private_ip                           = "10.20.1.164" -> null
+      - public_dns                           = "ec2-13-232-163-105.ap-south-1.compute.amazonaws.com" -> null
+      - public_ip                            = "13.232.163.105" -> null
+      - region                               = "ap-south-1" -> null
+      - secondary_private_ips                = [] -> null
+      - security_groups                      = [] -> null
+      - source_dest_check                    = true -> null
+      - subnet_id                            = "subnet-0893da614b70f02b9" -> null
+      - tags                                 = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "s19-suhas-1792170522-web"
+          - "Session"   = "19"
+        } -> null
+      - tags_all                             = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "s19-suhas-1792170522-web"
+          - "Session"   = "19"
+        } -> null
+      - tenancy                              = "default" -> null
+      - user_data                            = <<-EOT
+            #!/bin/bash
+            set -euxo pipefail
+            dnf install -y nginx
+            aws s3 cp s3://s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/index.html /usr/share/nginx/html/index.html --region ap-south-1
+            chmod 644 /usr/share/nginx/html/index.html
+            systemctl enable --now nginx
+        EOT -> null
+      - user_data_replace_on_change          = true -> null
+      - vpc_security_group_ids               = [
+          - "sg-018f592dbc5d3d74b",
+        ] -> null
+        # (8 unchanged attributes hidden)
+
+      - capacity_reservation_specification {
+          - capacity_reservation_preference = "open" -> null
+        }
+
+      - cpu_options {
+          - core_count            = 1 -> null
+          - threads_per_core      = 2 -> null
+            # (2 unchanged attributes hidden)
+        }
+
+      - credit_specification {
+          - cpu_credits = "unlimited" -> null
+        }
+
+      - enclave_options {
+          - enabled = false -> null
+        }
+
+      - maintenance_options {
+          - auto_recovery = "default" -> null
+        }
+
+      - metadata_options {
+          - http_endpoint               = "enabled" -> null
+          - http_protocol_ipv6          = "disabled" -> null
+          - http_put_response_hop_limit = 2 -> null
+          - http_tokens                 = "required" -> null
+          - instance_metadata_tags      = "disabled" -> null
+        }
+
+      - primary_network_interface {
+          - delete_on_termination = true -> null
+          - network_interface_id  = "eni-0406bc6def2892bf6" -> null
+        }
+
+      - private_dns_name_options {
+          - enable_resource_name_dns_a_record    = false -> null
+          - enable_resource_name_dns_aaaa_record = false -> null
+          - hostname_type                        = "ip-name" -> null
+        }
+
+      - root_block_device {
+          - delete_on_termination = true -> null
+          - device_name           = "/dev/xvda" -> null
+          - encrypted             = true -> null
+          - iops                  = 3000 -> null
+          - kms_key_id            = "arn:aws:kms:ap-south-1:662875145165:key/86689950-b95e-471c-8abd-5610e32160e1" -> null
+          - tags                  = {} -> null
+          - tags_all              = {} -> null
+          - throughput            = 125 -> null
+          - volume_id             = "vol-076c9999c0edbe808" -> null
+          - volume_size           = 8 -> null
+          - volume_type           = "gp3" -> null
+        }
+    }
+
+  # aws_internet_gateway.main will be destroyed
+  - resource "aws_internet_gateway" "main" {
+      - arn      = "arn:aws:ec2:ap-south-1:662875145165:internet-gateway/igw-0f1e27adbde63de2f" -> null
+      - id       = "igw-0f1e27adbde63de2f" -> null
+      - owner_id = "662875145165" -> null
+      - region   = "ap-south-1" -> null
+      - tags     = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-igw"
+          - "Session"   = "19"
+        } -> null
+      - tags_all = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-igw"
+          - "Session"   = "19"
+        } -> null
+      - vpc_id   = "vpc-0e830c64665d7d388" -> null
+    }
+
+  # aws_route_table.public will be destroyed
+  - resource "aws_route_table" "public" {
+      - arn              = "arn:aws:ec2:ap-south-1:662875145165:route-table/rtb-000bea29ecabfbc4d" -> null
+      - id               = "rtb-000bea29ecabfbc4d" -> null
+      - owner_id         = "662875145165" -> null
+      - propagating_vgws = [] -> null
+      - region           = "ap-south-1" -> null
+      - route            = [
+          - {
+              - cidr_block                 = "0.0.0.0/0"
+              - gateway_id                 = "igw-0f1e27adbde63de2f"
+                # (12 unchanged attributes hidden)
+            },
+        ] -> null
+      - tags             = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-public-rt"
+          - "Session"   = "19"
+        } -> null
+      - tags_all         = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-public-rt"
+          - "Session"   = "19"
+        } -> null
+      - vpc_id           = "vpc-0e830c64665d7d388" -> null
+    }
+
+  # aws_route_table_association.public will be destroyed
+  - resource "aws_route_table_association" "public" {
+      - id             = "rtbassoc-013d0679b08a282b2" -> null
+      - region         = "ap-south-1" -> null
+      - route_table_id = "rtb-000bea29ecabfbc4d" -> null
+      - subnet_id      = "subnet-0893da614b70f02b9" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_s3_bucket.artifacts will be destroyed
+  - resource "aws_s3_bucket" "artifacts" {
+      - arn                         = "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - bucket                      = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - bucket_domain_name          = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282.s3.amazonaws.com" -> null
+      - bucket_namespace            = "global" -> null
+      - bucket_prefix               = "s19-suhas-1792170522-" -> null
+      - bucket_region               = "ap-south-1" -> null
+      - bucket_regional_domain_name = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282.s3.ap-south-1.amazonaws.com" -> null
+      - force_destroy               = true -> null
+      - hosted_zone_id              = "Z11RGJOFQNVJUP" -> null
+      - id                          = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - object_lock_enabled         = false -> null
+      - policy                      = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "s3:*"
+                      - Condition = {
+                          - Bool = {
+                              - "aws:SecureTransport" = "false"
+                            }
+                        }
+                      - Effect    = "Deny"
+                      - Principal = "*"
+                      - Resource  = [
+                          - "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282",
+                          - "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282/*",
+                        ]
+                      - Sid       = "DenyInsecureTransport"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - region                      = "ap-south-1" -> null
+      - request_payer               = "BucketOwner" -> null
+      - tags                        = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "s19-suhas-1792170522-artifacts"
+          - "Session"   = "19"
+        } -> null
+      - tags_all                    = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "s19-suhas-1792170522-artifacts"
+          - "Session"   = "19"
+        } -> null
+        # (1 unchanged attribute hidden)
+
+      - grant {
+          - id          = "f23ab82175c93fce641aa25ffa0e09058fddef697f02ec1dea9f0fe792e4c5a9" -> null
+          - permissions = [
+              - "FULL_CONTROL",
+            ] -> null
+          - type        = "CanonicalUser" -> null
+            # (1 unchanged attribute hidden)
+        }
+
+      - server_side_encryption_configuration {
+          - rule {
+              - bucket_key_enabled = false -> null
+
+              - apply_server_side_encryption_by_default {
+                  - sse_algorithm     = "AES256" -> null
+                    # (1 unchanged attribute hidden)
+                }
+            }
+        }
+
+      - versioning {
+          - enabled    = true -> null
+          - mfa_delete = false -> null
+        }
+    }
+
+  # aws_s3_bucket_ownership_controls.artifacts will be destroyed
+  - resource "aws_s3_bucket_ownership_controls" "artifacts" {
+      - bucket = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - id     = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - region = "ap-south-1" -> null
+
+      - rule {
+          - object_ownership = "BucketOwnerEnforced" -> null
+        }
+    }
+
+  # aws_s3_bucket_policy.tls_only will be destroyed
+  - resource "aws_s3_bucket_policy" "tls_only" {
+      - bucket = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - id     = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - policy = jsonencode(
+            {
+              - Statement = [
+                  - {
+                      - Action    = "s3:*"
+                      - Condition = {
+                          - Bool = {
+                              - "aws:SecureTransport" = "false"
+                            }
+                        }
+                      - Effect    = "Deny"
+                      - Principal = "*"
+                      - Resource  = [
+                          - "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282",
+                          - "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282/*",
+                        ]
+                      - Sid       = "DenyInsecureTransport"
+                    },
+                ]
+              - Version   = "2012-10-17"
+            }
+        ) -> null
+      - region = "ap-south-1" -> null
+    }
+
+  # aws_s3_bucket_public_access_block.artifacts will be destroyed
+  - resource "aws_s3_bucket_public_access_block" "artifacts" {
+      - block_public_acls       = true -> null
+      - block_public_policy     = true -> null
+      - bucket                  = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - id                      = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - ignore_public_acls      = true -> null
+      - region                  = "ap-south-1" -> null
+      - restrict_public_buckets = true -> null
+    }
+
+  # aws_s3_bucket_server_side_encryption_configuration.artifacts will be destroyed
+  - resource "aws_s3_bucket_server_side_encryption_configuration" "artifacts" {
+      - bucket                = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - id                    = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - region                = "ap-south-1" -> null
+        # (1 unchanged attribute hidden)
+
+      - rule {
+          - blocked_encryption_types = [
+              - "SSE-C",
+            ] -> null
+          - bucket_key_enabled       = false -> null
+
+          - apply_server_side_encryption_by_default {
+              - sse_algorithm     = "AES256" -> null
+                # (1 unchanged attribute hidden)
+            }
+        }
+    }
+
+  # aws_s3_bucket_versioning.artifacts will be destroyed
+  - resource "aws_s3_bucket_versioning" "artifacts" {
+      - bucket                = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - id                    = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - region                = "ap-south-1" -> null
+        # (1 unchanged attribute hidden)
+
+      - versioning_configuration {
+          - mfa_delete = "Disabled" -> null
+          - status     = "Enabled" -> null
+        }
+    }
+
+  # aws_s3_object.homepage will be destroyed
+  - resource "aws_s3_object" "homepage" {
+      - arn                           = "arn:aws:s3:::s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/index.html" -> null
+      - bucket                        = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+      - bucket_key_enabled            = false -> null
+      - content_type                  = "text/html" -> null
+      - etag                          = "7c73f039d6bdc1682332970e42e2a364" -> null
+      - force_destroy                 = false -> null
+      - id                            = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/index.html" -> null
+      - key                           = "site/index.html" -> null
+      - metadata                      = {} -> null
+      - region                        = "ap-south-1" -> null
+      - server_side_encryption        = "AES256" -> null
+      - source                        = "./site/index.html" -> null
+      - source_hash                   = "7c73f039d6bdc1682332970e42e2a364" -> null
+      - storage_class                 = "STANDARD" -> null
+      - tags                          = {} -> null
+      - tags_all                      = {} -> null
+      - version_id                    = "sNURxv3sCx3omU5MhsOiLKXmP4e_E2Gz" -> null
+        # (13 unchanged attributes hidden)
+    }
+
+  # aws_security_group.web will be destroyed
+  - resource "aws_security_group" "web" {
+      - arn                    = "arn:aws:ec2:ap-south-1:662875145165:security-group/sg-018f592dbc5d3d74b" -> null
+      - description            = "Allow HTTP for the Session 19 web server" -> null
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "Allow outbound IPv4"
+              - from_port        = 0
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "-1"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 0
+            },
+        ] -> null
+      - id                     = "sg-018f592dbc5d3d74b" -> null
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description      = "HTTP"
+              - from_port        = 80
+              - ipv6_cidr_blocks = []
+              - prefix_list_ids  = []
+              - protocol         = "tcp"
+              - security_groups  = []
+              - self             = false
+              - to_port          = 80
+            },
+        ] -> null
+      - name                   = "session19-mini-web-sg" -> null
+      - owner_id               = "662875145165" -> null
+      - region                 = "ap-south-1" -> null
+      - revoke_rules_on_delete = false -> null
+      - tags                   = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-web-sg"
+          - "Session"   = "19"
+        } -> null
+      - tags_all               = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-web-sg"
+          - "Session"   = "19"
+        } -> null
+      - vpc_id                 = "vpc-0e830c64665d7d388" -> null
+        # (1 unchanged attribute hidden)
+    }
+
+  # aws_subnet.public will be destroyed
+  - resource "aws_subnet" "public" {
+      - arn                                            = "arn:aws:ec2:ap-south-1:662875145165:subnet/subnet-0893da614b70f02b9" -> null
+      - assign_ipv6_address_on_creation                = false -> null
+      - availability_zone                              = "ap-south-1a" -> null
+      - availability_zone_id                           = "aps1-az1" -> null
+      - cidr_block                                     = "10.20.1.0/24" -> null
+      - enable_dns64                                   = false -> null
+      - enable_lni_at_device_index                     = 0 -> null
+      - enable_resource_name_dns_a_record_on_launch    = false -> null
+      - enable_resource_name_dns_aaaa_record_on_launch = false -> null
+      - id                                             = "subnet-0893da614b70f02b9" -> null
+      - ipv6_native                                    = false -> null
+      - map_customer_owned_ip_on_launch                = false -> null
+      - map_public_ip_on_launch                        = true -> null
+      - owner_id                                       = "662875145165" -> null
+      - private_dns_hostname_type_on_launch            = "ip-name" -> null
+      - region                                         = "ap-south-1" -> null
+      - tags                                           = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-public-subnet"
+          - "Session"   = "19"
+        } -> null
+      - tags_all                                       = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-public-subnet"
+          - "Session"   = "19"
+        } -> null
+      - vpc_id                                         = "vpc-0e830c64665d7d388" -> null
+        # (4 unchanged attributes hidden)
+    }
+
+  # aws_vpc.main will be destroyed
+  - resource "aws_vpc" "main" {
+      - arn                                  = "arn:aws:ec2:ap-south-1:662875145165:vpc/vpc-0e830c64665d7d388" -> null
+      - assign_generated_ipv6_cidr_block     = false -> null
+      - cidr_block                           = "10.20.0.0/16" -> null
+      - default_network_acl_id               = "acl-04e6db628546c116f" -> null
+      - default_route_table_id               = "rtb-0a8f5764f1c050ff6" -> null
+      - default_security_group_id            = "sg-044a51143c01da94c" -> null
+      - dhcp_options_id                      = "dopt-038df586b0eb569ff" -> null
+      - enable_dns_hostnames                 = true -> null
+      - enable_dns_support                   = true -> null
+      - enable_network_address_usage_metrics = false -> null
+      - id                                   = "vpc-0e830c64665d7d388" -> null
+      - instance_tenancy                     = "default" -> null
+      - ipv6_netmask_length                  = 0 -> null
+      - main_route_table_id                  = "rtb-0a8f5764f1c050ff6" -> null
+      - owner_id                             = "662875145165" -> null
+      - region                               = "ap-south-1" -> null
+      - tags                                 = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-vpc"
+          - "Session"   = "19"
+        } -> null
+      - tags_all                             = {
+          - "ManagedBy" = "Terraform"
+          - "Name"      = "session19-mini-vpc"
+          - "Session"   = "19"
+        } -> null
+        # (4 unchanged attributes hidden)
+    }
+
+Plan: 0 to add, 0 to change, 17 to destroy.
+
+Changes to Outputs:
+  - artifact_bucket   = "s19-suhas-1792170522-2978acab6f6418b0bcac97e282" -> null
+  - instance_id       = "i-0c249f7e6fece35b3" -> null
+  - security_group_id = "sg-018f592dbc5d3d74b" -> null
+  - subnet_id         = "subnet-0893da614b70f02b9" -> null
+  - vpc_cidr          = "10.20.0.0/16" -> null
+  - vpc_id            = "vpc-0e830c64665d7d388" -> null
+  - web_url           = "http://13.232.163.105" -> null
+aws_s3_bucket_public_access_block.artifacts: Destroying... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_s3_bucket_policy.tls_only: Destroying... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_instance.web: Destroying... [id=i-0c249f7e6fece35b3]
+aws_s3_bucket_policy.tls_only: Destruction complete after 1s
+aws_s3_bucket_public_access_block.artifacts: Destruction complete after 2s
+aws_instance.web: Still destroying... [id=i-0c249f7e6fece35b3, 00m10s elapsed]
+aws_instance.web: Still destroying... [id=i-0c249f7e6fece35b3, 00m20s elapsed]
+aws_instance.web: Still destroying... [id=i-0c249f7e6fece35b3, 00m30s elapsed]
+aws_instance.web: Destruction complete after 30s
+aws_iam_role_policy.artifact_read: Destroying... [id=s19-suhas-1792170522-1fd1725393025b03fcabdd362c:read-site-artifacts]
+aws_route_table_association.public: Destroying... [id=rtbassoc-013d0679b08a282b2]
+aws_iam_instance_profile.web: Destroying... [id=s19-suhas-1792170522-4e930f1cf48d643a29acaf38f8]
+aws_s3_object.homepage: Destroying... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282/site/index.html]
+aws_security_group.web: Destroying... [id=sg-018f592dbc5d3d74b]
+aws_route_table_association.public: Destruction complete after 1s
+aws_s3_object.homepage: Destruction complete after 1s
+aws_s3_bucket_versioning.artifacts: Destroying... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_s3_bucket_server_side_encryption_configuration.artifacts: Destroying... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_s3_bucket_ownership_controls.artifacts: Destroying... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_subnet.public: Destroying... [id=subnet-0893da614b70f02b9]
+aws_route_table.public: Destroying... [id=rtb-000bea29ecabfbc4d]
+aws_security_group.web: Destruction complete after 1s
+aws_s3_bucket_versioning.artifacts: Destruction complete after 0s
+aws_subnet.public: Destruction complete after 0s
+aws_s3_bucket_ownership_controls.artifacts: Destruction complete after 0s
+aws_s3_bucket_server_side_encryption_configuration.artifacts: Destruction complete after 1s
+aws_iam_role_policy.artifact_read: Destruction complete after 2s
+aws_s3_bucket.artifacts: Destroying... [id=s19-suhas-1792170522-2978acab6f6418b0bcac97e282]
+aws_s3_bucket.artifacts: Destruction complete after 1s
+aws_route_table.public: Destruction complete after 2s
+aws_internet_gateway.main: Destroying... [id=igw-0f1e27adbde63de2f]
+aws_iam_instance_profile.web: Destruction complete after 3s
+aws_iam_role.web: Destroying... [id=s19-suhas-1792170522-1fd1725393025b03fcabdd362c]
+aws_internet_gateway.main: Destruction complete after 0s
+aws_vpc.main: Destroying... [id=vpc-0e830c64665d7d388]
+aws_vpc.main: Destruction complete after 1s
+aws_iam_role.web: Destruction complete after 1s
+
+Destroy complete! Resources: 17 destroyed.
+[exit 0]
+
+$ terraform state list
+
+[exit 0]
+
+Cleanup verified: the Terraform project tracks no remaining managed resources.

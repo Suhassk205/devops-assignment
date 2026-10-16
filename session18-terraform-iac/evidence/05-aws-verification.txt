@@ -1,0 +1,93 @@
+Session 18: Terraform state, outputs, and AWS verification
+Actual command transcript; 2026-10-16T22:38:31.723451+05:30
+Context: AWS account 662875145165; region ap-south-1; real Terraform execution
+
+$ terraform show -no-color
+# aws_s3_bucket.suhas_bucket:
+resource "aws_s3_bucket" "suhas_bucket" {
+    acceleration_status         = null
+    arn                         = "arn:aws:s3:::suhas-s18-662875145165-1792170502"
+    bucket                      = "suhas-s18-662875145165-1792170502"
+    bucket_domain_name          = "suhas-s18-662875145165-1792170502.s3.amazonaws.com"
+    bucket_namespace            = "global"
+    bucket_prefix               = null
+    bucket_region               = "ap-south-1"
+    bucket_regional_domain_name = "suhas-s18-662875145165-1792170502.s3.ap-south-1.amazonaws.com"
+    force_destroy               = true
+    hosted_zone_id              = "Z11RGJOFQNVJUP"
+    id                          = "suhas-s18-662875145165-1792170502"
+    object_lock_enabled         = false
+    policy                      = null
+    region                      = "ap-south-1"
+    request_payer               = "BucketOwner"
+    tags                        = {
+        "Environment" = "dev"
+        "ManagedBy"   = "Terraform"
+        "Name"        = "suhas-s18-662875145165-1792170502"
+        "Project"     = "Session18"
+    }
+    tags_all                    = {
+        "Environment" = "dev"
+        "ManagedBy"   = "Terraform"
+        "Name"        = "suhas-s18-662875145165-1792170502"
+        "Project"     = "Session18"
+    }
+
+    grant {
+        id          = "f23ab82175c93fce641aa25ffa0e09058fddef697f02ec1dea9f0fe792e4c5a9"
+        permissions = [
+            "FULL_CONTROL",
+        ]
+        type        = "CanonicalUser"
+        uri         = null
+    }
+
+    server_side_encryption_configuration {
+        rule {
+            bucket_key_enabled = false
+
+            apply_server_side_encryption_by_default {
+                kms_master_key_id = null
+                sse_algorithm     = "AES256"
+            }
+        }
+    }
+
+    versioning {
+        enabled    = false
+        mfa_delete = false
+    }
+}
+
+
+Outputs:
+
+bucket_arn = "arn:aws:s3:::suhas-s18-662875145165-1792170502"
+bucket_name = "suhas-s18-662875145165-1792170502"
+bucket_region = "ap-south-1"
+[exit 0]
+
+$ terraform output -no-color
+bucket_arn = "arn:aws:s3:::suhas-s18-662875145165-1792170502"
+bucket_name = "suhas-s18-662875145165-1792170502"
+bucket_region = "ap-south-1"
+[exit 0]
+
+$ terraform state list
+aws_s3_bucket.suhas_bucket
+[exit 0]
+
+$ aws s3api head-bucket --bucket suhas-s18-662875145165-1792170502 --region ap-south-1
+{
+    "BucketArn": "arn:aws:s3:::suhas-s18-662875145165-1792170502",
+    "BucketRegion": "ap-south-1",
+    "AccessPointAlias": false
+}
+[exit 0]
+
+$ aws s3api get-bucket-location --bucket suhas-s18-662875145165-1792170502 --region ap-south-1
+{
+    "LocationConstraint": "ap-south-1"
+}
+[exit 0]
+

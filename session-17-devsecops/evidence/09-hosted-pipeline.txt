@@ -1,0 +1,110 @@
+Session 17: successful GitHub Actions pipeline
+Actual command transcript; 2026-10-16T22:08:57.749835+05:30
+Context: GitHub Actions run 38932434440
+
+$ gh run view 38932434440 --repo Suhassk205/devops-assignment
+
+✓ main Session 17 DevSecOps · 38932434440
+Triggered via push about 8 minutes ago
+
+JOBS
+✓ Build and unit tests in 16s (ID 117079509590)
+✓ SAST - Semgrep in 27s (ID 117079648601)
+✓ SCA - pip-audit in 21s (ID 117079648680)
+✓ Secret scanning - Gitleaks in 10s (ID 117079648711)
+✓ Docker build and Trivy security gate in 48s (ID 117079875787)
+✓ Publish the scanned image to GHCR in 20s (ID 117080242905)
+✓ Kubernetes rollout and HTTP verification in 1m25s (ID 117080406512)
+
+ANNOTATIONS
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Build and unit tests: .github#2
+
+! The process '/usr/bin/git' failed with exit code 128
+Build and unit tests: .github#10
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Build and unit tests: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+SAST - Semgrep: .github#2
+
+! The process '/usr/bin/git' failed with exit code 128
+SAST - Semgrep: .github#10
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+SAST - Semgrep: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+SCA - pip-audit: .github#2
+
+! The process '/usr/bin/git' failed with exit code 128
+SCA - pip-audit: .github#10
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+SCA - pip-audit: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Secret scanning - Gitleaks: .github#2
+
+! The process '/usr/bin/git' failed with exit code 128
+Secret scanning - Gitleaks: .github#10
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Secret scanning - Gitleaks: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/setup-python@v5, actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Docker build and Trivy security gate: .github#4
+
+! The process '/usr/bin/git' failed with exit code 128
+Docker build and Trivy security gate: .github#10
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Docker build and Trivy security gate: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/download-artifact@v4, docker/login-action@v3. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Publish the scanned image to GHCR: .github#2
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Publish the scanned image to GHCR: .github#1
+
+! Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/checkout@v4, actions/upload-artifact@v4, docker/login-action@v3, helm/kind-action@v1.12.0. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Kubernetes rollout and HTTP verification: .github#2
+
+! The process '/usr/bin/git' failed with exit code 128
+Kubernetes rollout and HTTP verification: .github#10
+
+- "The ubuntu-latest label will migrate to Ubuntu 26 beginning October 19, 2026. For more information, see https://github.com/actions/runner-images/issues/14748"
+Kubernetes rollout and HTTP verification: .github#1
+
+
+ARTIFACTS
+secret-scan-report
+sca-report
+scanned-image
+test-reports
+sast-report
+deployment-evidence
+image-scan-report
+
+For more information about a job, try: gh run view --job=<job-id>
+View this run on GitHub: https://github.com/Suhassk205/devops-assignment/actions/runs/38932434440
+[exit 0]
+
+Session 17: hosted run summary
+Actual command transcript; 2026-10-16T22:34:17.406067+05:30
+Context: GitHub Actions run 38932434440
+
+$ gh run view 38932434440 --repo Suhassk205/devops-assignment --json status,conclusion,url,headSha,jobs --jq '.url, .headSha, .conclusion, (.jobs[] | [.name,.conclusion] | @tsv)'
+https://github.com/Suhassk205/devops-assignment/actions/runs/38932434440
+409b4a7b10fcf19095cd8f6b3825f3d50b4e4631
+success
+Build and unit tests	success
+SAST - Semgrep	success
+SCA - pip-audit	success
+Secret scanning - Gitleaks	success
+Docker build and Trivy security gate	success
+Publish the scanned image to GHCR	success
+Kubernetes rollout and HTTP verification	success
+[exit 0]
+

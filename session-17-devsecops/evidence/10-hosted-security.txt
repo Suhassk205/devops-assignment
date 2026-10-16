@@ -1,0 +1,36 @@
+Session 17: hosted test and security reports
+Actual command transcript; 2026-10-16T22:12:25.703119+05:30
+Context: downloaded artifacts from GitHub Actions run 38932434440
+
+$ python3 scripts/summarize_session17_hosted.py
+GitHub Actions run: https://github.com/Suhassk205/devops-assignment/actions/runs/38932434440
+Commit: 409b4a7b10fcf19095cd8f6b3825f3d50b4e4631
+Jobs: 7 successful
+  PASS: Build and unit tests
+  PASS: SAST - Semgrep
+  PASS: SCA - pip-audit
+  PASS: Secret scanning - Gitleaks
+  PASS: Docker build and Trivy security gate
+  PASS: Publish the scanned image to GHCR
+  PASS: Kubernetes rollout and HTTP verification
+
+Unit tests: 8 passed
+Semgrep: 0 findings, 0 errors
+pip-audit: 8 runtime dependencies, 0 vulnerabilities
+Gitleaks: 0 findings
+Trivy: 0 HIGH/CRITICAL vulnerabilities
+Scanned image: ghcr.io/suhassk205/devops-assignment/session17:409b4a7b10fcf19095cd8f6b3825f3d50b4e4631
+health.json: healthy
+status.json: running
+
+Kubernetes Pods:
+NAME                                READY   STATUS    RESTARTS   AGE   IP           NODE                          NOMINATED NODE   READINESS GATES
+session17-python-85797fcfb5-4kdhx   1/1     Running   0          14s   10.244.0.6   chart-testing-control-plane   <none>           <none>
+session17-python-85797fcfb5-d42zs   1/1     Running   0          14s   10.244.0.5   chart-testing-control-plane   <none>           <none>
+
+Kubernetes Service:
+NAME               TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)        AGE
+kubernetes         ClusterIP   10.96.0.1       <none>        443/TCP        43s
+session17-python   NodePort    10.96.215.249   <none>        80:30001/TCP   14s
+[exit 0]
+
