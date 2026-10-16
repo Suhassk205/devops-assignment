@@ -1,0 +1,1073 @@
+Test Application	Set up job	﻿2026-10-16T18:05:12.0385973Z Current runner version: '2.337.0'
+Test Application	Set up job	2026-10-16T18:05:12.0413608Z ##[group]Runner Image Provisioner
+Test Application	Set up job	2026-10-16T18:05:12.0414588Z Hosted Compute Agent
+Test Application	Set up job	2026-10-16T18:05:12.0415320Z Version: 20261012.601
+Test Application	Set up job	2026-10-16T18:05:12.0416041Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Test Application	Set up job	2026-10-16T18:05:12.0416905Z Build Date: 2026-10-12T17:48:21Z
+Test Application	Set up job	2026-10-16T18:05:12.0417618Z Worker ID: {1f81350b-08e0-44f6-b429-6a0e909e325b}
+Test Application	Set up job	2026-10-16T18:05:12.0418357Z Region: westus
+Test Application	Set up job	2026-10-16T18:05:12.0418973Z Cloud: Azure
+Test Application	Set up job	2026-10-16T18:05:12.0419546Z ##[endgroup]
+Test Application	Set up job	2026-10-16T18:05:12.0421251Z ##[group]Operating System
+Test Application	Set up job	2026-10-16T18:05:12.0422055Z Ubuntu
+Test Application	Set up job	2026-10-16T18:05:12.0422662Z 24.04.5
+Test Application	Set up job	2026-10-16T18:05:12.0423597Z LTS
+Test Application	Set up job	2026-10-16T18:05:12.0424247Z ##[endgroup]
+Test Application	Set up job	2026-10-16T18:05:12.0424846Z ##[group]Runner Image
+Test Application	Set up job	2026-10-16T18:05:12.0425564Z Image: ubuntu-24.04
+Test Application	Set up job	2026-10-16T18:05:12.0426182Z Version: 20261012.334.1
+Test Application	Set up job	2026-10-16T18:05:12.0427317Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+Test Application	Set up job	2026-10-16T18:05:12.0429155Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+Test Application	Set up job	2026-10-16T18:05:12.0430250Z ##[endgroup]
+Test Application	Set up job	2026-10-16T18:05:12.0431995Z ##[group]GITHUB_TOKEN Permissions
+Test Application	Set up job	2026-10-16T18:05:12.0434756Z Contents: read
+Test Application	Set up job	2026-10-16T18:05:12.0435445Z Metadata: read
+Test Application	Set up job	2026-10-16T18:05:12.0436412Z ##[endgroup]
+Test Application	Set up job	2026-10-16T18:05:12.0438662Z Secret source: Actions
+Test Application	Set up job	2026-10-16T18:05:12.0439792Z Cache mode: write
+Test Application	Set up job	2026-10-16T18:05:12.0440581Z Prepare workflow directory
+Test Application	Set up job	2026-10-16T18:05:12.0791538Z Prepare all required actions
+Test Application	Set up job	2026-10-16T18:05:12.0842011Z Getting action download info
+Test Application	Set up job	2026-10-16T18:05:12.4563240Z Download action repository 'actions/checkout@v6' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+Test Application	Set up job	2026-10-16T18:05:12.5665268Z Download action repository 'actions/setup-python@v7' (SHA:5fda3b95a4ea91299a34e894583c3862153e4b97)
+Test Application	Set up job	2026-10-16T18:05:12.6907224Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Test Application	Set up job	2026-10-16T18:05:12.9072573Z Complete job name: Test Application
+Test Application	Checkout source code	﻿2026-10-16T18:05:12.9861606Z ##[group]Run actions/checkout@v6
+Test Application	Checkout source code	2026-10-16T18:05:12.9862531Z with:
+Test Application	Checkout source code	2026-10-16T18:05:12.9863288Z   repository: Suhassk205/demo-devops-cicd
+Test Application	Checkout source code	2026-10-16T18:05:12.9867072Z   token: ***
+Test Application	Checkout source code	2026-10-16T18:05:12.9867514Z   ssh-strict: true
+Test Application	Checkout source code	2026-10-16T18:05:12.9867965Z   ssh-user: git
+Test Application	Checkout source code	2026-10-16T18:05:12.9868420Z   persist-credentials: true
+Test Application	Checkout source code	2026-10-16T18:05:12.9868918Z   clean: true
+Test Application	Checkout source code	2026-10-16T18:05:12.9869372Z   sparse-checkout-cone-mode: true
+Test Application	Checkout source code	2026-10-16T18:05:12.9869899Z   fetch-depth: 1
+Test Application	Checkout source code	2026-10-16T18:05:12.9870347Z   fetch-tags: false
+Test Application	Checkout source code	2026-10-16T18:05:12.9870801Z   show-progress: true
+Test Application	Checkout source code	2026-10-16T18:05:12.9871264Z   lfs: false
+Test Application	Checkout source code	2026-10-16T18:05:12.9871680Z   submodules: false
+Test Application	Checkout source code	2026-10-16T18:05:12.9872146Z   set-safe-directory: true
+Test Application	Checkout source code	2026-10-16T18:05:12.9872656Z   allow-unsafe-pr-checkout: false
+Test Application	Checkout source code	2026-10-16T18:05:12.9873691Z ##[endgroup]
+Test Application	Checkout source code	2026-10-16T18:05:13.0970710Z Syncing repository: Suhassk205/demo-devops-cicd
+Test Application	Checkout source code	2026-10-16T18:05:13.0972862Z ##[group]Getting Git version info
+Test Application	Checkout source code	2026-10-16T18:05:13.0974515Z Working directory is '/home/runner/work/demo-devops-cicd/demo-devops-cicd'
+Test Application	Checkout source code	2026-10-16T18:05:13.0976323Z [command]/usr/bin/git version
+Test Application	Checkout source code	2026-10-16T18:05:13.1071099Z git version 2.55.0
+Test Application	Checkout source code	2026-10-16T18:05:13.1106752Z ##[endgroup]
+Test Application	Checkout source code	2026-10-16T18:05:13.1145104Z Temporarily overriding HOME='/home/runner/work/_temp/064a98f0-ad65-4c39-8cc0-6108e3ae1a35' before making global git config changes
+Test Application	Checkout source code	2026-10-16T18:05:13.1157348Z Adding repository directory to the temporary git global config as a safe directory
+Test Application	Checkout source code	2026-10-16T18:05:13.1160011Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Test Application	Checkout source code	2026-10-16T18:05:13.1206204Z Deleting the contents of '/home/runner/work/demo-devops-cicd/demo-devops-cicd'
+Test Application	Checkout source code	2026-10-16T18:05:13.1213190Z ##[group]Determining repository object format
+Test Application	Checkout source code	2026-10-16T18:05:13.1229763Z ##[endgroup]
+Test Application	Checkout source code	2026-10-16T18:05:13.1230962Z ##[group]Initializing the repository
+Test Application	Checkout source code	2026-10-16T18:05:13.1232215Z [command]/usr/bin/git init /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Test Application	Checkout source code	2026-10-16T18:05:13.1348215Z hint: Using 'master' as the name for the initial branch. This default branch name
+Test Application	Checkout source code	2026-10-16T18:05:13.1350688Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Test Application	Checkout source code	2026-10-16T18:05:13.1352119Z hint: to use in all of your new repositories, which will suppress this warning,
+Test Application	Checkout source code	2026-10-16T18:05:13.1353915Z hint: call:
+Test Application	Checkout source code	2026-10-16T18:05:13.1354577Z hint:
+Test Application	Checkout source code	2026-10-16T18:05:13.1355579Z hint: 	git config --global init.defaultBranch <name>
+Test Application	Checkout source code	2026-10-16T18:05:13.1357104Z hint:
+Test Application	Checkout source code	2026-10-16T18:05:13.1358212Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Test Application	Checkout source code	2026-10-16T18:05:13.1360247Z hint: 'development'. The just-created branch can be renamed via this command:
+Test Application	Checkout source code	2026-10-16T18:05:13.1361923Z hint:
+Test Application	Checkout source code	2026-10-16T18:05:13.1363165Z hint: 	git branch -m <name>
+Test Application	Checkout source code	2026-10-16T18:05:13.1364469Z hint:
+Test Application	Checkout source code	2026-10-16T18:05:13.1366312Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Test Application	Checkout source code	2026-10-16T18:05:13.1368561Z Initialized empty Git repository in /home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/
+Test Application	Checkout source code	2026-10-16T18:05:13.1375726Z [command]/usr/bin/git remote add origin https://github.com/Suhassk205/demo-devops-cicd
+Test Application	Checkout source code	2026-10-16T18:05:13.1432568Z ##[endgroup]
+Test Application	Checkout source code	2026-10-16T18:05:13.1435052Z ##[group]Disabling automatic garbage collection
+Test Application	Checkout source code	2026-10-16T18:05:13.1440067Z [command]/usr/bin/git config --local gc.auto 0
+Test Application	Checkout source code	2026-10-16T18:05:13.1477446Z ##[endgroup]
+Test Application	Checkout source code	2026-10-16T18:05:13.1479307Z ##[group]Setting up auth
+Test Application	Checkout source code	2026-10-16T18:05:13.1480645Z Removing SSH command configuration
+Test Application	Checkout source code	2026-10-16T18:05:13.1488058Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Test Application	Checkout source code	2026-10-16T18:05:13.1535145Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Test Application	Checkout source code	2026-10-16T18:05:13.1934972Z Removing HTTP extra header
+Test Application	Checkout source code	2026-10-16T18:05:13.1936759Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Test Application	Checkout source code	2026-10-16T18:05:13.1986225Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Test Application	Checkout source code	2026-10-16T18:05:13.2241602Z Removing includeIf entries pointing to credentials config files
+Test Application	Checkout source code	2026-10-16T18:05:13.2250173Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Test Application	Checkout source code	2026-10-16T18:05:13.2291043Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Test Application	Checkout source code	2026-10-16T18:05:13.2533679Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Test Application	Checkout source code	2026-10-16T18:05:13.2579205Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path /home/runner/work/_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config
+Test Application	Checkout source code	2026-10-16T18:05:13.2616259Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config
+Test Application	Checkout source code	2026-10-16T18:05:13.2654282Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config
+Test Application	Checkout source code	2026-10-16T18:05:13.2692099Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config
+Test Application	Checkout source code	2026-10-16T18:05:13.2759250Z ##[endgroup]
+Test Application	Checkout source code	2026-10-16T18:05:13.2760077Z ##[group]Fetching the repository
+Test Application	Checkout source code	2026-10-16T18:05:13.2768231Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +77baf3f426b5a37aab313f067be9643c72859f2d:refs/remotes/origin/main
+Test Application	Checkout source code	2026-10-16T18:05:13.6139288Z From https://github.com/Suhassk205/demo-devops-cicd
+Test Application	Checkout source code	2026-10-16T18:05:13.6141219Z  * [new ref]         77baf3f426b5a37aab313f067be9643c72859f2d -> origin/main
+Test Application	Checkout source code	2026-10-16T18:05:13.6151959Z [command]/usr/bin/git branch --list --remote origin/main
+Test Application	Checkout source code	2026-10-16T18:05:13.6182618Z   origin/main
+Test Application	Checkout source code	2026-10-16T18:05:13.6194637Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+Test Application	Checkout source code	2026-10-16T18:05:13.6222092Z 77baf3f426b5a37aab313f067be9643c72859f2d
+Test Application	Checkout source code	2026-10-16T18:05:13.6227432Z ##[endgroup]
+Test Application	Checkout source code	2026-10-16T18:05:13.6228626Z ##[group]Determining the checkout info
+Test Application	Checkout source code	2026-10-16T18:05:13.6230043Z ##[endgroup]
+Test Application	Checkout source code	2026-10-16T18:05:13.6233396Z [command]/usr/bin/git sparse-checkout disable
+Test Application	Checkout source code	2026-10-16T18:05:13.6286951Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Test Application	Checkout source code	2026-10-16T18:05:13.6318281Z ##[group]Checking out the ref
+Test Application	Checkout source code	2026-10-16T18:05:13.6322477Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Test Application	Checkout source code	2026-10-16T18:05:13.6386439Z Switched to a new branch 'main'
+Test Application	Checkout source code	2026-10-16T18:05:13.6392070Z branch 'main' set up to track 'origin/main'.
+Test Application	Checkout source code	2026-10-16T18:05:13.6399542Z ##[endgroup]
+Test Application	Checkout source code	2026-10-16T18:05:13.6444766Z [command]/usr/bin/git log -1 --format=%H
+Test Application	Checkout source code	2026-10-16T18:05:13.6472785Z 77baf3f426b5a37aab313f067be9643c72859f2d
+Test Application	Setup Python	﻿2026-10-16T18:05:13.6846962Z ##[group]Run actions/setup-python@v7
+Test Application	Setup Python	2026-10-16T18:05:13.6847939Z with:
+Test Application	Setup Python	2026-10-16T18:05:13.6848496Z   python-version: 3.12
+Test Application	Setup Python	2026-10-16T18:05:13.6849190Z   check-latest: false
+Test Application	Setup Python	2026-10-16T18:05:13.6858440Z   token: ***
+Test Application	Setup Python	2026-10-16T18:05:13.6859100Z   update-environment: true
+Test Application	Setup Python	2026-10-16T18:05:13.6932207Z   allow-prereleases: false
+Test Application	Setup Python	2026-10-16T18:05:13.6933881Z   freethreaded: false
+Test Application	Setup Python	2026-10-16T18:05:13.6935055Z ##[endgroup]
+Test Application	Setup Python	2026-10-16T18:05:13.8159621Z ##[group]Installed versions
+Test Application	Setup Python	2026-10-16T18:05:13.8242028Z Successfully set up CPython (3.12.15)
+Test Application	Setup Python	2026-10-16T18:05:13.8244783Z ##[endgroup]
+Test Application	Display Python version	﻿2026-10-16T18:05:13.8454005Z ##[group]Run python --version
+Test Application	Display Python version	2026-10-16T18:05:13.8455415Z [36;1mpython --version[0m
+Test Application	Display Python version	2026-10-16T18:05:13.8770482Z shell: /usr/bin/bash -e {0}
+Test Application	Display Python version	2026-10-16T18:05:13.8771550Z env:
+Test Application	Display Python version	2026-10-16T18:05:13.8772493Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Display Python version	2026-10-16T18:05:13.8774603Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+Test Application	Display Python version	2026-10-16T18:05:13.8776440Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Display Python version	2026-10-16T18:05:13.8778039Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Display Python version	2026-10-16T18:05:13.8779632Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Display Python version	2026-10-16T18:05:13.8781194Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+Test Application	Display Python version	2026-10-16T18:05:13.8782285Z ##[endgroup]
+Test Application	Display Python version	2026-10-16T18:05:13.9050375Z Python 3.12.15
+Test Application	Install dependencies	﻿2026-10-16T18:05:13.9123586Z ##[group]Run python -m pip install --upgrade pip
+Test Application	Install dependencies	2026-10-16T18:05:13.9124823Z [36;1mpython -m pip install --upgrade pip[0m
+Test Application	Install dependencies	2026-10-16T18:05:13.9125829Z [36;1mpip install -r requirements.txt[0m
+Test Application	Install dependencies	2026-10-16T18:05:13.9192569Z shell: /usr/bin/bash -e {0}
+Test Application	Install dependencies	2026-10-16T18:05:13.9193465Z env:
+Test Application	Install dependencies	2026-10-16T18:05:13.9194264Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Install dependencies	2026-10-16T18:05:13.9195779Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+Test Application	Install dependencies	2026-10-16T18:05:13.9197282Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Install dependencies	2026-10-16T18:05:13.9198606Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Install dependencies	2026-10-16T18:05:13.9200004Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Install dependencies	2026-10-16T18:05:13.9201364Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+Test Application	Install dependencies	2026-10-16T18:05:13.9202442Z ##[endgroup]
+Test Application	Install dependencies	2026-10-16T18:05:14.6117430Z Requirement already satisfied: pip in /opt/hostedtoolcache/Python/3.12.15/x64/lib/python3.12/site-packages (26.2.1)
+Test Application	Install dependencies	2026-10-16T18:05:15.2354576Z Collecting pytest (from -r requirements.txt (line 1))
+Test Application	Install dependencies	2026-10-16T18:05:15.2872607Z   Downloading pytest-9.1.1-py3-none-any.whl.metadata (7.6 kB)
+Test Application	Install dependencies	2026-10-16T18:05:15.3012436Z Collecting iniconfig>=1.0.1 (from pytest->-r requirements.txt (line 1))
+Test Application	Install dependencies	2026-10-16T18:05:15.3049193Z   Downloading iniconfig-2.3.1-py3-none-any.whl.metadata (2.8 kB)
+Test Application	Install dependencies	2026-10-16T18:05:15.3205915Z Collecting packaging>=22 (from pytest->-r requirements.txt (line 1))
+Test Application	Install dependencies	2026-10-16T18:05:15.3237684Z   Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Test Application	Install dependencies	2026-10-16T18:05:15.3409074Z Collecting pluggy<2,>=1.5 (from pytest->-r requirements.txt (line 1))
+Test Application	Install dependencies	2026-10-16T18:05:15.3445400Z   Downloading pluggy-1.7.0-py3-none-any.whl.metadata (5.0 kB)
+Test Application	Install dependencies	2026-10-16T18:05:15.3629117Z Collecting pygments>=2.7.2 (from pytest->-r requirements.txt (line 1))
+Test Application	Install dependencies	2026-10-16T18:05:15.3668634Z   Downloading pygments-2.21.0-py3-none-any.whl.metadata (2.5 kB)
+Test Application	Install dependencies	2026-10-16T18:05:15.3747584Z Downloading pytest-9.1.1-py3-none-any.whl (386 kB)
+Test Application	Install dependencies	2026-10-16T18:05:15.3951193Z Downloading pluggy-1.7.0-py3-none-any.whl (27 kB)
+Test Application	Install dependencies	2026-10-16T18:05:15.4005540Z Downloading iniconfig-2.3.1-py3-none-any.whl (7.6 kB)
+Test Application	Install dependencies	2026-10-16T18:05:15.4059458Z Downloading packaging-26.3-py3-none-any.whl (129 kB)
+Test Application	Install dependencies	2026-10-16T18:05:15.4121746Z Downloading pygments-2.21.0-py3-none-any.whl (1.3 MB)
+Test Application	Install dependencies	2026-10-16T18:05:15.4260341Z    ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.3/1.3 MB 119.5 MB/s  0:00:00
+Test Application	Install dependencies	2026-10-16T18:05:15.4922657Z Installing collected packages: pygments, pluggy, packaging, iniconfig, pytest
+Test Application	Install dependencies	2026-10-16T18:05:16.6638121Z 
+Test Application	Install dependencies	2026-10-16T18:05:16.6651793Z Successfully installed iniconfig-2.3.1 packaging-26.3 pluggy-1.7.0 pygments-2.21.0 pytest-9.1.1
+Test Application	Run tests	﻿2026-10-16T18:05:16.7272147Z ##[group]Run mkdir -p reports
+Test Application	Run tests	2026-10-16T18:05:16.7272526Z [36;1mmkdir -p reports[0m
+Test Application	Run tests	2026-10-16T18:05:16.7272850Z [36;1mpytest -v --junitxml=reports/tests.xml[0m
+Test Application	Run tests	2026-10-16T18:05:16.7340618Z shell: /usr/bin/bash -e {0}
+Test Application	Run tests	2026-10-16T18:05:16.7340953Z env:
+Test Application	Run tests	2026-10-16T18:05:16.7341297Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Run tests	2026-10-16T18:05:16.7341901Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+Test Application	Run tests	2026-10-16T18:05:16.7342508Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Run tests	2026-10-16T18:05:16.7343268Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Run tests	2026-10-16T18:05:16.7343850Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Run tests	2026-10-16T18:05:16.7344363Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+Test Application	Run tests	2026-10-16T18:05:16.7344817Z ##[endgroup]
+Test Application	Run tests	2026-10-16T18:05:17.2245907Z ============================= test session starts ==============================
+Test Application	Run tests	2026-10-16T18:05:17.2247309Z platform linux -- Python 3.12.15, pytest-9.1.1, pluggy-1.7.0 -- /opt/hostedtoolcache/Python/3.12.15/x64/bin/python
+Test Application	Run tests	2026-10-16T18:05:17.2248360Z cachedir: .pytest_cache
+Test Application	Run tests	2026-10-16T18:05:17.2248948Z rootdir: /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Test Application	Run tests	2026-10-16T18:05:17.2898964Z collecting ... collected 15 items
+Test Application	Run tests	2026-10-16T18:05:17.2899599Z 
+Test Application	Run tests	2026-10-16T18:05:17.2964524Z tests/test_calculator.py::test_add PASSED                                [  6%]
+Test Application	Run tests	2026-10-16T18:05:17.2973751Z tests/test_calculator.py::test_subtract PASSED                           [ 13%]
+Test Application	Run tests	2026-10-16T18:05:17.2982484Z tests/test_calculator.py::test_multiply PASSED                           [ 20%]
+Test Application	Run tests	2026-10-16T18:05:17.2990872Z tests/test_calculator.py::test_divide PASSED                             [ 26%]
+Test Application	Run tests	2026-10-16T18:05:17.3000852Z tests/test_calculator.py::test_divide_by_zero PASSED                     [ 33%]
+Test Application	Run tests	2026-10-16T18:05:17.3246828Z tests/test_server.py::test_health PASSED                                 [ 40%]
+Test Application	Run tests	2026-10-16T18:05:17.3275404Z tests/test_server.py::test_calculation[add-10-5-15] PASSED               [ 46%]
+Test Application	Run tests	2026-10-16T18:05:17.3305220Z tests/test_server.py::test_calculation[subtract-10-5-5] PASSED           [ 53%]
+Test Application	Run tests	2026-10-16T18:05:17.3333540Z tests/test_server.py::test_calculation[multiply-10-5-50] PASSED          [ 60%]
+Test Application	Run tests	2026-10-16T18:05:17.3362517Z tests/test_server.py::test_calculation[divide-10-5-2] PASSED             [ 66%]
+Test Application	Run tests	2026-10-16T18:05:17.3387391Z tests/test_server.py::test_invalid_requests[/calculate?operation=divide&a=1&b=0-400] PASSED [ 73%]
+Test Application	Run tests	2026-10-16T18:05:17.3411847Z tests/test_server.py::test_invalid_requests[/calculate?operation=unknown&a=1&b=2-400] PASSED [ 80%]
+Test Application	Run tests	2026-10-16T18:05:17.3436706Z tests/test_server.py::test_invalid_requests[/calculate?operation=add&a=NaN&b=2-400] PASSED [ 86%]
+Test Application	Run tests	2026-10-16T18:05:17.3460903Z tests/test_server.py::test_invalid_requests[/calculate?operation=add&a=1-400] PASSED [ 93%]
+Test Application	Run tests	2026-10-16T18:05:17.8635745Z tests/test_server.py::test_invalid_requests[/missing-404] PASSED         [100%]
+Test Application	Run tests	2026-10-16T18:05:17.8636390Z 
+Test Application	Run tests	2026-10-16T18:05:17.8636929Z - generated xml file: /home/runner/work/demo-devops-cicd/demo-devops-cicd/reports/tests.xml -
+Test Application	Run tests	2026-10-16T18:05:17.8637850Z ============================== 15 passed in 0.63s ==============================
+Test Application	Upload test results	﻿2026-10-16T18:05:17.8982003Z ##[group]Run actions/upload-artifact@v4
+Test Application	Upload test results	2026-10-16T18:05:17.8982343Z with:
+Test Application	Upload test results	2026-10-16T18:05:17.8982550Z   name: test-reports
+Test Application	Upload test results	2026-10-16T18:05:17.8982787Z   path: reports/tests.xml
+Test Application	Upload test results	2026-10-16T18:05:17.8983355Z   if-no-files-found: warn
+Test Application	Upload test results	2026-10-16T18:05:17.8983605Z   compression-level: 6
+Test Application	Upload test results	2026-10-16T18:05:17.8983850Z   overwrite: false
+Test Application	Upload test results	2026-10-16T18:05:17.8984065Z   include-hidden-files: false
+Test Application	Upload test results	2026-10-16T18:05:17.8984296Z env:
+Test Application	Upload test results	2026-10-16T18:05:17.8984546Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Upload test results	2026-10-16T18:05:17.8984978Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+Test Application	Upload test results	2026-10-16T18:05:17.8985400Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Upload test results	2026-10-16T18:05:17.8985785Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Upload test results	2026-10-16T18:05:17.8986180Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Test Application	Upload test results	2026-10-16T18:05:17.8986583Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+Test Application	Upload test results	2026-10-16T18:05:17.8986912Z ##[endgroup]
+Test Application	Upload test results	2026-10-16T18:05:18.0719891Z (node:2391) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Test Application	Upload test results	2026-10-16T18:05:18.0721317Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Test Application	Upload test results	2026-10-16T18:05:18.0785219Z With the provided path, there will be 1 file uploaded
+Test Application	Upload test results	2026-10-16T18:05:18.0800121Z Artifact name is valid!
+Test Application	Upload test results	2026-10-16T18:05:18.0801326Z Root directory input is valid!
+Test Application	Upload test results	2026-10-16T18:05:18.4677532Z Beginning upload of artifact content to blob storage
+Test Application	Upload test results	2026-10-16T18:05:18.4872835Z (node:2391) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+Test Application	Upload test results	2026-10-16T18:05:18.7840102Z Uploaded bytes 510
+Test Application	Upload test results	2026-10-16T18:05:18.8682756Z Finished uploading artifact content to blob storage!
+Test Application	Upload test results	2026-10-16T18:05:18.8684508Z SHA256 digest of uploaded artifact zip is 623f158639d183d3e93a12217cad6b14d062ad8531632676a68abb8f0487490c
+Test Application	Upload test results	2026-10-16T18:05:18.8686003Z Finalizing artifact upload
+Test Application	Upload test results	2026-10-16T18:05:19.1471351Z Artifact test-reports.zip successfully finalized. Artifact ID 12065515337
+Test Application	Upload test results	2026-10-16T18:05:19.1472383Z Artifact test-reports has been successfully uploaded! Final size is 510 bytes. Artifact ID is 12065515337
+Test Application	Upload test results	2026-10-16T18:05:19.1479205Z Artifact download URL: https://github.com/Suhassk205/demo-devops-cicd/actions/runs/38944601430/artifacts/12065515337
+Test Application	Post Setup Python	﻿2026-10-16T18:05:19.1661935Z Post job cleanup.
+Test Application	Post Checkout source code	﻿2026-10-16T18:05:19.3086640Z Post job cleanup.
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4033150Z [command]/usr/bin/git version
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4084801Z git version 2.55.0
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4136324Z Temporarily overriding HOME='/home/runner/work/_temp/cb20ab35-68e2-4a47-a047-d728ec0c371f' before making global git config changes
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4137765Z Adding repository directory to the temporary git global config as a safe directory
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4146479Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4189755Z Removing SSH command configuration
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4199513Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4251015Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4524205Z Removing HTTP extra header
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4532247Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4581765Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4986855Z Removing includeIf entries pointing to credentials config files
+Test Application	Post Checkout source code	2026-10-16T18:05:19.4995974Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5037871Z includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5050577Z includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5051680Z includeif.gitdir:/github/workspace/.git.path
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5052460Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5054832Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5086548Z /home/runner/work/_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5101187Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path /home/runner/work/_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5151859Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5184167Z /home/runner/work/_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5196828Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5240729Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5268298Z /github/runner_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5278415Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5317855Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5344772Z /github/runner_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5353650Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5394468Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Test Application	Post Checkout source code	2026-10-16T18:05:19.5627573Z Removing credentials config '/home/runner/work/_temp/git-credentials-89ee48c8-6862-496d-9268-99b42e95214a.config'
+Test Application	Complete job	﻿2026-10-16T18:05:19.5780658Z Cleaning up orphan processes
+Test Application	Complete job	2026-10-16T18:05:19.6096284Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Security Check	Set up job	﻿2026-10-16T18:05:25.1309736Z Current runner version: '2.337.0'
+Security Check	Set up job	2026-10-16T18:05:25.1331055Z ##[group]Runner Image Provisioner
+Security Check	Set up job	2026-10-16T18:05:25.1331753Z Hosted Compute Agent
+Security Check	Set up job	2026-10-16T18:05:25.1332223Z Version: 20261012.601
+Security Check	Set up job	2026-10-16T18:05:25.1332837Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Security Check	Set up job	2026-10-16T18:05:25.1333470Z Build Date: 2026-10-12T17:48:21Z
+Security Check	Set up job	2026-10-16T18:05:25.1334057Z Worker ID: {97f71c08-6af8-41d9-9b8e-a38567556b9e}
+Security Check	Set up job	2026-10-16T18:05:25.1334701Z Region: northcentralus
+Security Check	Set up job	2026-10-16T18:05:25.1335223Z Cloud: Azure
+Security Check	Set up job	2026-10-16T18:05:25.1335724Z ##[endgroup]
+Security Check	Set up job	2026-10-16T18:05:25.1336771Z ##[group]Operating System
+Security Check	Set up job	2026-10-16T18:05:25.1337363Z Ubuntu
+Security Check	Set up job	2026-10-16T18:05:25.1337805Z 24.04.5
+Security Check	Set up job	2026-10-16T18:05:25.1338217Z LTS
+Security Check	Set up job	2026-10-16T18:05:25.1338834Z ##[endgroup]
+Security Check	Set up job	2026-10-16T18:05:25.1339330Z ##[group]Runner Image
+Security Check	Set up job	2026-10-16T18:05:25.1339904Z Image: ubuntu-24.04
+Security Check	Set up job	2026-10-16T18:05:25.1340376Z Version: 20261012.334.1
+Security Check	Set up job	2026-10-16T18:05:25.1341269Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+Security Check	Set up job	2026-10-16T18:05:25.1342643Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+Security Check	Set up job	2026-10-16T18:05:25.1343636Z ##[endgroup]
+Security Check	Set up job	2026-10-16T18:05:25.1344528Z ##[group]GITHUB_TOKEN Permissions
+Security Check	Set up job	2026-10-16T18:05:25.1346374Z Contents: read
+Security Check	Set up job	2026-10-16T18:05:25.1346911Z Metadata: read
+Security Check	Set up job	2026-10-16T18:05:25.1347433Z ##[endgroup]
+Security Check	Set up job	2026-10-16T18:05:25.1349379Z Secret source: Actions
+Security Check	Set up job	2026-10-16T18:05:25.1350582Z Cache mode: write
+Security Check	Set up job	2026-10-16T18:05:25.1351399Z Prepare workflow directory
+Security Check	Set up job	2026-10-16T18:05:25.1611872Z Prepare all required actions
+Security Check	Set up job	2026-10-16T18:05:25.1650995Z Getting action download info
+Security Check	Set up job	2026-10-16T18:05:25.3757134Z Download action repository 'actions/checkout@v6' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+Security Check	Set up job	2026-10-16T18:05:25.5106656Z Complete job name: Security Check
+Security Check	Checkout source code	﻿2026-10-16T18:05:25.5755073Z ##[group]Run actions/checkout@v6
+Security Check	Checkout source code	2026-10-16T18:05:25.5755779Z with:
+Security Check	Checkout source code	2026-10-16T18:05:25.5756159Z   repository: Suhassk205/demo-devops-cicd
+Security Check	Checkout source code	2026-10-16T18:05:25.5759594Z   token: ***
+Security Check	Checkout source code	2026-10-16T18:05:25.5759963Z   ssh-strict: true
+Security Check	Checkout source code	2026-10-16T18:05:25.5760324Z   ssh-user: git
+Security Check	Checkout source code	2026-10-16T18:05:25.5760685Z   persist-credentials: true
+Security Check	Checkout source code	2026-10-16T18:05:25.5761078Z   clean: true
+Security Check	Checkout source code	2026-10-16T18:05:25.5761445Z   sparse-checkout-cone-mode: true
+Security Check	Checkout source code	2026-10-16T18:05:25.5761871Z   fetch-depth: 1
+Security Check	Checkout source code	2026-10-16T18:05:25.5762238Z   fetch-tags: false
+Security Check	Checkout source code	2026-10-16T18:05:25.5762602Z   show-progress: true
+Security Check	Checkout source code	2026-10-16T18:05:25.5762956Z   lfs: false
+Security Check	Checkout source code	2026-10-16T18:05:25.5763294Z   submodules: false
+Security Check	Checkout source code	2026-10-16T18:05:25.5763667Z   set-safe-directory: true
+Security Check	Checkout source code	2026-10-16T18:05:25.5764076Z   allow-unsafe-pr-checkout: false
+Security Check	Checkout source code	2026-10-16T18:05:25.5764647Z ##[endgroup]
+Security Check	Checkout source code	2026-10-16T18:05:25.6559428Z Syncing repository: Suhassk205/demo-devops-cicd
+Security Check	Checkout source code	2026-10-16T18:05:25.6561016Z ##[group]Getting Git version info
+Security Check	Checkout source code	2026-10-16T18:05:25.6561659Z Working directory is '/home/runner/work/demo-devops-cicd/demo-devops-cicd'
+Security Check	Checkout source code	2026-10-16T18:05:25.6562645Z [command]/usr/bin/git version
+Security Check	Checkout source code	2026-10-16T18:05:25.6637902Z git version 2.55.0
+Security Check	Checkout source code	2026-10-16T18:05:25.6640966Z ##[endgroup]
+Security Check	Checkout source code	2026-10-16T18:05:25.6664823Z Temporarily overriding HOME='/home/runner/work/_temp/459dfdb7-ed35-4509-9b90-26160d8132c5' before making global git config changes
+Security Check	Checkout source code	2026-10-16T18:05:25.6666610Z Adding repository directory to the temporary git global config as a safe directory
+Security Check	Checkout source code	2026-10-16T18:05:25.6668427Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Security Check	Checkout source code	2026-10-16T18:05:25.6710858Z Deleting the contents of '/home/runner/work/demo-devops-cicd/demo-devops-cicd'
+Security Check	Checkout source code	2026-10-16T18:05:25.6713801Z ##[group]Determining repository object format
+Security Check	Checkout source code	2026-10-16T18:05:25.6715654Z ##[endgroup]
+Security Check	Checkout source code	2026-10-16T18:05:25.6716505Z ##[group]Initializing the repository
+Security Check	Checkout source code	2026-10-16T18:05:25.6719865Z [command]/usr/bin/git init /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Security Check	Checkout source code	2026-10-16T18:05:25.6791228Z hint: Using 'master' as the name for the initial branch. This default branch name
+Security Check	Checkout source code	2026-10-16T18:05:25.6792056Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Security Check	Checkout source code	2026-10-16T18:05:25.6793039Z hint: to use in all of your new repositories, which will suppress this warning,
+Security Check	Checkout source code	2026-10-16T18:05:25.6793649Z hint: call:
+Security Check	Checkout source code	2026-10-16T18:05:25.6794214Z hint:
+Security Check	Checkout source code	2026-10-16T18:05:25.6794719Z hint: 	git config --global init.defaultBranch <name>
+Security Check	Checkout source code	2026-10-16T18:05:25.6795217Z hint:
+Security Check	Checkout source code	2026-10-16T18:05:25.6795912Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Security Check	Checkout source code	2026-10-16T18:05:25.6796870Z hint: 'development'. The just-created branch can be renamed via this command:
+Security Check	Checkout source code	2026-10-16T18:05:25.6797593Z hint:
+Security Check	Checkout source code	2026-10-16T18:05:25.6798239Z hint: 	git branch -m <name>
+Security Check	Checkout source code	2026-10-16T18:05:25.6798929Z hint:
+Security Check	Checkout source code	2026-10-16T18:05:25.6799433Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Security Check	Checkout source code	2026-10-16T18:05:25.6803800Z Initialized empty Git repository in /home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/
+Security Check	Checkout source code	2026-10-16T18:05:25.6811560Z [command]/usr/bin/git remote add origin https://github.com/Suhassk205/demo-devops-cicd
+Security Check	Checkout source code	2026-10-16T18:05:25.6851637Z ##[endgroup]
+Security Check	Checkout source code	2026-10-16T18:05:25.6852442Z ##[group]Disabling automatic garbage collection
+Security Check	Checkout source code	2026-10-16T18:05:25.6854838Z [command]/usr/bin/git config --local gc.auto 0
+Security Check	Checkout source code	2026-10-16T18:05:25.6881553Z ##[endgroup]
+Security Check	Checkout source code	2026-10-16T18:05:25.6882660Z ##[group]Setting up auth
+Security Check	Checkout source code	2026-10-16T18:05:25.6883274Z Removing SSH command configuration
+Security Check	Checkout source code	2026-10-16T18:05:25.6887493Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Security Check	Checkout source code	2026-10-16T18:05:25.6914616Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Security Check	Checkout source code	2026-10-16T18:05:25.7203095Z Removing HTTP extra header
+Security Check	Checkout source code	2026-10-16T18:05:25.7210613Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Security Check	Checkout source code	2026-10-16T18:05:25.7243114Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Security Check	Checkout source code	2026-10-16T18:05:25.7437625Z Removing includeIf entries pointing to credentials config files
+Security Check	Checkout source code	2026-10-16T18:05:25.7438910Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Security Check	Checkout source code	2026-10-16T18:05:25.7467341Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Security Check	Checkout source code	2026-10-16T18:05:25.7651998Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Security Check	Checkout source code	2026-10-16T18:05:25.7684835Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path /home/runner/work/_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config
+Security Check	Checkout source code	2026-10-16T18:05:25.7714521Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config
+Security Check	Checkout source code	2026-10-16T18:05:25.7746364Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config
+Security Check	Checkout source code	2026-10-16T18:05:25.7775523Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config
+Security Check	Checkout source code	2026-10-16T18:05:25.7808562Z ##[endgroup]
+Security Check	Checkout source code	2026-10-16T18:05:25.7809174Z ##[group]Fetching the repository
+Security Check	Checkout source code	2026-10-16T18:05:25.7814567Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +77baf3f426b5a37aab313f067be9643c72859f2d:refs/remotes/origin/main
+Security Check	Checkout source code	2026-10-16T18:05:26.0981956Z From https://github.com/Suhassk205/demo-devops-cicd
+Security Check	Checkout source code	2026-10-16T18:05:26.0983533Z  * [new ref]         77baf3f426b5a37aab313f067be9643c72859f2d -> origin/main
+Security Check	Checkout source code	2026-10-16T18:05:26.0990589Z [command]/usr/bin/git branch --list --remote origin/main
+Security Check	Checkout source code	2026-10-16T18:05:26.1016001Z   origin/main
+Security Check	Checkout source code	2026-10-16T18:05:26.1035900Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+Security Check	Checkout source code	2026-10-16T18:05:26.1065878Z 77baf3f426b5a37aab313f067be9643c72859f2d
+Security Check	Checkout source code	2026-10-16T18:05:26.1077529Z ##[endgroup]
+Security Check	Checkout source code	2026-10-16T18:05:26.1078947Z ##[group]Determining the checkout info
+Security Check	Checkout source code	2026-10-16T18:05:26.1080298Z ##[endgroup]
+Security Check	Checkout source code	2026-10-16T18:05:26.1081347Z [command]/usr/bin/git sparse-checkout disable
+Security Check	Checkout source code	2026-10-16T18:05:26.1119797Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Security Check	Checkout source code	2026-10-16T18:05:26.1146237Z ##[group]Checking out the ref
+Security Check	Checkout source code	2026-10-16T18:05:26.1149020Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Security Check	Checkout source code	2026-10-16T18:05:26.1201677Z Switched to a new branch 'main'
+Security Check	Checkout source code	2026-10-16T18:05:26.1206204Z branch 'main' set up to track 'origin/main'.
+Security Check	Checkout source code	2026-10-16T18:05:26.1211171Z ##[endgroup]
+Security Check	Checkout source code	2026-10-16T18:05:26.1245323Z [command]/usr/bin/git log -1 --format=%H
+Security Check	Checkout source code	2026-10-16T18:05:26.1268069Z 77baf3f426b5a37aab313f067be9643c72859f2d
+Security Check	Check for sensitive files	﻿2026-10-16T18:05:26.1460342Z ##[group]Run echo "Checking repository for common sensitive files..."
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1461297Z [36;1mecho "Checking repository for common sensitive files..."[0m
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1461983Z [36;1mif find . -type f \( \[0m
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1462448Z [36;1m  -name ".env" \[0m
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1462876Z [36;1m  -o -name "*.pem" \[0m
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1463320Z [36;1m  -o -name "*.key" \[0m
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1463773Z [36;1m\) | grep -q .; then[0m
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1464270Z [36;1m  echo "Potential sensitive file found."[0m
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1464842Z [36;1m  exit 1[0m
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1465208Z [36;1melse[0m
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1465644Z [36;1m  echo "No common sensitive files found."[0m
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1466206Z [36;1mfi[0m
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1657036Z shell: /usr/bin/bash -e {0}
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1657563Z ##[endgroup]
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1751394Z Checking repository for common sensitive files...
+Security Check	Check for sensitive files	2026-10-16T18:05:26.1772306Z No common sensitive files found.
+Security Check	Post Checkout source code	﻿2026-10-16T18:05:26.1918757Z Post job cleanup.
+Security Check	Post Checkout source code	2026-10-16T18:05:26.2609006Z [command]/usr/bin/git version
+Security Check	Post Checkout source code	2026-10-16T18:05:26.2642926Z git version 2.55.0
+Security Check	Post Checkout source code	2026-10-16T18:05:26.2677795Z Temporarily overriding HOME='/home/runner/work/_temp/767a8641-39c3-4cef-a51c-cd496cbcb25f' before making global git config changes
+Security Check	Post Checkout source code	2026-10-16T18:05:26.2679437Z Adding repository directory to the temporary git global config as a safe directory
+Security Check	Post Checkout source code	2026-10-16T18:05:26.2682584Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Security Check	Post Checkout source code	2026-10-16T18:05:26.2709620Z Removing SSH command configuration
+Security Check	Post Checkout source code	2026-10-16T18:05:26.2714759Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Security Check	Post Checkout source code	2026-10-16T18:05:26.2750688Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Security Check	Post Checkout source code	2026-10-16T18:05:26.2980989Z Removing HTTP extra header
+Security Check	Post Checkout source code	2026-10-16T18:05:26.2985923Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3017898Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3219139Z Removing includeIf entries pointing to credentials config files
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3223817Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3250232Z includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3252226Z includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3253828Z includeif.gitdir:/github/workspace/.git.path
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3255207Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3259341Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3280925Z /home/runner/work/_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3292084Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path /home/runner/work/_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3326692Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3348844Z /home/runner/work/_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3358543Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3397450Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3418404Z /github/runner_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3425647Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3457186Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3478113Z /github/runner_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3485886Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3519666Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Security Check	Post Checkout source code	2026-10-16T18:05:26.3704852Z Removing credentials config '/home/runner/work/_temp/git-credentials-a427301a-e95f-4c7b-b69e-4c8686cdcee1.config'
+Security Check	Complete job	﻿2026-10-16T18:05:26.3921341Z Cleaning up orphan processes
+Build Application and Image	Set up job	﻿2026-10-16T18:05:31.4987724Z Current runner version: '2.337.0'
+Build Application and Image	Set up job	2026-10-16T18:05:31.5026269Z ##[group]Runner Image Provisioner
+Build Application and Image	Set up job	2026-10-16T18:05:31.5028034Z Hosted Compute Agent
+Build Application and Image	Set up job	2026-10-16T18:05:31.5029171Z Version: 20261012.601
+Build Application and Image	Set up job	2026-10-16T18:05:31.5030403Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Build Application and Image	Set up job	2026-10-16T18:05:31.5031702Z Build Date: 2026-10-12T17:48:21Z
+Build Application and Image	Set up job	2026-10-16T18:05:31.5032894Z Worker ID: {52f045f6-e43c-427b-ba71-0ddfdd5d9aae}
+Build Application and Image	Set up job	2026-10-16T18:05:31.5034143Z Region: eastus2
+Build Application and Image	Set up job	2026-10-16T18:05:31.5035230Z Cloud: Azure
+Build Application and Image	Set up job	2026-10-16T18:05:31.5036245Z ##[endgroup]
+Build Application and Image	Set up job	2026-10-16T18:05:31.5039163Z ##[group]Operating System
+Build Application and Image	Set up job	2026-10-16T18:05:31.5040282Z Ubuntu
+Build Application and Image	Set up job	2026-10-16T18:05:31.5041147Z 24.04.5
+Build Application and Image	Set up job	2026-10-16T18:05:31.5042642Z LTS
+Build Application and Image	Set up job	2026-10-16T18:05:31.5043651Z ##[endgroup]
+Build Application and Image	Set up job	2026-10-16T18:05:31.5044737Z ##[group]Runner Image
+Build Application and Image	Set up job	2026-10-16T18:05:31.5045791Z Image: ubuntu-24.04
+Build Application and Image	Set up job	2026-10-16T18:05:31.5047096Z Version: 20261012.334.1
+Build Application and Image	Set up job	2026-10-16T18:05:31.5049167Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+Build Application and Image	Set up job	2026-10-16T18:05:31.5052452Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+Build Application and Image	Set up job	2026-10-16T18:05:31.5054230Z ##[endgroup]
+Build Application and Image	Set up job	2026-10-16T18:05:31.5056213Z ##[group]GITHUB_TOKEN Permissions
+Build Application and Image	Set up job	2026-10-16T18:05:31.5059547Z Contents: read
+Build Application and Image	Set up job	2026-10-16T18:05:31.5060745Z Metadata: read
+Build Application and Image	Set up job	2026-10-16T18:05:31.5061684Z ##[endgroup]
+Build Application and Image	Set up job	2026-10-16T18:05:31.5065005Z Secret source: Actions
+Build Application and Image	Set up job	2026-10-16T18:05:31.5067079Z Cache mode: write
+Build Application and Image	Set up job	2026-10-16T18:05:31.5068923Z Prepare workflow directory
+Build Application and Image	Set up job	2026-10-16T18:05:31.5590201Z Prepare all required actions
+Build Application and Image	Set up job	2026-10-16T18:05:31.5666351Z Getting action download info
+Build Application and Image	Set up job	2026-10-16T18:05:31.7614885Z Download action repository 'actions/checkout@v6' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+Build Application and Image	Set up job	2026-10-16T18:05:31.8630042Z Download action repository 'actions/setup-python@v7' (SHA:5fda3b95a4ea91299a34e894583c3862153e4b97)
+Build Application and Image	Set up job	2026-10-16T18:05:31.9749971Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Build Application and Image	Set up job	2026-10-16T18:05:32.1974263Z Complete job name: Build Application and Image
+Build Application and Image	Checkout source code	﻿2026-10-16T18:05:32.2780263Z ##[group]Run actions/checkout@v6
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2781200Z with:
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2781693Z   repository: Suhassk205/demo-devops-cicd
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2785392Z   token: ***
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2785830Z   ssh-strict: true
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2786278Z   ssh-user: git
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2787139Z   persist-credentials: true
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2787709Z   clean: true
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2788165Z   sparse-checkout-cone-mode: true
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2788691Z   fetch-depth: 1
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2789114Z   fetch-tags: false
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2789564Z   show-progress: true
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2790015Z   lfs: false
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2790431Z   submodules: false
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2790884Z   set-safe-directory: true
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2791399Z   allow-unsafe-pr-checkout: false
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.2792242Z ##[endgroup]
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.3872230Z Syncing repository: Suhassk205/demo-devops-cicd
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.3874729Z ##[group]Getting Git version info
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.3875590Z Working directory is '/home/runner/work/demo-devops-cicd/demo-devops-cicd'
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.3877020Z [command]/usr/bin/git version
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4008799Z git version 2.55.0
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4036145Z ##[endgroup]
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4054984Z Temporarily overriding HOME='/home/runner/work/_temp/9f9828d9-8e82-4e68-82e9-ed152c187940' before making global git config changes
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4057777Z Adding repository directory to the temporary git global config as a safe directory
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4062344Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4128387Z Deleting the contents of '/home/runner/work/demo-devops-cicd/demo-devops-cicd'
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4131077Z ##[group]Determining repository object format
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4139110Z ##[endgroup]
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4140861Z ##[group]Initializing the repository
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4142593Z [command]/usr/bin/git init /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4265864Z hint: Using 'master' as the name for the initial branch. This default branch name
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4267841Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4269829Z hint: to use in all of your new repositories, which will suppress this warning,
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4271065Z hint: call:
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4271696Z hint:
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4272544Z hint: 	git config --global init.defaultBranch <name>
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4273592Z hint:
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4274572Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4276115Z hint: 'development'. The just-created branch can be renamed via this command:
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4277516Z hint:
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4278202Z hint: 	git branch -m <name>
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4279077Z hint:
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4280130Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4282009Z Initialized empty Git repository in /home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4285080Z [command]/usr/bin/git remote add origin https://github.com/Suhassk205/demo-devops-cicd
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4355630Z ##[endgroup]
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4357302Z ##[group]Disabling automatic garbage collection
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4359611Z [command]/usr/bin/git config --local gc.auto 0
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4401736Z ##[endgroup]
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4403085Z ##[group]Setting up auth
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4404054Z Removing SSH command configuration
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4410876Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4450442Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4875919Z Removing HTTP extra header
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4885002Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.4932340Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.5189888Z Removing includeIf entries pointing to credentials config files
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.5197236Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.5238806Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.5517118Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.5562649Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path /home/runner/work/_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.5602731Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.5646533Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.5688879Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.5730322Z ##[endgroup]
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.5731152Z ##[group]Fetching the repository
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.5744075Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +77baf3f426b5a37aab313f067be9643c72859f2d:refs/remotes/origin/main
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.7991210Z From https://github.com/Suhassk205/demo-devops-cicd
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.7992322Z  * [new ref]         77baf3f426b5a37aab313f067be9643c72859f2d -> origin/main
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8002156Z [command]/usr/bin/git branch --list --remote origin/main
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8031975Z   origin/main
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8041132Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8068730Z 77baf3f426b5a37aab313f067be9643c72859f2d
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8073231Z ##[endgroup]
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8074282Z ##[group]Determining the checkout info
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8075447Z ##[endgroup]
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8078970Z [command]/usr/bin/git sparse-checkout disable
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8135699Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8168357Z ##[group]Checking out the ref
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8172901Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8238017Z Switched to a new branch 'main'
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8243737Z branch 'main' set up to track 'origin/main'.
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8250618Z ##[endgroup]
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8373170Z [command]/usr/bin/git log -1 --format=%H
+Build Application and Image	Checkout source code	2026-10-16T18:05:32.8374484Z 77baf3f426b5a37aab313f067be9643c72859f2d
+Build Application and Image	Setup Python	﻿2026-10-16T18:05:32.8750336Z ##[group]Run actions/setup-python@v7
+Build Application and Image	Setup Python	2026-10-16T18:05:32.8751070Z with:
+Build Application and Image	Setup Python	2026-10-16T18:05:32.8751544Z   python-version: 3.12
+Build Application and Image	Setup Python	2026-10-16T18:05:32.8752071Z   check-latest: false
+Build Application and Image	Setup Python	2026-10-16T18:05:32.8756250Z   token: ***
+Build Application and Image	Setup Python	2026-10-16T18:05:32.8756958Z   update-environment: true
+Build Application and Image	Setup Python	2026-10-16T18:05:32.8757537Z   allow-prereleases: false
+Build Application and Image	Setup Python	2026-10-16T18:05:32.8758080Z   freethreaded: false
+Build Application and Image	Setup Python	2026-10-16T18:05:32.8758579Z ##[endgroup]
+Build Application and Image	Setup Python	2026-10-16T18:05:33.0005811Z ##[group]Installed versions
+Build Application and Image	Setup Python	2026-10-16T18:05:33.0105648Z Successfully set up CPython (3.12.15)
+Build Application and Image	Setup Python	2026-10-16T18:05:33.0107870Z ##[endgroup]
+Build Application and Image	Build application	﻿2026-10-16T18:05:33.0297256Z ##[group]Run chmod +x build.sh
+Build Application and Image	Build application	2026-10-16T18:05:33.0298160Z [36;1mchmod +x build.sh[0m
+Build Application and Image	Build application	2026-10-16T18:05:33.0298728Z [36;1m./build.sh[0m
+Build Application and Image	Build application	2026-10-16T18:05:33.0666495Z shell: /usr/bin/bash -e {0}
+Build Application and Image	Build application	2026-10-16T18:05:33.0667559Z env:
+Build Application and Image	Build application	2026-10-16T18:05:33.0668283Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Build application	2026-10-16T18:05:33.0669445Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+Build Application and Image	Build application	2026-10-16T18:05:33.0670601Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Build application	2026-10-16T18:05:33.0671636Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Build application	2026-10-16T18:05:33.0672675Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Build application	2026-10-16T18:05:33.0673731Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+Build Application and Image	Build application	2026-10-16T18:05:33.0674585Z ##[endgroup]
+Build Application and Image	Build application	2026-10-16T18:05:33.0828098Z =================================
+Build Application and Image	Build application	2026-10-16T18:05:33.0829390Z Starting Application Build
+Build Application and Image	Build application	2026-10-16T18:05:33.0830025Z =================================
+Build Application and Image	Build application	2026-10-16T18:05:33.0891027Z 
+Build Application and Image	Build application	2026-10-16T18:05:33.0891917Z Build files:
+Build Application and Image	Build application	2026-10-16T18:05:33.0904326Z total 20
+Build Application and Image	Build application	2026-10-16T18:05:33.0904988Z drwxr-xr-x 2 runner runner 4096 Oct 16 18:05 .
+Build Application and Image	Build application	2026-10-16T18:05:33.0906454Z drwxr-xr-x 8 runner runner 4096 Oct 16 18:05 ..
+Build Application and Image	Build application	2026-10-16T18:05:33.0908146Z -rw-r--r-- 1 runner runner    0 Oct 16 18:05 __init__.py
+Build Application and Image	Build application	2026-10-16T18:05:33.0909276Z -rw-r--r-- 1 runner runner   98 Oct 16 18:05 build-info.txt
+Build Application and Image	Build application	2026-10-16T18:05:33.0910141Z -rw-r--r-- 1 runner runner 1488 Oct 16 18:05 calculator.py
+Build Application and Image	Build application	2026-10-16T18:05:33.0911594Z -rw-r--r-- 1 runner runner 1885 Oct 16 18:05 server.py
+Build Application and Image	Build application	2026-10-16T18:05:33.0912532Z 
+Build Application and Image	Build application	2026-10-16T18:05:33.0912968Z Build completed successfully.
+Build Application and Image	Show build output	﻿2026-10-16T18:05:33.0968538Z ##[group]Run cat build/build-info.txt
+Build Application and Image	Show build output	2026-10-16T18:05:33.0969313Z [36;1mcat build/build-info.txt[0m
+Build Application and Image	Show build output	2026-10-16T18:05:33.1037280Z shell: /usr/bin/bash -e {0}
+Build Application and Image	Show build output	2026-10-16T18:05:33.1037886Z env:
+Build Application and Image	Show build output	2026-10-16T18:05:33.1038492Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Show build output	2026-10-16T18:05:33.1039432Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+Build Application and Image	Show build output	2026-10-16T18:05:33.1040594Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Show build output	2026-10-16T18:05:33.1041431Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Show build output	2026-10-16T18:05:33.1042254Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Show build output	2026-10-16T18:05:33.1043087Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+Build Application and Image	Show build output	2026-10-16T18:05:33.1043797Z ##[endgroup]
+Build Application and Image	Show build output	2026-10-16T18:05:33.1151466Z Application: Session 16 Calculator
+Build Application and Image	Show build output	2026-10-16T18:05:33.1152386Z Build Status: SUCCESS
+Build Application and Image	Show build output	2026-10-16T18:05:33.1152962Z Build Date: Fri Oct 16 18:05:33 UTC 2026
+Build Application and Image	Upload build artifact	﻿2026-10-16T18:05:33.1247585Z ##[group]Run actions/upload-artifact@v4
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1248359Z with:
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1248817Z   name: calculator-build
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1249335Z   path: build/
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1249812Z   if-no-files-found: warn
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1250348Z   compression-level: 6
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1250864Z   overwrite: false
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1251360Z   include-hidden-files: false
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1251916Z env:
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1252472Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1253424Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1254368Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1255228Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1256082Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1257143Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.1258176Z ##[endgroup]
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.3023341Z (node:2334) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.3026192Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.3101098Z With the provided path, there will be 4 files uploaded
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.3106780Z Artifact name is valid!
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.3108283Z Root directory input is valid!
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.5216285Z Beginning upload of artifact content to blob storage
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.5472229Z (node:2334) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.5902197Z Uploaded bytes 1891
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.6111458Z Finished uploading artifact content to blob storage!
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.6114936Z SHA256 digest of uploaded artifact zip is d8d9c76509b3caca99eb35a27410bc24e774a2796e71b4fac69ea9f6e72b6211
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.6118954Z Finalizing artifact upload
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.9155992Z Artifact calculator-build.zip successfully finalized. Artifact ID 12064606664
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.9159726Z Artifact calculator-build has been successfully uploaded! Final size is 1891 bytes. Artifact ID is 12064606664
+Build Application and Image	Upload build artifact	2026-10-16T18:05:33.9163849Z Artifact download URL: https://github.com/Suhassk205/demo-devops-cicd/actions/runs/38944601430/artifacts/12064606664
+Build Application and Image	Build deployable image	﻿2026-10-16T18:05:33.9358964Z ##[group]Run docker build -t session16-calculator:77baf3f426b5a37aab313f067be9643c72859f2d .
+Build Application and Image	Build deployable image	2026-10-16T18:05:33.9361807Z [36;1mdocker build -t session16-calculator:77baf3f426b5a37aab313f067be9643c72859f2d .[0m
+Build Application and Image	Build deployable image	2026-10-16T18:05:33.9365013Z [36;1mdocker save session16-calculator:77baf3f426b5a37aab313f067be9643c72859f2d | gzip > calculator-image.tar.gz[0m
+Build Application and Image	Build deployable image	2026-10-16T18:05:33.9434008Z shell: /usr/bin/bash -e {0}
+Build Application and Image	Build deployable image	2026-10-16T18:05:33.9435200Z env:
+Build Application and Image	Build deployable image	2026-10-16T18:05:33.9436416Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Build deployable image	2026-10-16T18:05:33.9438563Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+Build Application and Image	Build deployable image	2026-10-16T18:05:33.9440577Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Build deployable image	2026-10-16T18:05:33.9442390Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Build deployable image	2026-10-16T18:05:33.9444210Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Build deployable image	2026-10-16T18:05:33.9446381Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+Build Application and Image	Build deployable image	2026-10-16T18:05:33.9448385Z ##[endgroup]
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.6429665Z #0 building with "default" instance using docker driver
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.6430456Z 
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.6430745Z #1 [internal] load build definition from Dockerfile
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.6431382Z #1 transferring dockerfile: 253B done
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.6431878Z #1 DONE 0.0s
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.6432098Z 
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.6432393Z #2 [auth] library/python:pull token for registry-1.docker.io
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.6433005Z #2 DONE 0.0s
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.6433216Z 
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.6434072Z #3 [internal] load metadata for docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.8543414Z #3 DONE 0.4s
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9756148Z 
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9756997Z #4 [internal] load .dockerignore
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9757443Z #4 transferring context: 130B done
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9757770Z #4 DONE 0.0s
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9757942Z 
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9758063Z #5 [internal] load build context
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9758357Z #5 transferring context: 3.53kB done
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9758650Z #5 DONE 0.0s
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9759205Z 
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9759969Z #6 [1/4] FROM docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9760942Z #6 resolve docker.io/library/python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4 done
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9762072Z #6 extracting sha256:bce3d672089f7ccc5125c3f8f95542fa3971138f323fb7f77e338a14396c85aa
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9763332Z #6 sha256:979e5a8a56846771598d47ebf1f8a75b46155104e168a0b237c0783c1dedff8a 5.43kB / 5.43kB done
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9764447Z #6 sha256:bce3d672089f7ccc5125c3f8f95542fa3971138f323fb7f77e338a14396c85aa 416.28kB / 416.28kB 0.0s done
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9765572Z #6 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 5.24MB / 16.36MB 0.1s
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9766954Z #6 sha256:e203d50c86bd38d307585d33fd69e7e7fd91e7535b65af46aa1d663cfb80c0fa 248B / 248B 0.1s done
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9768192Z #6 sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4 10.30kB / 10.30kB done
+Build Application and Image	Build deployable image	2026-10-16T18:05:34.9769250Z #6 sha256:2055081c860db8c842b663415b795b026e7e5cc63b59c5193fcc9997713ea5b8 1.74kB / 1.74kB done
+Build Application and Image	Build deployable image	2026-10-16T18:05:35.2260291Z #6 extracting sha256:bce3d672089f7ccc5125c3f8f95542fa3971138f323fb7f77e338a14396c85aa 0.1s done
+Build Application and Image	Build deployable image	2026-10-16T18:05:37.7095127Z #6 sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 16.36MB / 16.36MB 0.1s done
+Build Application and Image	Build deployable image	2026-10-16T18:05:37.7096177Z #6 extracting sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.3630821Z #6 extracting sha256:283ac05c32e67060aa59f8a841b02df4cc0bd7fbf8d880f67d9b622e1cbd1935 0.6s done
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.3632218Z #6 extracting sha256:e203d50c86bd38d307585d33fd69e7e7fd91e7535b65af46aa1d663cfb80c0fa
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.5502898Z #6 extracting sha256:e203d50c86bd38d307585d33fd69e7e7fd91e7535b65af46aa1d663cfb80c0fa done
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.5503859Z #6 DONE 3.5s
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.5504006Z 
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.5504122Z #7 [2/4] WORKDIR /app
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.5504374Z #7 DONE 0.0s
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.5504508Z 
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.5504646Z #8 [3/4] RUN adduser -D -u 10001 appuser
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.5652925Z #8 DONE 0.2s
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.7488237Z 
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.7488726Z #9 [4/4] COPY app ./app
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.7489041Z #9 DONE 0.0s
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.7489165Z 
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.7489262Z #10 exporting to image
+Build Application and Image	Build deployable image	2026-10-16T18:05:38.7489493Z #10 exporting layers
+Build Application and Image	Build deployable image	2026-10-16T18:05:39.0097005Z #10 exporting layers 0.4s done
+Build Application and Image	Build deployable image	2026-10-16T18:05:39.0273329Z #10 writing image sha256:6cde491c560c9ade2e95ffde0529c91803b1325b116b9a420bc967634619fc73 done
+Build Application and Image	Build deployable image	2026-10-16T18:05:41.8157054Z #10 naming to docker.io/library/session16-calculator:77baf3f426b5a37aab313f067be9643c72859f2d done
+Build Application and Image	Build deployable image	2026-10-16T18:05:41.8157876Z #10 DONE 0.4s
+Build Application and Image	Upload container artifact	﻿2026-10-16T18:05:41.8224815Z ##[group]Run actions/upload-artifact@v4
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8245116Z with:
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8245464Z   name: calculator-image
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8245890Z   path: calculator-image.tar.gz
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8246316Z   retention-days: 3
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8246558Z   if-no-files-found: warn
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8247101Z   compression-level: 6
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8247324Z   overwrite: false
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8247547Z   include-hidden-files: false
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8247785Z env:
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8248057Z   pythonLocation: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8248507Z   PKG_CONFIG_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib/pkgconfig
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8248941Z   Python_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8249336Z   Python2_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8249727Z   Python3_ROOT_DIR: /opt/hostedtoolcache/Python/3.12.15/x64
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8250116Z   LD_LIBRARY_PATH: /opt/hostedtoolcache/Python/3.12.15/x64/lib
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.8250501Z ##[endgroup]
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.9997506Z (node:2497) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Build Application and Image	Upload container artifact	2026-10-16T18:05:41.9998529Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Build Application and Image	Upload container artifact	2026-10-16T18:05:42.0048140Z With the provided path, there will be 1 file uploaded
+Build Application and Image	Upload container artifact	2026-10-16T18:05:42.0057192Z Artifact name is valid!
+Build Application and Image	Upload container artifact	2026-10-16T18:05:42.0058151Z Root directory input is valid!
+Build Application and Image	Upload container artifact	2026-10-16T18:05:42.2066289Z Beginning upload of artifact content to blob storage
+Build Application and Image	Upload container artifact	2026-10-16T18:05:42.4932599Z (node:2497) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+Build Application and Image	Upload container artifact	2026-10-16T18:05:42.6597743Z Uploaded bytes 8388608
+Build Application and Image	Upload container artifact	2026-10-16T18:05:42.9052944Z Uploaded bytes 16777216
+Build Application and Image	Upload container artifact	2026-10-16T18:05:42.9734263Z Uploaded bytes 20034865
+Build Application and Image	Upload container artifact	2026-10-16T18:05:42.9932886Z Finished uploading artifact content to blob storage!
+Build Application and Image	Upload container artifact	2026-10-16T18:05:42.9934868Z SHA256 digest of uploaded artifact zip is 9f4a3505a55c8eadd9ac615f25bfe2d2bf0ac783b6928fab4bf9c9bbfa1a839a
+Build Application and Image	Upload container artifact	2026-10-16T18:05:42.9936482Z Finalizing artifact upload
+Build Application and Image	Upload container artifact	2026-10-16T18:05:43.2148345Z Artifact calculator-image.zip successfully finalized. Artifact ID 12064940983
+Build Application and Image	Upload container artifact	2026-10-16T18:05:43.2149289Z Artifact calculator-image has been successfully uploaded! Final size is 20034865 bytes. Artifact ID is 12064940983
+Build Application and Image	Upload container artifact	2026-10-16T18:05:43.2152833Z Artifact download URL: https://github.com/Suhassk205/demo-devops-cicd/actions/runs/38944601430/artifacts/12064940983
+Build Application and Image	Post Setup Python	﻿2026-10-16T18:05:43.2397178Z Post job cleanup.
+Build Application and Image	Post Checkout source code	﻿2026-10-16T18:05:43.3803914Z Post job cleanup.
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.4774981Z [command]/usr/bin/git version
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.4823918Z git version 2.55.0
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.4870531Z Temporarily overriding HOME='/home/runner/work/_temp/58c259c5-1bc1-4dc7-8c2f-e2d5e2b4f78f' before making global git config changes
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.4871618Z Adding repository directory to the temporary git global config as a safe directory
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.4877659Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.4925577Z Removing SSH command configuration
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.4934282Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.4972841Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5249023Z Removing HTTP extra header
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5256409Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5302720Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5620817Z Removing includeIf entries pointing to credentials config files
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5639491Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5687814Z includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5704659Z includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5705671Z includeif.gitdir:/github/workspace/.git.path
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5706338Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5708649Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5755501Z /home/runner/work/_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5780219Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path /home/runner/work/_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5864270Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5893170Z /home/runner/work/_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5908173Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5953471Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5983620Z /github/runner_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.5993133Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.6034783Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.6063131Z /github/runner_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.6074204Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.6118289Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Build Application and Image	Post Checkout source code	2026-10-16T18:05:43.6363127Z Removing credentials config '/home/runner/work/_temp/git-credentials-e5361c3d-bdce-4f85-be60-eb5b02bb787c.config'
+Build Application and Image	Complete job	﻿2026-10-16T18:05:43.6515184Z Cleaning up orphan processes
+Build Application and Image	Complete job	2026-10-16T18:05:43.6903890Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/upload-artifact@v4. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+Deploy and Verify Application	Set up job	﻿2026-10-16T18:05:48.6676297Z Current runner version: '2.337.0'
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6712444Z ##[group]Runner Image Provisioner
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6713789Z Hosted Compute Agent
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6714755Z Version: 20261012.601
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6716004Z Commit: f3dc54e1fb89da6852db922499a0233137369e1d
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6717454Z Build Date: 2026-10-12T17:48:21Z
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6718586Z Worker ID: {3fbd19cb-2f0d-4c4c-afca-7a55fb3287ff}
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6719850Z Region: centralus
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6720774Z Cloud: Azure
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6721622Z ##[endgroup]
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6724878Z ##[group]Operating System
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6726238Z Ubuntu
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6727145Z 24.04.5
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6728227Z LTS
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6729172Z ##[endgroup]
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6730228Z ##[group]Runner Image
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6731295Z Image: ubuntu-24.04
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6732211Z Version: 20261012.334.1
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6734334Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261012.334/images/ubuntu/Ubuntu2404-Readme.md
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6738289Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261012.334
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6740122Z ##[endgroup]
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6742168Z ##[group]GITHUB_TOKEN Permissions
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6745248Z Contents: read
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6746519Z Metadata: read
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6747611Z ##[endgroup]
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6750509Z Secret source: Actions
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6752223Z Cache mode: write
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.6753982Z Prepare workflow directory
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.7116264Z Prepare all required actions
+Deploy and Verify Application	Set up job	2026-10-16T18:05:48.7184085Z Getting action download info
+Deploy and Verify Application	Set up job	2026-10-16T18:05:49.0224521Z Download action repository 'actions/checkout@v6' (SHA:d23441a48e516b6c34aea4fa41551a30e30af803)
+Deploy and Verify Application	Set up job	2026-10-16T18:05:49.1609224Z Download action repository 'actions/download-artifact@v4' (SHA:d3f86a106a0bac45b974a628896c90dbdf5c8093)
+Deploy and Verify Application	Set up job	2026-10-16T18:05:49.6678068Z Download action repository 'helm/kind-action@v1.12.0' (SHA:a1b0e391336a6ee6713a0583f8c6240d70863de3)
+Deploy and Verify Application	Set up job	2026-10-16T18:05:49.8389234Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+Deploy and Verify Application	Set up job	2026-10-16T18:05:50.0781277Z Complete job name: Deploy and Verify Application
+Deploy and Verify Application	Run actions/checkout@v6	﻿2026-10-16T18:05:50.1738376Z ##[group]Run actions/checkout@v6
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1739784Z with:
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1740675Z   repository: Suhassk205/demo-devops-cicd
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1750394Z   token: ***
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1751257Z   ssh-strict: true
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1752112Z   ssh-user: git
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1752985Z   persist-credentials: true
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1753947Z   clean: true
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1754822Z   sparse-checkout-cone-mode: true
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1755994Z   fetch-depth: 1
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1756858Z   fetch-tags: false
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1757736Z   show-progress: true
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1758623Z   lfs: false
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1759457Z   submodules: false
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1760347Z   set-safe-directory: true
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1761356Z   allow-unsafe-pr-checkout: false
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.1762694Z ##[endgroup]
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2788776Z Syncing repository: Suhassk205/demo-devops-cicd
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2792950Z ##[group]Getting Git version info
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2795462Z Working directory is '/home/runner/work/demo-devops-cicd/demo-devops-cicd'
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2799459Z [command]/usr/bin/git version
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2838338Z git version 2.55.0
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2862799Z ##[endgroup]
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2879422Z Temporarily overriding HOME='/home/runner/work/_temp/c11f2cf2-b0d0-4373-9f85-c835732a1df7' before making global git config changes
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2884173Z Adding repository directory to the temporary git global config as a safe directory
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2888452Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2941629Z Deleting the contents of '/home/runner/work/demo-devops-cicd/demo-devops-cicd'
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2946989Z ##[group]Determining repository object format
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2950901Z ##[endgroup]
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2954185Z ##[group]Initializing the repository
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.2956965Z [command]/usr/bin/git init /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3071268Z hint: Using 'master' as the name for the initial branch. This default branch name
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3074628Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3078255Z hint: to use in all of your new repositories, which will suppress this warning,
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3080811Z hint: call:
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3082120Z hint:
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3083705Z hint: 	git config --global init.defaultBranch <name>
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3085950Z hint:
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3087892Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3090752Z hint: 'development'. The just-created branch can be renamed via this command:
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3093453Z hint:
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3095421Z hint: 	git branch -m <name>
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3097572Z hint:
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3099646Z hint: Disable this message with "git config set advice.defaultBranchName false"
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3103375Z Initialized empty Git repository in /home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3109588Z [command]/usr/bin/git remote add origin https://github.com/Suhassk205/demo-devops-cicd
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3139467Z ##[endgroup]
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3142179Z ##[group]Disabling automatic garbage collection
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3144286Z [command]/usr/bin/git config --local gc.auto 0
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3177023Z ##[endgroup]
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3179422Z ##[group]Setting up auth
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3181035Z Removing SSH command configuration
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3183928Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3218882Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3586063Z Removing HTTP extra header
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3593308Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3639138Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3902008Z Removing includeIf entries pointing to credentials config files
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3909600Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.3950765Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.4185557Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.4229924Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path /home/runner/work/_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.4269231Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.4311137Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.4349662Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.4387346Z ##[endgroup]
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.4388802Z ##[group]Fetching the repository
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.4395576Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +77baf3f426b5a37aab313f067be9643c72859f2d:refs/remotes/origin/main
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7495354Z From https://github.com/Suhassk205/demo-devops-cicd
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7502130Z  * [new ref]         77baf3f426b5a37aab313f067be9643c72859f2d -> origin/main
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7510901Z [command]/usr/bin/git branch --list --remote origin/main
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7543029Z   origin/main
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7554178Z [command]/usr/bin/git rev-parse refs/remotes/origin/main
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7580894Z 77baf3f426b5a37aab313f067be9643c72859f2d
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7586824Z ##[endgroup]
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7588371Z ##[group]Determining the checkout info
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7590174Z ##[endgroup]
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7591622Z [command]/usr/bin/git sparse-checkout disable
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7644838Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7678596Z ##[group]Checking out the ref
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7681577Z [command]/usr/bin/git checkout --progress --force -B main refs/remotes/origin/main
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7745174Z Switched to a new branch 'main'
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7751131Z branch 'main' set up to track 'origin/main'.
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7759701Z ##[endgroup]
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7804484Z [command]/usr/bin/git log -1 --format=%H
+Deploy and Verify Application	Run actions/checkout@v6	2026-10-16T18:05:50.7829787Z 77baf3f426b5a37aab313f067be9643c72859f2d
+Deploy and Verify Application	Run actions/download-artifact@v4	﻿2026-10-16T18:05:50.8213601Z ##[group]Run actions/download-artifact@v4
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:50.8214795Z with:
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:50.8215582Z   name: calculator-image
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:50.8216840Z   merge-multiple: false
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:50.8217832Z   repository: Suhassk205/demo-devops-cicd
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:50.8218906Z   run-id: 38944601430
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:50.8219750Z ##[endgroup]
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:50.9783757Z Downloading single artifact
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:50.9931159Z (node:2322) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:50.9935173Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:51.1460486Z Preparing to download the following artifacts:
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:51.1464054Z - calculator-image (ID: 12064940983, Size: 20034865, Expected Digest: sha256:9f4a3505a55c8eadd9ac615f25bfe2d2bf0ac783b6928fab4bf9c9bbfa1a839a)
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:51.3272177Z Redirecting to blob download url: https://productionresultssa13.blob.core.windows.net/actions-results/375d3dec-88c4-8e82-b81a-438c70e2fb96/workflow-job-run-d61f4782-a075-5ba2-bea5-57244210b057/artifacts/fac0defd099fe90cf87cc3a466b0eea4990ea635ead922e74b73e97bf973ee8b.zip
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:51.3275576Z Starting download of artifact to: /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:51.4993811Z (node:2322) [DEP0005] DeprecationWarning: Buffer() is deprecated due to security and usability issues. Please use the Buffer.alloc(), Buffer.allocUnsafe(), or Buffer.from() methods instead.
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:52.0802873Z SHA256 digest of downloaded artifact is 9f4a3505a55c8eadd9ac615f25bfe2d2bf0ac783b6928fab4bf9c9bbfa1a839a
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:52.0804448Z Artifact download completed successfully.
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:52.0805167Z Total of 1 artifact(s) downloaded
+Deploy and Verify Application	Run actions/download-artifact@v4	2026-10-16T18:05:52.0808977Z Download artifact has finished successfully
+Deploy and Verify Application	Load the built image	﻿2026-10-16T18:05:52.0974869Z ##[group]Run docker load -i calculator-image.tar.gz
+Deploy and Verify Application	Load the built image	2026-10-16T18:05:52.0975385Z [36;1mdocker load -i calculator-image.tar.gz[0m
+Deploy and Verify Application	Load the built image	2026-10-16T18:05:52.1249971Z shell: /usr/bin/bash -e {0}
+Deploy and Verify Application	Load the built image	2026-10-16T18:05:52.1250293Z ##[endgroup]
+Deploy and Verify Application	Load the built image	2026-10-16T18:05:56.0397442Z Loaded image: session16-calculator:77baf3f426b5a37aab313f067be9643c72859f2d
+Deploy and Verify Application	Create deployment cluster	﻿2026-10-16T18:05:56.0582449Z ##[group]Run helm/kind-action@v1.12.0
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0582793Z with:
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0582993Z   version: v0.26.0
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0583239Z   cluster_name: chart-testing
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0583485Z   wait: 60s
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0583684Z   verbosity: 0
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0584106Z   kubectl_version: v1.31.4
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0584351Z   registry: false
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0584572Z   registry_image: registry:2
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0584836Z   registry_name: kind-registry
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0585077Z   registry_port: 5000
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0585307Z   registry_enable_delete: false
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0585566Z   ignore_failed_clean: false
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0586208Z ##[endgroup]
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0932902Z Installing kind...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.0947986Z /opt/hostedtoolcache/kind/v0.26.0/amd64/kind/bin ~/work/demo-devops-cicd/demo-devops-cicd
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.8018650Z kind-linux-amd64: OK
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.8057026Z ~/work/demo-devops-cicd/demo-devops-cicd
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.8057624Z Adding kind directory to PATH...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:56.8058150Z Installing kubectl...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:57.1147256Z Adding kubectl directory to PATH...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:57.1174276Z kind v0.26.0 go1.23.4 linux/amd64
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:57.1556953Z Client Version: v1.31.4
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:57.1566642Z Kustomize Version: v5.4.2
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:57.1594047Z Creating kind cluster...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:59.6336675Z Creating cluster "chart-testing" ...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:05:59.6337538Z  • Ensuring node image (kindest/node:v1.32.0) 🖼  ...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:08.9478875Z  ✓ Ensuring node image (kindest/node:v1.32.0) 🖼
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:08.9479723Z  • Preparing nodes 📦   ...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:11.6489753Z  ✓ Preparing nodes 📦 
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:11.6775918Z  • Writing configuration 📜  ...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:11.8654542Z  ✓ Writing configuration 📜
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:11.8655043Z  • Starting control-plane 🕹️  ...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:21.8673115Z  ✓ Starting control-plane 🕹️
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:21.8674249Z  • Installing CNI 🔌  ...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:22.1688451Z  ✓ Installing CNI 🔌
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:22.1688938Z  • Installing StorageClass 💾  ...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:22.5066360Z  ✓ Installing StorageClass 💾
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:22.5342799Z  • Waiting ≤ 1m0s for control-plane = Ready ⏳  ...
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:41.0762486Z  ✓ Waiting ≤ 1m0s for control-plane = Ready ⏳
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:41.0763288Z  • Ready after 19s 💚
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:41.2191508Z Set kubectl context to "kind-chart-testing"
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:41.2191945Z You can now use your cluster with:
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:41.2192156Z 
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:41.2192326Z kubectl cluster-info --context kind-chart-testing
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:41.2192595Z 
+Deploy and Verify Application	Create deployment cluster	2026-10-16T18:06:41.2193393Z Not sure what to do next? 😅  Check out https://kind.sigs.k8s.io/docs/user/quick-start/
+Deploy and Verify Application	Deploy the image from CI	﻿2026-10-16T18:06:41.2302437Z ##[group]Run kind load docker-image session16-calculator:77baf3f426b5a37aab313f067be9643c72859f2d --name chart-testing
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:41.2303400Z [36;1mkind load docker-image session16-calculator:77baf3f426b5a37aab313f067be9643c72859f2d --name chart-testing[0m
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:41.2304030Z [36;1mkubectl create namespace session16-homework[0m
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:41.2304911Z [36;1mkubectl set image --local -f k8s/deployment.yaml calculator=session16-calculator:77baf3f426b5a37aab313f067be9643c72859f2d -o yaml | kubectl -n session16-homework apply -f -[0m
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:41.2306064Z [36;1mkubectl -n session16-homework apply -f k8s/service.yaml[0m
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:41.2306662Z [36;1mkubectl -n session16-homework rollout status deployment/session16-calculator --timeout=180s[0m
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:41.2371984Z shell: /usr/bin/bash -e {0}
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:41.2372336Z ##[endgroup]
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:41.5028862Z Image: "session16-calculator:77baf3f426b5a37aab313f067be9643c72859f2d" with ID "sha256:6cde491c560c9ade2e95ffde0529c91803b1325b116b9a420bc967634619fc73" not yet present on node "chart-testing-control-plane", loading...
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:44.1685973Z namespace/session16-homework created
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:44.2690029Z deployment.apps/session16-calculator created
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:44.4027287Z service/session16-calculator created
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:44.4648667Z Waiting for deployment "session16-calculator" rollout to finish: 0 of 2 updated replicas are available...
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:47.9687548Z Waiting for deployment "session16-calculator" rollout to finish: 1 of 2 updated replicas are available...
+Deploy and Verify Application	Deploy the image from CI	2026-10-16T18:06:48.9701958Z deployment "session16-calculator" successfully rolled out
+Deploy and Verify Application	Verify running application through its Service	﻿2026-10-16T18:06:48.9756593Z ##[group]Run mkdir -p reports
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9756974Z [36;1mmkdir -p reports[0m
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9757482Z [36;1mkubectl -n session16-homework get deployment,pods,service -o wide | tee reports/deployment.txt[0m
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9758019Z [36;1mverified=false[0m
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9758266Z [36;1mfor attempt in 1 2 3 4 5; do[0m
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9760133Z [36;1m  if kubectl -n session16-homework exec deployment/session16-calculator -- python -c 'import json,urllib.request; base="http://session16-calculator"; health=json.load(urllib.request.urlopen(base+"/health", timeout=10)); result=json.load(urllib.request.urlopen(base+"/calculate?operation=add&a=10&b=5", timeout=10)); assert health["status"]=="healthy"; assert result["result"]==15; print("Health:",health); print("Calculation:",result)' | tee reports/http-checks.txt; then[0m
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9761967Z [36;1m    verified=true[0m
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9762206Z [36;1m    break[0m
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9762412Z [36;1m  fi[0m
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9762640Z [36;1m  sleep 2[0m
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9762841Z [36;1mdone[0m
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9763045Z [36;1mtest "$verified" = true[0m
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9763599Z [36;1mkubectl -n session16-homework logs deployment/session16-calculator --tail=10 > reports/application.log[0m
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9827543Z shell: /usr/bin/bash -e {0}
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:48.9827817Z ##[endgroup]
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:49.0489677Z NAME                                   READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                                                          SELECTOR
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:49.0490929Z deployment.apps/session16-calculator   2/2     2            2           5s    calculator   session16-calculator:77baf3f426b5a37aab313f067be9643c72859f2d   app=session16-calculator
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:49.0491908Z 
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:49.0492531Z NAME                                        READY   STATUS    RESTARTS   AGE   IP           NODE                          NOMINATED NODE   READINESS GATES
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:49.0493684Z pod/session16-calculator-786f7466cb-5ccc9   1/1     Running   0          5s    10.244.0.6   chart-testing-control-plane   <none>           <none>
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:49.0495201Z pod/session16-calculator-786f7466cb-9x2k5   1/1     Running   0          5s    10.244.0.5   chart-testing-control-plane   <none>           <none>
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:49.0496274Z 
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:49.0496624Z NAME                           TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:49.0497690Z service/session16-calculator   ClusterIP   10.96.238.12   <none>        80/TCP    5s    app=session16-calculator
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:51.4448964Z Health: {'status': 'healthy'}
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:51.4449943Z Calculation: {'operation': 'add', 'result': 15.0}
+Deploy and Verify Application	Verify running application through its Service	2026-10-16T18:06:51.5956977Z Found 2 pods, using pod/session16-calculator-786f7466cb-5ccc9
+Deploy and Verify Application	Upload deployment evidence	﻿2026-10-16T18:06:51.6144866Z ##[group]Run actions/upload-artifact@v4
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.6145176Z with:
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.6145381Z   name: deployment-reports
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.6145620Z   path: reports/
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.6146208Z   if-no-files-found: warn
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.6146470Z   compression-level: 6
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.6146689Z   overwrite: false
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.6146908Z   include-hidden-files: false
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.6147343Z ##[endgroup]
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.7879370Z (node:12559) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.7880508Z (Use `node --trace-deprecation ...` to show where the warning was created)
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.7943945Z With the provided path, there will be 3 files uploaded
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.7951829Z Artifact name is valid!
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:51.7953211Z Root directory input is valid!
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:52.0726233Z Beginning upload of artifact content to blob storage
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:52.0953424Z (node:12559) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:52.2498309Z Uploaded bytes 957
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:52.2983020Z Finished uploading artifact content to blob storage!
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:52.2984386Z SHA256 digest of uploaded artifact zip is c49a64ea9b0ec7fd95e5658aa09b1851d13579db898aad18af56df10da526005
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:52.2986254Z Finalizing artifact upload
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:52.5490003Z Artifact deployment-reports.zip successfully finalized. Artifact ID 12064222969
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:52.5491810Z Artifact deployment-reports has been successfully uploaded! Final size is 957 bytes. Artifact ID is 12064222969
+Deploy and Verify Application	Upload deployment evidence	2026-10-16T18:06:52.5498816Z Artifact download URL: https://github.com/Suhassk205/demo-devops-cicd/actions/runs/38944601430/artifacts/12064222969
+Deploy and Verify Application	Post Create deployment cluster	﻿2026-10-16T18:06:52.5674361Z Post job cleanup.
+Deploy and Verify Application	Post Create deployment cluster	2026-10-16T18:06:52.6097205Z Error response from daemon: No such container: kind-registry
+Deploy and Verify Application	Post Create deployment cluster	2026-10-16T18:06:52.6229343Z Deleting cluster "chart-testing" ...
+Deploy and Verify Application	Post Create deployment cluster	2026-10-16T18:06:53.9337540Z Deleted nodes: ["chart-testing-control-plane"]
+Deploy and Verify Application	Post Run actions/checkout@v6	﻿2026-10-16T18:06:53.9459188Z Post job cleanup.
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.0369448Z [command]/usr/bin/git version
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.0414663Z git version 2.55.0
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.0460774Z Temporarily overriding HOME='/home/runner/work/_temp/3cf0e973-3196-43e0-91bb-654d76f90478' before making global git config changes
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.0463311Z Adding repository directory to the temporary git global config as a safe directory
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.0466879Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/demo-devops-cicd/demo-devops-cicd
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.0516777Z Removing SSH command configuration
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.0517497Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.0546429Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.0794899Z Removing HTTP extra header
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.0800804Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.0836990Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1094108Z Removing includeIf entries pointing to credentials config files
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1102618Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1140242Z includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1141576Z includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1142953Z includeif.gitdir:/github/workspace/.git.path
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1144040Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1152231Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1181757Z /home/runner/work/_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1198367Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git.path /home/runner/work/_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1244744Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1274257Z /home/runner/work/_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1286186Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/demo-devops-cicd/demo-devops-cicd/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1324351Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1356391Z /github/runner_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1366086Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1411478Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1438538Z /github/runner_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1450037Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1489532Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+Deploy and Verify Application	Post Run actions/checkout@v6	2026-10-16T18:06:54.1715402Z Removing credentials config '/home/runner/work/_temp/git-credentials-00d3a5c5-4a38-4a5a-80b2-f34448c82d08.config'
+Deploy and Verify Application	Complete job	﻿2026-10-16T18:06:54.1864046Z Cleaning up orphan processes
+Deploy and Verify Application	Complete job	2026-10-16T18:06:54.2238399Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/download-artifact@v4, actions/upload-artifact@v4, helm/kind-action@v1.12.0. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

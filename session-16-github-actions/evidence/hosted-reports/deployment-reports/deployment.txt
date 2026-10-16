@@ -1,0 +1,9 @@
+NAME                                   READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                                                          SELECTOR
+deployment.apps/session16-calculator   2/2     2            2           5s    calculator   session16-calculator:77baf3f426b5a37aab313f067be9643c72859f2d   app=session16-calculator
+
+NAME                                        READY   STATUS    RESTARTS   AGE   IP           NODE                          NOMINATED NODE   READINESS GATES
+pod/session16-calculator-786f7466cb-5ccc9   1/1     Running   0          5s    10.244.0.6   chart-testing-control-plane   <none>           <none>
+pod/session16-calculator-786f7466cb-9x2k5   1/1     Running   0          5s    10.244.0.5   chart-testing-control-plane   <none>           <none>
+
+NAME                           TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+service/session16-calculator   ClusterIP   10.96.238.12   <none>        80/TCP    5s    app=session16-calculator

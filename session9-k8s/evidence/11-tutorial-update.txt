@@ -1,0 +1,48 @@
+Kubernetes Basics - rolling update to Nginx 1.28
+Actual command transcript; 2026-10-16T23:33:07.126572+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session9-homework set image deployment/kubernetes-basics nginx=nginx:1.28
+deployment.apps/kubernetes-basics image updated
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework rollout status deployment/kubernetes-basics --timeout=180s
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 old replicas are pending termination...
+deployment "kubernetes-basics" successfully rolled out
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework get deployment,replicaset,pods -l app=kubernetes-basics
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/kubernetes-basics   2/2     2            2           7s
+
+NAME                                           DESIRED   CURRENT   READY   AGE
+replicaset.apps/kubernetes-basics-56ff66b96d   2         2         2       1s
+replicaset.apps/kubernetes-basics-7c8d555d9    0         0         0       7s
+
+NAME                                     READY   STATUS        RESTARTS   AGE
+pod/kubernetes-basics-56ff66b96d-nmqmw   1/1     Running       0          1s
+pod/kubernetes-basics-56ff66b96d-vhwsp   1/1     Running       0          1s
+pod/kubernetes-basics-7c8d555d9-4kfsw    0/1     Completed     0          2s
+pod/kubernetes-basics-7c8d555d9-6hncr    0/1     Completed     0          2s
+pod/kubernetes-basics-7c8d555d9-hjvcs    1/1     Terminating   0          7s
+pod/kubernetes-basics-7c8d555d9-zqbrl    0/1     Completed     0          2s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework exec deployment/kubernetes-basics -- nginx -v
+nginx version: nginx/1.28.3
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework rollout history deployment/kubernetes-basics
+deployment.apps/kubernetes-basics 
+REVISION  CHANGE-CAUSE
+1         <none>
+2         <none>
+[exit 0]
+

@@ -1,0 +1,10 @@
+Session 16 - remove local deployment lab
+Actual command transcript; 2026-10-16T23:32:37.780347+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session16-homework delete namespace session16-homework --wait=true --timeout=120s
+Warning: deleting cluster-scoped resources, not scoped to the provided namespace
+namespace "session16-homework" deleted
+[exit 0]
+
+Verified: the local calculator deployment was removed after its HTTP checks passed.

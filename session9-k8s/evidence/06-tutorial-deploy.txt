@@ -1,0 +1,24 @@
+Kubernetes Basics - deploy an application
+Actual command transcript; 2026-10-16T23:33:01.449462+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session9-homework create deployment kubernetes-basics --image=nginx:1.27 --port=80
+deployment.apps/kubernetes-basics created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework rollout status deployment/kubernetes-basics --timeout=180s
+Waiting for deployment "kubernetes-basics" rollout to finish: 0 of 1 updated replicas are available...
+deployment "kubernetes-basics" successfully rolled out
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework get deployment,replicaset,pods -l app=kubernetes-basics
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/kubernetes-basics   1/1     1            1           0s
+
+NAME                                          DESIRED   CURRENT   READY   AGE
+replicaset.apps/kubernetes-basics-7c8d555d9   1         1         1       0s
+
+NAME                                    READY   STATUS    RESTARTS   AGE
+pod/kubernetes-basics-7c8d555d9-hjvcs   1/1     Running   0          0s
+[exit 0]
+

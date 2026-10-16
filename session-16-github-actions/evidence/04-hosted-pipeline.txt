@@ -1,0 +1,14 @@
+Session 16 - successful hosted CI and CD
+Actual command transcript; 2026-10-16T23:37:50.687222+05:30
+Context: GitHub Actions; calculator repository
+
+$ gh run view 38944601430 --repo Suhassk205/demo-devops-cicd --json status,conclusion,headSha,url,jobs --jq '. as $run | "Run: \(.url)\nCommit: \(.headSha)\nResult: \(.conclusion)\n" + ([.jobs[] | "\(.conclusion): \(.name)"] | join("\n"))'
+Run: https://github.com/Suhassk205/demo-devops-cicd/actions/runs/38944601430
+Commit: 77baf3f426b5a37aab313f067be9643c72859f2d
+Result: success
+success: Test Application
+success: Security Check
+success: Build Application and Image
+success: Deploy and Verify Application
+[exit 0]
+

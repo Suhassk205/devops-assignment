@@ -1,0 +1,26 @@
+Kubernetes Basics - scale down to two replicas
+Actual command transcript; 2026-10-16T23:33:07.023288+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session9-homework scale deployment/kubernetes-basics --replicas=2
+deployment.apps/kubernetes-basics scaled
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework rollout status deployment/kubernetes-basics --timeout=180s
+deployment "kubernetes-basics" successfully rolled out
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework get deployment,replicaset,pods -l app=kubernetes-basics
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/kubernetes-basics   2/2     2            2           6s
+
+NAME                                          DESIRED   CURRENT   READY   AGE
+replicaset.apps/kubernetes-basics-7c8d555d9   2         2         2       6s
+
+NAME                                    READY   STATUS        RESTARTS   AGE
+pod/kubernetes-basics-7c8d555d9-4kfsw   1/1     Terminating   0          1s
+pod/kubernetes-basics-7c8d555d9-6hncr   1/1     Terminating   0          1s
+pod/kubernetes-basics-7c8d555d9-hjvcs   1/1     Running       0          6s
+pod/kubernetes-basics-7c8d555d9-zqbrl   1/1     Running       0          1s
+[exit 0]
+

@@ -1,0 +1,2 @@
+Health: {'status': 'healthy'}
+Calculation: {'operation': 'add', 'result': 15.0}

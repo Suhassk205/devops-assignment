@@ -1,0 +1,55 @@
+Kubernetes Basics - roll back to Nginx 1.27
+Actual command transcript; 2026-10-16T23:33:08.174693+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session9-homework rollout undo deployment/kubernetes-basics --to-revision=1
+deployment.apps/kubernetes-basics rolled back
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework rollout status deployment/kubernetes-basics --timeout=180s
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 out of 2 new replicas have been updated...
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 old replicas are pending termination...
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 old replicas are pending termination...
+deployment "kubernetes-basics" successfully rolled out
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework get deployment,replicaset,pods -l app=kubernetes-basics
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/kubernetes-basics   2/2     2            2           8s
+
+NAME                                           DESIRED   CURRENT   READY   AGE
+replicaset.apps/kubernetes-basics-56ff66b96d   0         0         0       2s
+replicaset.apps/kubernetes-basics-7c8d555d9    2         2         2       8s
+
+NAME                                     READY   STATUS        RESTARTS   AGE
+pod/kubernetes-basics-56ff66b96d-nmqmw   1/1     Terminating   0          2s
+pod/kubernetes-basics-7c8d555d9-ffgnm    1/1     Running       0          1s
+pod/kubernetes-basics-7c8d555d9-grh9w    1/1     Running       0          1s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework exec deployment/kubernetes-basics -- nginx -v
+nginx version: nginx/1.27.5
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework rollout history deployment/kubernetes-basics
+deployment.apps/kubernetes-basics 
+REVISION  CHANGE-CAUSE
+2         <none>
+3         <none>
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework exec deployment/kubernetes-basics -- curl --fail --silent --head --connect-timeout 3 --max-time 10 --retry 10 --retry-connrefused --retry-delay 1 http://kubernetes-basics
+HTTP/1.1 200 OK
+Server: nginx/1.27.5
+Date: Fri, 16 Oct 2026 18:03:09 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Wed, 16 Apr 2025 12:01:11 GMT
+Connection: keep-alive
+ETag: "67ff9c07-267"
+Accept-Ranges: bytes
+[exit 0]
+

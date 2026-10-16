@@ -1,0 +1,83 @@
+Session 16 - application tests and container build
+Actual command transcript; 2026-10-16T23:30:34.301359+05:30
+Context: kind-session13
+
+$ /private/tmp/devops-security-venv/bin/python -m pytest -v tests
+============================= test session starts ==============================
+platform darwin -- Python 3.12.14, pytest-9.1.1, pluggy-1.7.0 -- /private/tmp/devops-security-venv/bin/python
+cachedir: .pytest_cache
+rootdir: /Users/suhas/Downloads/devops-heros-main/session-16-github-actions/demo
+plugins: cov-7.1.0, platformdirs-4.13.3, anyio-4.15.1
+collecting ... collected 15 items
+
+tests/test_calculator.py::test_add PASSED                                [  6%]
+tests/test_calculator.py::test_subtract PASSED                           [ 13%]
+tests/test_calculator.py::test_multiply PASSED                           [ 20%]
+tests/test_calculator.py::test_divide PASSED                             [ 26%]
+tests/test_calculator.py::test_divide_by_zero PASSED                     [ 33%]
+tests/test_server.py::test_health PASSED                                 [ 40%]
+tests/test_server.py::test_calculation[add-10-5-15] PASSED               [ 46%]
+tests/test_server.py::test_calculation[subtract-10-5-5] PASSED           [ 53%]
+tests/test_server.py::test_calculation[multiply-10-5-50] PASSED          [ 60%]
+tests/test_server.py::test_calculation[divide-10-5-2] PASSED             [ 66%]
+tests/test_server.py::test_invalid_requests[/calculate?operation=divide&a=1&b=0-400] PASSED [ 73%]
+tests/test_server.py::test_invalid_requests[/calculate?operation=unknown&a=1&b=2-400] PASSED [ 80%]
+tests/test_server.py::test_invalid_requests[/calculate?operation=add&a=NaN&b=2-400] PASSED [ 86%]
+tests/test_server.py::test_invalid_requests[/calculate?operation=add&a=1-400] PASSED [ 93%]
+tests/test_server.py::test_invalid_requests[/missing-404] PASSED         [100%]
+
+============================== 15 passed in 0.54s ==============================
+[exit 0]
+
+$ bash build.sh
+=================================
+Starting Application Build
+=================================
+
+Build files:
+total 24
+drwxr-xr-x@  6 suhas  staff   192 Oct 16 23:30 .
+drwxr-xr-x@ 14 suhas  staff   448 Oct 16 23:30 ..
+-rw-r--r--@  1 suhas  staff     0 Oct 16 23:30 __init__.py
+-rw-r--r--@  1 suhas  staff    98 Oct 16 23:30 build-info.txt
+-rw-r--r--@  1 suhas  staff  1488 Oct 16 23:30 calculator.py
+-rw-r--r--@  1 suhas  staff  1885 Oct 16 23:30 server.py
+
+Build completed successfully.
+[exit 0]
+
+$ docker build -t session16-calculator:local .
+DEPRECATED: The legacy builder is deprecated and will be removed in a future release.
+            Install the buildx component to build images with BuildKit:
+            https://docs.docker.com/go/buildx/
+
+Sending build context to Docker daemon  24.06kB
+
+Step 1/7 : FROM python:3.12-alpine@sha256:1b668429b3511ab407d8e00648891631b0b1a4d7e15e3ca70f38ab5b91ad4ab4
+ ---> 1b668429b351
+Step 2/7 : WORKDIR /app
+ ---> Using cache
+ ---> 267fccbe18c6
+Step 3/7 : RUN adduser -D -u 10001 appuser
+ ---> Using cache
+ ---> b816c2b6a49a
+Step 4/7 : COPY app ./app
+ ---> Using cache
+ ---> 3c1be49a98d8
+Step 5/7 : USER 10001
+ ---> Using cache
+ ---> f06f3c278d42
+Step 6/7 : EXPOSE 8080
+ ---> Using cache
+ ---> d2d7524b2845
+Step 7/7 : CMD ["python", "-m", "app.server"]
+ ---> Using cache
+ ---> 6a78c9ae9955
+Successfully built 6a78c9ae9955
+Successfully tagged session16-calculator:local
+[exit 0]
+
+$ docker image inspect session16-calculator:local --format 'Image: {{.Id}}; runtime user: {{.Config.User}}'
+Image: sha256:6a78c9ae9955d9365d586701e54b475e58d733c186e685e3ecb997d40c6bccdf; runtime user: 10001
+[exit 0]
+

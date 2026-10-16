@@ -1,0 +1,29 @@
+Session 16 - hosted tests and live Kubernetes Service verification
+Actual command transcript; 2026-10-16T23:37:52.441086+05:30
+Context: Downloaded GitHub Actions artifacts; actual hosted results
+
+$ python3 scripts/summarize_session16_hosted.py
+Run: https://github.com/Suhassk205/demo-devops-cicd/actions/runs/38944601430
+Source commit: 77baf3f426b5a37aab313f067be9643c72859f2d
+PASS: Test Application
+PASS: Security Check
+PASS: Build Application and Image
+PASS: Deploy and Verify Application
+Tests: 15 passed; 0 failures/errors
+
+Hosted Kubernetes deployment:
+NAME                                   READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                                                          SELECTOR
+deployment.apps/session16-calculator   2/2     2            2           5s    calculator   session16-calculator:77baf3f426b5a37aab313f067be9643c72859f2d   app=session16-calculator
+
+NAME                                        READY   STATUS    RESTARTS   AGE   IP           NODE                          NOMINATED NODE   READINESS GATES
+pod/session16-calculator-786f7466cb-5ccc9   1/1     Running   0          5s    10.244.0.6   chart-testing-control-plane   <none>           <none>
+pod/session16-calculator-786f7466cb-9x2k5   1/1     Running   0          5s    10.244.0.5   chart-testing-control-plane   <none>           <none>
+
+NAME                           TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+service/session16-calculator   ClusterIP   10.96.238.12   <none>        80/TCP    5s    app=session16-calculator
+
+Hosted Service verification:
+Health: {'status': 'healthy'}
+Calculation: {'operation': 'add', 'result': 15.0}
+[exit 0]
+

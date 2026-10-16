@@ -1,0 +1,34 @@
+Kubernetes Basics - scale from one to four replicas
+Actual command transcript; 2026-10-16T23:33:06.390234+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session9-homework scale deployment/kubernetes-basics --replicas=4
+deployment.apps/kubernetes-basics scaled
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework rollout status deployment/kubernetes-basics --timeout=180s
+Waiting for deployment "kubernetes-basics" rollout to finish: 1 of 4 updated replicas are available...
+Waiting for deployment "kubernetes-basics" rollout to finish: 2 of 4 updated replicas are available...
+Waiting for deployment "kubernetes-basics" rollout to finish: 3 of 4 updated replicas are available...
+deployment "kubernetes-basics" successfully rolled out
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework get deployment,replicaset,pods -l app=kubernetes-basics
+NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
+deployment.apps/kubernetes-basics   4/4     4            4           6s
+
+NAME                                          DESIRED   CURRENT   READY   AGE
+replicaset.apps/kubernetes-basics-7c8d555d9   4         4         4       6s
+
+NAME                                    READY   STATUS    RESTARTS   AGE
+pod/kubernetes-basics-7c8d555d9-4kfsw   1/1     Running   0          1s
+pod/kubernetes-basics-7c8d555d9-6hncr   1/1     Running   0          1s
+pod/kubernetes-basics-7c8d555d9-hjvcs   1/1     Running   0          6s
+pod/kubernetes-basics-7c8d555d9-zqbrl   1/1     Running   0          1s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework get endpointslices -l kubernetes.io/service-name=kubernetes-basics
+NAME                      ADDRESSTYPE   PORTS   ENDPOINTS                                         AGE
+kubernetes-basics-h5xkd   IPv4          80      10.244.0.72,10.244.0.75,10.244.0.74 + 1 more...   5s
+[exit 0]
+

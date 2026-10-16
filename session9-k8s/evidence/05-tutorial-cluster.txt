@@ -1,0 +1,20 @@
+Kubernetes Basics - cluster and namespace
+Actual command transcript; 2026-10-16T23:33:01.337649+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 cluster-info
+Kubernetes control plane is running at https://127.0.0.1:50544
+CoreDNS is running at https://127.0.0.1:50544/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+[exit 0]
+
+$ kubectl --context kind-session13 get nodes -o wide
+NAME                      STATUS   ROLES           AGE   VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                       KERNEL-VERSION              CONTAINER-RUNTIME
+session13-control-plane   Ready    control-plane   9d    v1.37.0   172.21.0.2    <none>        Debian GNU/Linux 13 (trixie)   6.8.0-117-generic (arm64)   containerd://2.3.4
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework create namespace session9-homework
+namespace/session9-homework created
+[exit 0]
+

@@ -1,0 +1,90 @@
+Kubernetes Basics - expose and access the application
+Actual command transcript; 2026-10-16T23:33:02.120070+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session9-homework expose deployment kubernetes-basics --type=NodePort --port=80 --target-port=80
+service/kubernetes-basics exposed
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework get service kubernetes-basics
+NAME                TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+kubernetes-basics   NodePort   10.96.108.96   <none>        80:32543/TCP   0s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework get endpointslices -l kubernetes.io/service-name=kubernetes-basics
+NAME                      ADDRESSTYPE   PORTS   ENDPOINTS     AGE
+kubernetes-basics-h5xkd   IPv4          80      10.244.0.72   0s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework exec deployment/kubernetes-basics -- curl --fail --silent --include --connect-timeout 3 --max-time 10 --retry 10 --retry-connrefused --retry-delay 1 http://kubernetes-basics
+HTTP/1.1 200 OK
+Server: nginx/1.27.5
+Date: Fri, 16 Oct 2026 18:03:06 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Wed, 16 Apr 2025 12:01:11 GMT
+Connection: keep-alive
+ETag: "67ff9c07-267"
+Accept-Ranges: bytes
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[exit 0]
+
+$ docker exec session13-control-plane curl --fail --silent --include --connect-timeout 3 --max-time 10 --retry 10 --retry-connrefused --retry-delay 1 http://127.0.0.1:32543
+HTTP/1.1 200 OK
+Server: nginx/1.27.5
+Date: Fri, 16 Oct 2026 18:03:06 GMT
+Content-Type: text/html
+Content-Length: 615
+Last-Modified: Wed, 16 Apr 2025 12:01:11 GMT
+Connection: keep-alive
+ETag: "67ff9c07-267"
+Accept-Ranges: bytes
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+html { color-scheme: light dark; }
+body { width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
+[exit 0]
+

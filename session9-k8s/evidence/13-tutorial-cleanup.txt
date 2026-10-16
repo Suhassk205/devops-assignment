@@ -1,0 +1,14 @@
+Kubernetes Basics - remove only the tutorial namespace
+Actual command transcript; 2026-10-16T23:33:09.241190+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session9-homework delete namespace session9-homework --wait=true --timeout=120s
+Warning: deleting cluster-scoped resources, not scoped to the provided namespace
+namespace "session9-homework" deleted
+[exit 0]
+
+$ kubectl --context kind-session13 get namespaces --field-selector metadata.name=session9-homework
+No resources found
+[exit 0]
+
+Verified: tutorial resources removed; other coursework namespaces were left in place.

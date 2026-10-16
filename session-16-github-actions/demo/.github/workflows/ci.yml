@@ -1,0 +1,141 @@
+name: Calculator CI and CD
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: session16-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  test:
+    name: Test Application
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v6
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Display Python version
+        run: python --version
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+      - name: Run tests
+        run: |
+          mkdir -p reports
+          pytest -v --junitxml=reports/tests.xml
+      - name: Upload test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: reports/tests.xml
+  build:
+    name: Build Application and Image
+    needs: [test, security-check]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v6
+      - name: Setup Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+      - name: Build application
+        run: |
+          chmod +x build.sh
+          ./build.sh
+      - name: Show build output
+        run: |
+          cat build/build-info.txt
+      - name: Upload build artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: calculator-build
+          path: build/
+      - name: Build deployable image
+        run: |
+          docker build -t session16-calculator:${{ github.sha }} .
+          docker save session16-calculator:${{ github.sha }} | gzip > calculator-image.tar.gz
+      - name: Upload container artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: calculator-image
+          path: calculator-image.tar.gz
+          retention-days: 3
+  security-check:
+    name: Security Check
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v6
+      - name: Check for sensitive files
+        run: |
+          echo "Checking repository for common sensitive files..."
+          if find . -type f \( \
+            -name ".env" \
+            -o -name "*.pem" \
+            -o -name "*.key" \
+          \) | grep -q .; then
+            echo "Potential sensitive file found."
+            exit 1
+          else
+            echo "No common sensitive files found."
+          fi
+  deploy:
+    name: Deploy and Verify Application
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/download-artifact@v4
+        with:
+          name: calculator-image
+      - name: Load the built image
+        run: docker load -i calculator-image.tar.gz
+      - name: Create deployment cluster
+        uses: helm/kind-action@v1.12.0
+      - name: Deploy the image from CI
+        run: |
+          kind load docker-image session16-calculator:${{ github.sha }} --name chart-testing
+          kubectl create namespace session16-homework
+          kubectl set image --local -f k8s/deployment.yaml calculator=session16-calculator:${{ github.sha }} -o yaml | kubectl -n session16-homework apply -f -
+          kubectl -n session16-homework apply -f k8s/service.yaml
+          kubectl -n session16-homework rollout status deployment/session16-calculator --timeout=180s
+      - name: Verify running application through its Service
+        run: |
+          mkdir -p reports
+          kubectl -n session16-homework get deployment,pods,service -o wide | tee reports/deployment.txt
+          verified=false
+          for attempt in 1 2 3 4 5; do
+            if kubectl -n session16-homework exec deployment/session16-calculator -- python -c 'import json,urllib.request; base="http://session16-calculator"; health=json.load(urllib.request.urlopen(base+"/health", timeout=10)); result=json.load(urllib.request.urlopen(base+"/calculate?operation=add&a=10&b=5", timeout=10)); assert health["status"]=="healthy"; assert result["result"]==15; print("Health:",health); print("Calculation:",result)' | tee reports/http-checks.txt; then
+              verified=true
+              break
+            fi
+            sleep 2
+          done
+          test "$verified" = true
+          kubectl -n session16-homework logs deployment/session16-calculator --tail=10 > reports/application.log
+      - name: Collect deployment diagnostics
+        if: failure()
+        run: |
+          mkdir -p reports
+          kubectl -n session16-homework get pods -o wide > reports/pods-on-failure.txt || true
+          kubectl -n session16-homework get events --sort-by=.lastTimestamp > reports/events-on-failure.txt || true
+      - name: Upload deployment evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: deployment-reports
+          path: reports/

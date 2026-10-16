@@ -1,0 +1,22 @@
+Kubernetes Basics - expose and access the application
+Actual command transcript; 2026-10-16T23:27:53.042708+05:30
+Context: kind-session13
+
+$ kubectl --context kind-session13 -n session9-homework expose deployment kubernetes-basics --type=NodePort --port=80 --target-port=80
+service/kubernetes-basics exposed
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework get service kubernetes-basics
+NAME                TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)        AGE
+kubernetes-basics   NodePort   10.96.62.217   <none>        80:32580/TCP   0s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework get endpointslices -l kubernetes.io/service-name=kubernetes-basics
+NAME                      ADDRESSTYPE   PORTS   ENDPOINTS     AGE
+kubernetes-basics-t6xlb   IPv4          80      10.244.0.61   0s
+[exit 0]
+
+$ kubectl --context kind-session13 -n session9-homework exec deployment/kubernetes-basics -- curl --fail --silent --include http://kubernetes-basics
+command terminated with exit code 7
+[exit 7]
+

@@ -1,0 +1,49 @@
+Session 16 - local continuous deployment verification
+Actual command transcript; 2026-10-16T23:32:33.070761+05:30
+Context: kind-session13
+
+$ kind load docker-image session16-calculator:local --name session13
+Image: "session16-calculator:local" with ID "sha256:6a78c9ae9955d9365d586701e54b475e58d733c186e685e3ecb997d40c6bccdf" not yet present on node "session13-control-plane", loading...
+[exit 0]
+
+$ kubectl --context kind-session13 -n session16-homework create namespace session16-homework
+namespace/session16-homework created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session16-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-16-github-actions/demo/k8s/deployment.yaml
+deployment.apps/session16-calculator created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session16-homework apply -f /Users/suhas/Downloads/devops-heros-main/session-16-github-actions/demo/k8s/service.yaml
+service/session16-calculator created
+[exit 0]
+
+$ kubectl --context kind-session13 -n session16-homework rollout status deployment/session16-calculator --timeout=180s
+Waiting for deployment "session16-calculator" rollout to finish: 0 of 2 updated replicas are available...
+Waiting for deployment "session16-calculator" rollout to finish: 1 of 2 updated replicas are available...
+deployment "session16-calculator" successfully rolled out
+[exit 0]
+
+$ kubectl --context kind-session13 -n session16-homework get deployment,pods,service -o wide
+NAME                                   READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                       SELECTOR
+deployment.apps/session16-calculator   2/2     2            2           3s    calculator   session16-calculator:local   app=session16-calculator
+
+NAME                                        READY   STATUS    RESTARTS   AGE   IP            NODE                      NOMINATED NODE   READINESS GATES
+pod/session16-calculator-75db58b997-hs6dq   1/1     Running   0          3s    10.244.0.71   session13-control-plane   <none>           <none>
+pod/session16-calculator-75db58b997-tx2wk   1/1     Running   0          3s    10.244.0.70   session13-control-plane   <none>           <none>
+
+NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE   SELECTOR
+service/session16-calculator   ClusterIP   10.96.225.188   <none>        80/TCP    3s    app=session16-calculator
+[exit 0]
+
+$ kubectl --context kind-session13 -n session16-homework exec deployment/session16-calculator -- python -c 'import json,time,urllib.request; base="http://session16-calculator"; health=json.load(urllib.request.urlopen(base+"/health", timeout=10)); result=json.load(urllib.request.urlopen(base+"/calculate?operation=add&a=10&b=5", timeout=10)); assert health["status"]=="healthy"; assert result["result"]==15; print("Health:",health); print("Calculation:",result)'
+Health: {'status': 'healthy'}
+Calculation: {'operation': 'add', 'result': 15.0}
+[exit 0]
+
+$ kubectl --context kind-session13 -n session16-homework logs deployment/session16-calculator --tail=10
+Found 2 pods, using pod/session16-calculator-75db58b997-hs6dq
+10.244.0.1 - - [16/Oct/2026 18:02:36] "GET /health HTTP/1.1" 200 -
+10.244.0.1 - - [16/Oct/2026 18:02:37] "GET /calculate?operation=add&a=10&b=5 HTTP/1.1" 200 -
+[exit 0]
+

@@ -224,6 +224,28 @@ sudo deluser --remove-home devops_test
 
 ## Task 3: journalctl
 
+### Hands-on: logs from a running Linux service
+
+I checked `kubelet.service` on the Linux node `session13-control-plane`. This Kind node runs systemd as PID 1, so the commands below read the actual systemd journal.
+
+```bash
+docker exec session13-control-plane ps -p 1 -o comm=
+docker exec session13-control-plane systemctl is-active kubelet
+docker exec session13-control-plane journalctl -u kubelet -n 8 --no-pager
+docker exec session13-control-plane journalctl -u kubelet --since today -n 5 --no-pager
+docker exec session13-control-plane journalctl -u kubelet -p err -n 3 --no-pager
+docker exec session13-control-plane journalctl --disk-usage
+```
+
+PID 1 was `systemd`, the service was `active`, and the journal showed real kubelet activity for Pods on the node. I also filtered by time and priority and checked the journal's disk usage. The priority filter returned no entries at the selected journal priority; this is different from a failed command.
+
+[Full service-log output](evidence/01-journalctl-service.txt) · [Compact terminal output](evidence/02-journalctl-summary.txt) · [Homework proof](homework-output/proof.txt)
+
+![Actual systemd and kubelet service-log checks](screenshots/01-journalctl-service.png)
+
+The compact screenshot uses `--truncate` to fit long journal lines; the full output above preserves the complete messages.
+
+
 ### 🔍 What is `journalctl`?
 
 `journalctl` is a command-line tool used to **query and display logs** from the **systemd journal** (systemd's logging system). It collects logs from:

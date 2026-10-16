@@ -1,0 +1,40 @@
+Linux service logs with journalctl
+Actual command transcript; 2026-10-16T23:34:13.181585+05:30
+Context: Linux systemd node session13-control-plane; kubelet.service
+
+$ docker exec session13-control-plane ps -p 1 -o comm=
+systemd
+[exit 0]
+
+$ docker exec session13-control-plane systemctl is-active kubelet
+active
+[exit 0]
+
+$ docker exec session13-control-plane journalctl -u kubelet -n 8 --no-pager
+Oct 16 18:03:14 session13-control-plane kubelet[212]: I1016 18:03:14.834491     212 pod_container_deletor.go:56] "DeleteContainer returned error" containerID={"Type":"containerd","ID":"51342ac86e1fbaae3e018f9a53ad10c391c6b8d194bdf58c0771f8d56faaf58a"} err="failed to get container status \"51342ac86e1fbaae3e018f9a53ad10c391c6b8d194bdf58c0771f8d56faaf58a\": rpc error: code = NotFound desc = an error occurred when try to find container \"51342ac86e1fbaae3e018f9a53ad10c391c6b8d194bdf58c0771f8d56faaf58a\": not found"
+Oct 16 18:03:14 session13-control-plane kubelet[212]: I1016 18:03:14.834503     212 scope.go:118] "RemoveContainer" containerID="94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc"
+Oct 16 18:03:14 session13-control-plane kubelet[212]: I1016 18:03:14.835074     212 server.go:190] "Pod removed broadcasted" podUID="0cec804e-a795-4f21-9ecc-fe1c3409cc7d"
+Oct 16 18:03:14 session13-control-plane kubelet[212]: I1016 18:03:14.839590     212 scope.go:118] "RemoveContainer" containerID="94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc"
+Oct 16 18:03:14 session13-control-plane kubelet[212]: E1016 18:03:14.839792     212 remote_runtime.go:657] "ContainerStatus from runtime service failed" err="rpc error: code = NotFound desc = an error occurred when try to find container \"94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc\": not found" containerID="94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc"
+Oct 16 18:03:14 session13-control-plane kubelet[212]: I1016 18:03:14.839807     212 pod_container_deletor.go:56] "DeleteContainer returned error" containerID={"Type":"containerd","ID":"94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc"} err="failed to get container status \"94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc\": rpc error: code = NotFound desc = an error occurred when try to find container \"94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc\": not found"
+Oct 16 18:03:15 session13-control-plane kubelet[212]: I1016 18:03:15.352862     212 kubelet_volumes.go:161] "Cleaned up orphaned pod volumes dir" podUID="00b5fe22-0a3f-41ec-81a0-33446376e07e" path="/var/lib/kubelet/pods/00b5fe22-0a3f-41ec-81a0-33446376e07e/volumes"
+Oct 16 18:03:15 session13-control-plane kubelet[212]: I1016 18:03:15.353038     212 kubelet_volumes.go:161] "Cleaned up orphaned pod volumes dir" podUID="0cec804e-a795-4f21-9ecc-fe1c3409cc7d" path="/var/lib/kubelet/pods/0cec804e-a795-4f21-9ecc-fe1c3409cc7d/volumes"
+[exit 0]
+
+$ docker exec session13-control-plane journalctl -u kubelet --since today -n 5 --no-pager
+Oct 16 18:03:14 session13-control-plane kubelet[212]: I1016 18:03:14.839590     212 scope.go:118] "RemoveContainer" containerID="94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc"
+Oct 16 18:03:14 session13-control-plane kubelet[212]: E1016 18:03:14.839792     212 remote_runtime.go:657] "ContainerStatus from runtime service failed" err="rpc error: code = NotFound desc = an error occurred when try to find container \"94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc\": not found" containerID="94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc"
+Oct 16 18:03:14 session13-control-plane kubelet[212]: I1016 18:03:14.839807     212 pod_container_deletor.go:56] "DeleteContainer returned error" containerID={"Type":"containerd","ID":"94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc"} err="failed to get container status \"94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc\": rpc error: code = NotFound desc = an error occurred when try to find container \"94c0750fb342f5f71a0ccee4d2258515f3498a6529b50ac3253563728e4979bc\": not found"
+Oct 16 18:03:15 session13-control-plane kubelet[212]: I1016 18:03:15.352862     212 kubelet_volumes.go:161] "Cleaned up orphaned pod volumes dir" podUID="00b5fe22-0a3f-41ec-81a0-33446376e07e" path="/var/lib/kubelet/pods/00b5fe22-0a3f-41ec-81a0-33446376e07e/volumes"
+Oct 16 18:03:15 session13-control-plane kubelet[212]: I1016 18:03:15.353038     212 kubelet_volumes.go:161] "Cleaned up orphaned pod volumes dir" podUID="0cec804e-a795-4f21-9ecc-fe1c3409cc7d" path="/var/lib/kubelet/pods/0cec804e-a795-4f21-9ecc-fe1c3409cc7d/volumes"
+[exit 0]
+
+$ docker exec session13-control-plane journalctl -u kubelet -p err -n 3 --no-pager
+-- No entries --
+[exit 0]
+
+$ docker exec session13-control-plane journalctl --disk-usage
+Archived and active journals take up 8M in the file system.
+[exit 0]
+
+Verified: PID 1 is systemd, kubelet is active, and journalctl returned actual service log entries.
